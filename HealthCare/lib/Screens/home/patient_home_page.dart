@@ -400,7 +400,7 @@ class _HomePageState extends State<HomePage> {
       height: 199,
       child: Container(
           child: StreamBuilder<QuerySnapshot>(
-              stream: firebase.where('valid', isEqualTo: true).snapshots(),
+              stream: firebase.where('valid', isEqualTo: true).where('city',isEqualTo:loggedInUser.city).snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) {
@@ -422,6 +422,7 @@ class _HomePageState extends State<HomePage> {
                                   name: doc['name'],
                                   email: doc['email'],
                                   address: doc['address'],
+                                  city: doc['city'],
                                   experience: doc['experience'],
                                   specialist: doc['specialist'],
                                   profileImage: doc['profileImage'],
@@ -593,6 +594,7 @@ class _HomePageState extends State<HomePage> {
                                 name: doc['name'],
                                 email: doc['email'],
                                 address: doc['address'],
+                                city: doc['city'],
                                 experience: doc['experience'],
                                 specialist: doc['specialist'],
                                 profileImage: doc['profileImage'],
@@ -641,6 +643,7 @@ class _HomePageState extends State<HomePage> {
                         name: doc['name'],
                         email: doc['email'],
                         address: doc['address'],
+                        city: doc['city'],
                         experience: doc['experience'],
                         specialist: doc['specialist'],
                         profileImage: doc['profileImage'],
@@ -664,20 +667,20 @@ class _HomePageState extends State<HomePage> {
   List<Category> _getCategories() {
     List<Category> categories = <Category>[];
     categories.add(Category(
-      title: 'Permanent babysitter',
+      title: 'Babysitter',
       icon: "assets/svg/brainstorm.png",
     ));
     categories.add(Category(
       icon: "assets/svg/ear.png",
-      title: 'Summer babysitter',
+      title: 'Ortophoniste',
     ));
     categories.add(Category(
       icon: "assets/svg/eye.png",
-      title: 'Weekday babysitter',
+      title: 'Aide soignant',
     ));
     categories.add(Category(
       icon: "assets/svg/hair.png",
-      title: 'Weekend babysitter',
+      title: 'Aide familial',
     ));
     return categories;
   }

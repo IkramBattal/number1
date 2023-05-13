@@ -205,6 +205,7 @@ class _LoginasState extends State<Loginas> {
         ],
       ),
     );
+
   }
 
   void sigin(var email, var password) async {
@@ -223,4 +224,5 @@ class _LoginasState extends State<Loginas> {
       });
     }
   }
+
 }

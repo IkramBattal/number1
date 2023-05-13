@@ -31,6 +31,7 @@ class _Profile_pageState extends State<Profile_page> {
   bool isLoading = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   var t_address;
+  var t_city;
   var mydate;
   var t_date;
   var t_age;
@@ -339,7 +340,7 @@ class _Profile_pageState extends State<Profile_page> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "address",
+                              "addresss",
                               style: TextStyle(
                                   color: kPrimaryColor,
                                   fontWeight: FontWeight.w600),
@@ -371,14 +372,59 @@ class _Profile_pageState extends State<Profile_page> {
                                   return null;
                                 },
                                 onSaved: (var address) {
-                                  t_address = address;
+                                  t_address =address;
                                 },
                               ),
                             )
                           ],
                         ),
                       ),
-
+                      Container(
+                        margin:
+                        EdgeInsets.only(left: margin_left, top: margin_top),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              "city",
+                              style: TextStyle(
+                                  color: kPrimaryColor,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(
+                                  left: margin_left, right: margin_right),
+                              width: boder,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 1.0, color: Colors.black12),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(5.0)
+                                  //                 <--- border radius here
+                                ),
+                              ),
+                              padding: EdgeInsets.all(8),
+                              child: TextFormField(
+                                keyboardType: TextInputType.text,
+                                cursorColor: kPrimaryColor,
+                                initialValue: loggedInUser.city,
+                                onChanged: (city) {
+                                  t_city = city;
+                                },
+                                validator: (var value) {
+                                  if (value!.isEmpty) {
+                                    return "Enter Your City";
+                                  }
+                                  return null;
+                                },
+                                onSaved: (var city) {
+                                  t_city = city;
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                       // ************************************
                       // Date of Birth Field
                       //*************************************
@@ -650,6 +696,9 @@ class _Profile_pageState extends State<Profile_page> {
                                       'address': t_address == null
                                           ? loggedInUser.address
                                           : t_address,
+                                  'city': t_city == null
+                                      ? loggedInUser.city
+                                      : t_city,
                                       'age': t_age == null
                                           ? loggedInUser.age
                                           : t_age,

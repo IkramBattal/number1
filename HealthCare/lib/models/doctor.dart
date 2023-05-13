@@ -17,7 +17,9 @@ class Doctor {
 class DoctorModel {
   String? uid;
   String? name;
+  String? gender;
   String? address;
+  String? city;
   String? email;
   String? experience;
   String? specialist;
@@ -32,7 +34,9 @@ class DoctorModel {
   DoctorModel({
     this.uid,
     this.name,
+    this.gender,
     this.address,
+    this.city,
     this.email,
     this.experience,
     this.specialist,
@@ -50,7 +54,9 @@ class DoctorModel {
     return DoctorModel(
       uid: map['uid'],
       name: map['name'],
+      gender: map['gender'],
       address: map['address'],
+      city: map['city'],
       email: map['email'],
       experience: map['experience'],
       specialist: map['specialist'],
@@ -69,7 +75,9 @@ class DoctorModel {
     return {
       'uid': uid,
       'name': name,
+      'gender': gender,
       'address': address,
+      'city': city,
       'email': email,
       'experience': experience,
       'specialist': specialist,

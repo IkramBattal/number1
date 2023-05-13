@@ -32,7 +32,7 @@ class _SearchListState extends State<SearchList> {
       body: SafeArea(
         child: StreamBuilder(
           stream: FirebaseFirestore.instance
-              .collection('sitter')
+              .collection('Sitter')
               .orderBy('name')
               .where('valid', isEqualTo: true)
               .startAt([widget.searchKey]).endAt(
@@ -98,6 +98,7 @@ class _SearchListState extends State<SearchList> {
                                         name: doctor['name'],
                                         email: doctor['email'],
                                         address: doctor['address'],
+                                        city: doctor['city'],
                                         experience: doctor['experience'],
                                         specialist: doctor['specialist'],
                                         profileImage: doctor['profileImage'],

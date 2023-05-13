@@ -86,16 +86,9 @@ class _SelectCardState extends State<SelectCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   Text(
-                    'Dr.',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  Text(
-                    widget.name,
+                    widget.name ,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 22,
@@ -106,7 +99,7 @@ class _SelectCardState extends State<SelectCard> {
                     height: 16,
                   ),
                   Text(
-                    widget.specialist + ' Specialist',
+                    widget.specialist + "blabla" ,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14,

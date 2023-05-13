@@ -13,6 +13,7 @@ import '../../constants.dart';
 import '../../services/shared_preferences_service.dart';
 import '../../widget/Alert_Dialog.dart';
 import 'ForgetPassword.dart';
+import 'loginas.dart';
 
 class login_page extends StatefulWidget {
   const login_page({Key? key}) : super(key: key);
@@ -102,211 +103,250 @@ class _login_pageState extends State<login_page> {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Form(
-          key: _formkey,
-          child: isLoading
-              ? Loading()
-              : SingleChildScrollView(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Loginas()),
+              );
+            },
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        backgroundColor: Colors.white,
+        body: GestureDetector(
+          onHorizontalDragEnd: (DragEndDetails details) {
+            if (details.velocity.pixelsPerSecond.dx < 0) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Loginas()),
+              );
+            }
+          },
+          child: SafeArea(
+            child: Form(
+              key: _formkey,
+              child: isLoading
+                  ? Loading()
+                  : SingleChildScrollView(
+                child: Container(
+                  height: size.height * 1,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/12.Jpg"),
+                        fit: BoxFit.cover),
+                  ),
                   child: Container(
-                    height: size.height * 1,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/images/12.Jpg"),
-                          fit: BoxFit.cover),
-                    ),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: size.height * 0.39,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: size.height * 0.39,
+                        ),
+                        Container(
+                          child: Center(
+                              child: Text(
+                                "Parent Login",
+                                style: TextStyle(
+                                    fontSize: 22,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              )),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 2,
+                          width: 150,
+                          color: kPrimaryLightColor,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          height: size.height * 0.02,
+                        ),
+                        // ************
+                        // Email Field
+                        //*************
+                        Container(
+                          width: size.width * 0.9,
+                          child: TextFormField(
+                            keyboardType: TextInputType.emailAddress,
+                            cursorColor: kPrimaryColor,
+                            decoration: buildInputDecoration(
+                                Icons.email, "Your Email "),
+                            onChanged: (email) {
+                              t_email = email.trim();
+                            },
+                            validator: (email) {
+                              if (isEmailValid(email!))
+                                return null;
+                              else
+                                return 'Enter a valid email address';
+                            },
+                            onSaved: (var email) {
+                              t_email = email.toString().trim();
+                            },
                           ),
-                          Container(
-                            child: Center(
-                                child: Text(
-                              "Parent Login",
-                              style: TextStyle(
-                                  fontSize: 22,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            )),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            height: 2,
-                            width: 150,
-                            color: kPrimaryLightColor,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            height: size.height * 0.02,
-                          ),
-                          // ************************************
-                          // Email Field
-                          //*************************************
-                          Container(
-                            width: size.width * 0.9,
-                            child: TextFormField(
-                              keyboardType: TextInputType.emailAddress,
-                              cursorColor: kPrimaryColor,
-                              decoration: buildInputDecoration(
-                                  Icons.email, "Your Email "),
-                              onChanged: (email) {
-                                t_email = email.trim();
-                              },
-                              validator: (email) {
-                                if (isEmailValid(email!))
-                                  return null;
-                                else
-                                  return 'Enter a valid email address';
-                              },
-                              onSaved: (var email) {
-                                t_email = email.toString().trim();
-                              },
-                            ),
-                          ),
-                          // ************************************
-                          // Password Field
-                          //*************************************
+                        ),
+                        // ************
+                        // Password Field
+                        //*************
 
-                          Container(
-                            width: size.width * 0.9,
-                            margin: EdgeInsets.all(10),
-                            child: TextFormField(
-                              obscureText: _isObscure,
-                              cursorColor: kPrimaryColor,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(25.0),
-                                    borderSide: BorderSide(
-                                      color: kPrimaryLightColor,
-                                      width: 2,
-                                    ),
+                        Container(
+                          width: size.width * 0.9,
+                          margin: EdgeInsets.all(10),
+                          child: TextFormField(
+                            obscureText: _isObscure,
+                            cursorColor: kPrimaryColor,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25.0),
+                                  borderSide: BorderSide(
+                                    color: kPrimaryLightColor,
+                                    width: 2,
                                   ),
-                                  prefixIcon: Icon(
-                                    Icons.lock,
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.lock,
+                                  color: kPrimaryColor,
+                                ),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _isObscure
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
                                     color: kPrimaryColor,
                                   ),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(
-                                      _isObscure
-                                          ? Icons.visibility_off
-                                          : Icons.visibility,
-                                      color: kPrimaryColor,
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        _isObscure = !_isObscure;
-                                        print("on password");
-                                      });
-                                    },
-                                  ),
-                                  fillColor: kPrimaryLightColor,
-                                  filled: true,
-                                  errorBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(25.0),
-                                      borderSide: BorderSide(
-                                          color: Colors.red, width: 2)),
-                                  focusedBorder: OutlineInputBorder(
+                                  onPressed: () {
+                                    setState(() {
+                                      _isObscure = !_isObscure;
+                                      print("on password");
+                                    });
+                                  },
+                                ),
+                                fillColor: kPrimaryLightColor,
+                                filled: true,
+                                errorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(25.0),
                                     borderSide: BorderSide(
-                                        color: kPrimaryColor, width: 2),
+                                        color: Colors.red, width: 2)),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25.0),
+                                  borderSide: BorderSide(
+                                      color: kPrimaryColor, width: 2),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25.0),
+                                  borderSide: BorderSide(
+                                    color: kPrimaryLightColor,
+                                    width: 2,
                                   ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(25.0),
-                                    borderSide: BorderSide(
-                                      color: kPrimaryLightColor,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  hintText: "Password"),
-                              validator: (var value) {
-                                if (value!.isEmpty) {
-                                  return "Enter Your Password";
-                                }
-                                return null;
-                              },
-                              onChanged: (password) {
-                                t_password = password;
-                              },
-                              onSaved: (var password) {
-                                t_password = password;
-                              },
-                            ),
+                                ),
+                                hintText: "Password"),
+                            validator: (var value) {
+                              if (value!.isEmpty) {
+                                return "Enter Your Password";
+                              }
+                              return null;
+                            },
+                            onChanged: (password) {
+                              t_password = password;
+                            },
+                            onSaved: (var password) {
+                              t_password = password;
+                            },
                           ),
-                          Column(
-                            children: [
-                              Container(
-                                width: size.width * 0.8,
-                                margin: EdgeInsets.only(
-                                    left: 10, right: 10, top: 10, bottom: 5),
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      shape: StadiumBorder(),
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 40, vertical: 15),
-                                      backgroundColor: kPrimaryColor),
-                                  onPressed: () async {
-                                    if (status == false) {
-                                      showDialog(
-                                          context: context,
-                                          barrierDismissible: false,
-                                          builder: (BuildContext context) =>
-                                              AdvanceCustomAlert());
-                                    } else {
-                                      if (_formkey.currentState!.validate()) {
-                                        if (isLoading) return;
-                                        setState(() {
-                                          isLoading = true;
-                                        });
+                        ),
+                        Column(
+                          children: [
+                            Container(
+                              width: size.width * 0.8,
+                              margin: EdgeInsets.only(
+                                  left: 10, right: 10, top: 10, bottom: 5),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    shape: StadiumBorder(),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 40, vertical: 15),
+                                    backgroundColor: kPrimaryColor),
+                                onPressed: () async {
+                                  if (status == false) {
+                                    showDialog(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (BuildContext context) =>
+                                            AdvanceCustomAlert());
+                                  } else {
+                                    if (_formkey.currentState!.validate()) {
+                                      if (isLoading) return;
+                                      setState(() {
+                                        isLoading = true;
+                                      });
+                                      CollectionReference doctorsCollection = FirebaseFirestore
+                                          .instance.collection('parent');
+                                      QuerySnapshot querySnapshot = await doctorsCollection
+                                          .where('email', isEqualTo: t_email).get();
+                                      if (querySnapshot.docs.isEmpty) {
+                                        errorMessage =
+                                        "makaynch";
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    login_page()));
+                                        Fluttertoast.showToast(
+                                            msg: errorMessage);
+                                        setState(() {});
+                                      }
+                                      else{
                                         try {
                                           userCredential = await auth
                                               .signInWithEmailAndPassword(
-                                                  email: t_email,
-                                                  password: t_password);
+                                              email: t_email,
+                                              password: t_password);
                                           showLoadingDialog(context: context);
                                         } on FirebaseAuthException catch (error) {
                                           print("FirebaseError: " + error.code);
                                           switch (error.code) {
                                             case "invalid-email":
                                               errorMessage =
-                                                  "Your email address appears to be malformed.";
+                                              "Your email address appears to be malformed.";
                                               break;
                                             case "wrong-password":
                                               errorMessage =
-                                                  "Your password is wrong.";
+                                              "Your password is wrong.";
                                               break;
                                             case "user-not-found":
                                               errorMessage =
-                                                  "Patient with this email doesn't exist.";
+                                              "Patient with this email doesn't exist.";
                                               break;
                                             case "user-disabled":
                                               errorMessage =
-                                                  "User with this email has been disabled.";
+                                              "User with this email has been disabled.";
                                               break;
                                             case "too-many-requests":
                                               errorMessage =
-                                                  "Too many requests";
+                                              "Too many requests";
                                               break;
                                             case "operation-not-allowed":
                                               errorMessage =
-                                                  "Signing in with Email and Password is not enabled.";
+                                              "Signing in with Email and Password is not enabled.";
                                               break;
                                             case "email-already-in-use":
                                               {
                                                 errorMessage =
-                                                    "email already in use";
+                                                "email already in use";
                                                 break;
                                               }
                                             default:
                                               errorMessage =
-                                                  "An undefined Error happened.";
+                                              "An undefined Error happened.";
                                               break;
                                           }
                                           Fluttertoast.showToast(
@@ -329,148 +369,150 @@ class _login_pageState extends State<login_page> {
 
                                           print("error data" + error.code);
                                           setState(() {});
+
                                         }
+
 
                                         if (userCredential != null) {
                                           await auth
                                               .signInWithEmailAndPassword(
-                                                  email: t_email,
-                                                  password: t_password)
+                                              email: t_email,
+                                              password: t_password)
                                               .then((value) =>
-                                                  _prefService.createCache(1))
+                                              _prefService.createCache(1))
                                               .then((uid) => {
-                                                    print("Login Successful"),
-                                                    Fluttertoast.showToast(
-                                                        msg: "Login Successful",
-                                                        toastLength:
-                                                            Toast.LENGTH_SHORT,
-                                                        gravity:
-                                                            ToastGravity.BOTTOM,
-                                                        timeInSecForIosWeb: 1,
-                                                        backgroundColor:
-                                                            kPrimaryColor,
-                                                        textColor: Colors.white,
-                                                        fontSize: 16.0),
-                                                    Navigator.pushAndRemoveUntil<
-                                                            dynamic>(
-                                                        context,
-                                                        MaterialPageRoute<
-                                                                dynamic>(
-                                                            builder: (BuildContext
-                                                                    context) =>
-                                                                HomePage()),
-                                                        (route) => false),
-                                                  })
+                                            print("Login Successful"),
+                                            Fluttertoast.showToast(
+                                                msg: "Login Successful",
+                                                toastLength:
+                                                Toast.LENGTH_SHORT,
+                                                gravity:
+                                                ToastGravity.BOTTOM,
+                                                timeInSecForIosWeb: 1,
+                                                backgroundColor:
+                                                kPrimaryColor,
+                                                textColor: Colors.white,
+                                                fontSize: 16.0),
+                                            Navigator.pushAndRemoveUntil<
+                                                dynamic>(
+                                                context,
+                                                MaterialPageRoute<
+                                                    dynamic>(
+                                                    builder: (BuildContext
+                                                    context) =>
+                                                        HomePage()),
+                                                    (route) => false),
+                                          })
                                               .catchError((e) {
                                             print(e);
                                           });
                                         }
                                       }
-                                    }
-                                  },
-                                  child: Text(
-                                    'Login',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              ),
-
-                              TextButton(
-                                onPressed: () {
-                                  if (status == false) {
-                                    showDialog(
-                                        context: context,
-                                        barrierDismissible: false,
-                                        builder: (BuildContext context) =>
-                                            AdvanceCustomAlert());
-                                  } else {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                ForgetPassword()));
-                                  }
+                                    }}
                                 },
                                 child: Text(
-                                  "Forget Password ?",
+                                  'Login',
                                   style: TextStyle(
-                                      color: kPrimaryColor,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600),
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
                                 ),
                               ),
+                            ),
 
-                              SizedBox(
-                                height: 10,
+                            TextButton(
+                              onPressed: () {
+                                if (status == false) {
+                                  showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (BuildContext context) =>
+                                          AdvanceCustomAlert());
+                                } else {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ForgetPassword()));
+                                }
+                              },
+                              child: Text(
+                                "Forget Password ?",
+                                style: TextStyle(
+                                    color: kPrimaryColor,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600),
                               ),
-                              Container(
-                                height: 2,
-                                width: 150,
-                                color: kPrimaryLightColor,
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              // ************************************
-                              // add new account
-                              //*************************************
-                              Container(
-                                child: Center(
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Center(
-                                        child: Text(
-                                          "Don't have an account?",
-                                          style: TextStyle(
-                                              color: Colors.black26,
-                                              fontSize: 14),
-                                        ),
+                            ),
+
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              height: 2,
+                              width: 150,
+                              color: kPrimaryLightColor,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            // ************
+                            // add new account
+                            //*************
+                            Container(
+                              child: Center(
+                                child: Row(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Center(
+                                      child: Text(
+                                        "Don't have an account?",
+                                        style: TextStyle(
+                                            color: Colors.black26,
+                                            fontSize: 14),
                                       ),
-                                      TextButton(
-                                        onPressed: () {
-                                          if (status == false) {
-                                            showDialog(
-                                                context: context,
-                                                barrierDismissible: false,
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        AdvanceCustomAlert());
-                                          } else {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Registration()));
-                                          }
-                                        },
-                                        child: Text(
-                                          " Create New Account",
-                                          style: TextStyle(
-                                              color: kPrimaryColor,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600),
-                                        ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        if (status == false) {
+                                          showDialog(
+                                              context: context,
+                                              barrierDismissible: false,
+                                              builder:
+                                                  (BuildContext context) =>
+                                                  AdvanceCustomAlert());
+                                        } else {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Registration()));
+                                        }
+                                      },
+                                      child: Text(
+                                        " Create New Account",
+                                        style: TextStyle(
+                                            color: kPrimaryColor,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
-        ),
-      ),
-    );
+              ),
+            ),
+          ),
+        ));
   }
 
   void sigin(var email, var password) async {
@@ -478,12 +520,12 @@ class _login_pageState extends State<login_page> {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((uid) => {
-                print("Login Successful"),
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                ),
-              })
+        print("Login Successful"),
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        ),
+      })
           .catchError((e) {
         print(e);
       });

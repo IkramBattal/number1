@@ -18,6 +18,7 @@ class DetailPage extends StatefulWidget {
   var name;
   var email;
   var address;
+  var city;
   var experience;
   var specialist;
   var profileImage;
@@ -30,6 +31,7 @@ class DetailPage extends StatefulWidget {
     required this.name,
     required this.email,
     required this.address,
+    required this.city,
     required this.experience,
     required this.specialist,
     required this.profileImage,

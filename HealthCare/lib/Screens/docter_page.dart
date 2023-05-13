@@ -90,9 +90,7 @@ class _Docter_pageState extends State<Docter_page> {
                                 snapshot.data!.docs[index];
                             print("Special Doc: " +
                                 snapshot.data!.docs.length.toString());
-                            if (doc["specialist"].toString().isEmpty) {
-                              return Text("No Doctor Found");
-                            } else {
+
                               return GestureDetector(
                                 onTap: () {
                                   Navigator.push(
@@ -103,6 +101,7 @@ class _Docter_pageState extends State<Docter_page> {
                                           name: doc['name'],
                                           email: doc['email'],
                                           address: doc['address'],
+                                          city: doc['city'],
                                           experience: doc['experience'],
                                           specialist: doc['specialist'],
                                           profileImage: doc['profileImage'],
@@ -126,7 +125,7 @@ class _Docter_pageState extends State<Docter_page> {
                                 ),
                               );
                             }
-                          },
+
                         );
                       }
                     }),

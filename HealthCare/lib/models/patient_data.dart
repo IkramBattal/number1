@@ -2,6 +2,7 @@ class UserModel {
   String? uid;
   String? name;
   String? address;
+  String? city;
   String? email;
   String? age;
   String? dob;
@@ -16,6 +17,7 @@ class UserModel {
     this.uid,
     this.name,
     this.address,
+    this.city,
     this.email,
     this.age,
     this.dob,
@@ -33,6 +35,7 @@ class UserModel {
       uid: map['uid'],
       name: map['name'],
       address: map['address'],
+      city: map['city'],
       email: map['email'],
       age: map['age'],
       dob: map['dob'],
@@ -51,6 +54,7 @@ class UserModel {
       'uid': uid,
       'name': name,
       'address': address,
+      'city': city,
       'email': email,
       'age': age,
       'dob': dob,

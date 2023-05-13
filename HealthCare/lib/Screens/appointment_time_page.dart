@@ -22,19 +22,14 @@ class Appoin_time extends StatefulWidget {
 }
 
 class _Appoin_timeState extends State<Appoin_time> {
-  final morining = [
-    "09:00AM - 10:00AM",
-    "10:30AM - 12:00PM",
-  ];
-  final afternoon = [
-    "12:00PM - 1:00PM",
-    "3:00PM - 4:00PM",
-    "4:30PM - 6:00PM",
-  ];
-  final evening = [
-    "6:00PM - 7:00PM",
-    "7:30PM - 9:00PM",
-  ];
+  final morining =
+    "08:00AM - 12:00PM";
+  final afternoon =
+    "12:00PM - 06:00PM";
+  final evening =
+    "06:00PM - 10:00PM";
+  final AllDay =
+      "08:00PM - 10:00PM";
   bool isEnabled1 = false;
   bool sloact_book = false;
   var isEnabled2 = 2;
@@ -128,13 +123,13 @@ class _Appoin_timeState extends State<Appoin_time> {
                         children: [
                           c_date == null
                               ? Text(
-                                  "Select Date",
-                                  style: TextStyle(color: Colors.white),
-                                )
+                            "Select Date",
+                            style: TextStyle(color: Colors.white),
+                          )
                               : Text(
-                                  c_date,
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                            c_date,
+                            style: TextStyle(color: Colors.white),
+                          ),
                           Icon(
                             Icons.calendar_today,
                             color: Colors.white,
@@ -173,30 +168,30 @@ class _Appoin_timeState extends State<Appoin_time> {
                     // MORNING Button 1.........................................
                     GestureDetector(
                         child: today_app1 >= 2
-                            ? time_Button(morining[0])
+                            ? time_Button(morining)
                             : Container(
-                                height: 50,
-                                width: 150,
-                                margin: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  color: time == morining[0]
-                                      ? Colors.green
-                                      : kPrimaryColor,
-                                ),
-                                child: Center(
-                                    child: Text(
-                                  morining[0],
+                            height: 50,
+                            width: 150,
+                            margin: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.0),
+                              color: time == morining
+                                  ? Colors.green
+                                  : kPrimaryColor,
+                            ),
+                            child: Center(
+                                child: Text(
+                                  morining,
                                   style: TextStyle(color: Colors.white),
                                 )) // child widget, replace with your own
-                                ),
+                        ),
                         onTap: () {
                           if (today_app1 < 2) {
                             if (c_date == null) {
                               Fluttertoast.showToast(
                                   msg: " Please Select Date First");
                             } else {
-                              time = morining[0];
+                              time = morining;
                               timeslot = 1;
                               isEnabled1 = true;
                             }
@@ -204,42 +199,8 @@ class _Appoin_timeState extends State<Appoin_time> {
                             Fluttertoast.showToast(msg: "Slot Full");
                         }),
 
-                    // MORNING Button 2.........................................
-                    GestureDetector(
-                      onTap: () {
-                        if (today_app2 < 2) {
-                          if (c_date == null) {
-                            Fluttertoast.showToast(
-                                msg: " Please Select Date First");
-                          } else {
-                            time = morining[1];
-                            isEnabled1 = true;
-                            timeslot = 2;
-                          }
-                        } else
-                          Fluttertoast.showToast(msg: "Slot Full");
-                      },
-                      child: today_app2 >= 2
-                          ? time_Button(morining[1])
-                          : Container(
-                              height: 50,
-                              width: 150,
-                              margin: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                color: time == morining[1]
-                                    ? Colors.green
-                                    : kPrimaryColor,
-                              ),
-                              child: Center(
-                                  child: Text(
-                                morining[1],
-                                style: TextStyle(color: Colors.white),
-                              )) // child widget, replace with your own
-                              ),
-                    ),
-                  ],
-                ),
+
+               ] ),
 
                 //************************************************
                 //  AFTERNOON
@@ -270,7 +231,7 @@ class _Appoin_timeState extends State<Appoin_time> {
                             Fluttertoast.showToast(
                                 msg: " Please Select Date First");
                           } else {
-                            time = afternoon[0];
+                            time = afternoon;
                             timeslot = 3;
                             isEnabled1 = true;
                           }
@@ -278,97 +239,28 @@ class _Appoin_timeState extends State<Appoin_time> {
                           Fluttertoast.showToast(msg: "Slot Full");
                       },
                       child: today_app3 >= 2
-                          ? time_Button(afternoon[0])
+                          ? time_Button(afternoon)
                           : Container(
-                              height: 50,
-                              width: 150,
-                              margin: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                color: time == afternoon[0]
-                                    ? Colors.green
-                                    : kPrimaryColor,
-                              ),
-                              child: Center(
-                                  child: Text(
-                                afternoon[0],
+                          height: 50,
+                          width: 150,
+                          margin: EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            color: time == afternoon
+                                ? Colors.green
+                                : kPrimaryColor,
+                          ),
+                          child: Center(
+                              child: Text(
+                                afternoon,
                                 style: TextStyle(color: Colors.white),
                               )) // child widget, replace with your own
-                              ),
+                      ),
                     ),
-                    // AFTERNOON Button 2.......................................
-                    GestureDetector(
-                      onTap: () {
-                        if (today_app4 < 2) {
-                          if (c_date == null) {
-                            Fluttertoast.showToast(
-                                msg: " Please Select Date First");
-                          } else {
-                            time = afternoon[1];
-                            timeslot = 4;
-                            isEnabled1 = true;
-                          }
-                        } else
-                          Fluttertoast.showToast(msg: "Slot Full");
-                      },
-                      child: today_app4 >= 2
-                          ? time_Button(afternoon[1])
-                          : Container(
-                              height: 50,
-                              width: 150,
-                              margin: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                color: time == afternoon[1]
-                                    ? Colors.green
-                                    : kPrimaryColor,
-                              ),
-                              child: Center(
-                                  child: Text(
-                                afternoon[1],
-                                style: TextStyle(color: Colors.white),
-                              )) // child widget, replace with your own
-                              ),
-                    ),
+
                   ],
                 ),
-                // AFTERNOON Button 3...........................................
-                Container(
-                  margin: EdgeInsets.only(left: 20),
-                  child: GestureDetector(
-                    onTap: () {
-                      if (today_app5 < 2) {
-                        if (c_date == null) {
-                          Fluttertoast.showToast(
-                              msg: " Please Select Date First");
-                        } else {
-                          time = afternoon[2];
-                          timeslot = 5;
-                          isEnabled1 = true;
-                        }
-                      } else
-                        Fluttertoast.showToast(msg: "Slot Full");
-                    },
-                    child: today_app5 >= 2
-                        ? time_Button(afternoon[2])
-                        : Container(
-                            height: 50,
-                            width: 150,
-                            margin: EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              color: time == afternoon[2]
-                                  ? Colors.green
-                                  : kPrimaryColor,
-                            ),
-                            child: Center(
-                                child: Text(
-                              afternoon[2],
-                              style: TextStyle(color: Colors.white),
-                            )) // child widget, replace with your own
-                            ),
-                  ),
-                ),
+
                 //************************************************
                 //  EVENING
                 //************************************************
@@ -398,7 +290,7 @@ class _Appoin_timeState extends State<Appoin_time> {
                             Fluttertoast.showToast(
                                 msg: " Please Select Date First");
                           } else {
-                            time = evening[0];
+                            time = evening;
                             timeslot = 6;
                             isEnabled1 = true;
                           }
@@ -406,60 +298,84 @@ class _Appoin_timeState extends State<Appoin_time> {
                           Fluttertoast.showToast(msg: "Slot Full");
                       },
                       child: today_app6 >= 2
-                          ? time_Button(evening[0])
+                          ? time_Button(evening)
                           : Container(
-                              height: 50,
-                              width: 150,
-                              margin: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                color: time == evening[0]
-                                    ? Colors.green
-                                    : kPrimaryColor,
-                              ),
-                              child: Center(
-                                  child: Text(
-                                evening[0],
+                          height: 50,
+                          width: 150,
+                          margin: EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            color: time == evening
+                                ? Colors.green
+                                : kPrimaryColor,
+                          ),
+                          child: Center(
+                              child: Text(
+                                evening,
                                 style: TextStyle(color: Colors.white),
                               )) // child widget, replace with your own
-                              ),
+                      ),
                     ),
-                    // EVENING Button 2.........................................
-                    GestureDetector(
-                      onTap: () {
-                        if (today_app7 < 2) {
-                          if (c_date == null) {
-                            Fluttertoast.showToast(
-                                msg: " Please Select Date First");
-                          } else {
-                            time = evening[1];
-                            timeslot = 7;
-                            isEnabled1 = true;
-                          }
-                        } else
-                          Fluttertoast.showToast(msg: "Slot Full");
-                      },
-                      child: today_app7 >= 2
-                          ? time_Button(evening[1])
-                          : Container(
-                              height: 50,
-                              width: 150,
-                              margin: EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0),
-                                color: time == evening[1]
-                                    ? Colors.green
-                                    : kPrimaryColor,
-                              ),
-                              child: Center(
-                                  child: Text(
-                                evening[1],
-                                style: TextStyle(color: Colors.white),
-                              )) // child widget, replace with your own
-                              ),
+
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.wb_twighlight,
+                      color: Colors.amber,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "All Day",
+                      style: TextStyle(
+                          color: kPrimaryColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // MORNING Button 1.........................................
+                      GestureDetector(
+                          child: today_app1 >= 2
+                              ? time_Button(AllDay)
+                              : Container(
+                              height: 50,
+                              width: 150,
+                              margin: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                color: time == AllDay
+                                    ? Colors.green
+                                    : kPrimaryColor,
+                              ),
+                              child: Center(
+                                  child: Text(
+                                    AllDay,
+                                    style: TextStyle(color: Colors.white),
+                                  )) // child widget, replace with your own
+                          ),
+                          onTap: () {
+                            if (today_app1 < 2) {
+                              if (c_date == null) {
+                                Fluttertoast.showToast(
+                                    msg: " Please Select Date First");
+                              } else {
+                                time = AllDay;
+                                timeslot = 1;
+                                isEnabled1 = true;
+                              }
+                            } else
+                              Fluttertoast.showToast(msg: "Slot Full");
+                          }),
+
+
+                    ] ),
 
                 SizedBox(
                   height: size.height * 0.23,
@@ -472,46 +388,46 @@ class _Appoin_timeState extends State<Appoin_time> {
                       style: ElevatedButton.styleFrom(
                         shape: StadiumBorder(),
                         padding:
-                            EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                        EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                         backgroundColor: kPrimaryColor,
                       ),
                       onPressed: isEnabled1
                           ? () {
-                              FirebaseFirestore firebaseFirestore =
-                                  FirebaseFirestore.instance;
-                              firebaseFirestore
-                                  .collection('pending')
-                                  .add({
-                                    'pid': loggedInUser.uid.toString(),
-                                    'name': loggedInUser.name.toString() +
-                                        " " +
-                                        loggedInUser.last_name.toString(),
-                                    'date': c_date,
-                                    'time': time,
-                                    'approve': false,
-                                    'did': widget.uid,
-                                    'phone': loggedInUser.phone,
-                                    'doctor_name': widget.name.toString(),
-                                    'visited': false,
-                                  })
-                                  .then((value) => Fluttertoast.showToast(
-                                      msg: "Pending Appointment",
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.BOTTOM,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: kPrimaryColor,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0))
-                                  .then((value) => showDialog(
-                                      context: context,
-                                      barrierDismissible: false,
-                                      builder: (BuildContext context) =>
-                                          AdvanceCustomAlert(
-                                              widget.name.toString())))
-                                  .catchError((e) {
-                                    print('Error Data2' + e.toString());
-                                  });
-                            }
+                        FirebaseFirestore firebaseFirestore =
+                            FirebaseFirestore.instance;
+                        firebaseFirestore
+                            .collection('pending')
+                            .add({
+                          'pid': loggedInUser.uid.toString(),
+                          'name': loggedInUser.name.toString() +
+                              " " +
+                              loggedInUser.last_name.toString(),
+                          'date': c_date,
+                          'time': time,
+                          'approve': false,
+                          'did': widget.uid,
+                          'phone': loggedInUser.phone,
+                          'doctor_name': widget.name.toString(),
+                          'visited': false,
+                        })
+                            .then((value) => Fluttertoast.showToast(
+                            msg: "Pending Appointment",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: kPrimaryColor,
+                            textColor: Colors.white,
+                            fontSize: 16.0))
+                            .then((value) => showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) =>
+                                AdvanceCustomAlert(
+                                    widget.name.toString())))
+                            .catchError((e) {
+                          print('Error Data2' + e.toString());
+                        });
+                      }
                           : null,
                       child: Text(
                         'Book Appointment',
@@ -529,7 +445,7 @@ class _Appoin_timeState extends State<Appoin_time> {
                         .collection('pending')
                         .where('did', isEqualTo: widget.uid)
                         .where("date", isEqualTo: c_date)
-                        .where("time", isEqualTo: morining[0])
+                        .where("time", isEqualTo: morining)
                         .get()
                         .then((myDocuments) {
                       setState(() {
@@ -545,35 +461,14 @@ class _Appoin_timeState extends State<Appoin_time> {
                       }
                       return SizedBox();
                     }),
+
                 FutureBuilder(
                     future: FirebaseFirestore.instance
                         .collection('pending')
                         .where('did', isEqualTo: widget.uid)
-                        // .orderBy('Created', descending: true | false)
+                    // .orderBy('Created', descending: true | false)
                         .where("date", isEqualTo: c_date)
-                        .where("time", isEqualTo: morining[1])
-                        .get()
-                        .then((myDocuments) {
-                      setState(() {
-                        today_app2 = myDocuments.docs.length;
-                      });
-                      print("${myDocuments.docs.length}");
-                    }),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (snapshot.hasError) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                      return SizedBox();
-                    }),
-                FutureBuilder(
-                    future: FirebaseFirestore.instance
-                        .collection('pending')
-                        .where('did', isEqualTo: widget.uid)
-                        // .orderBy('Created', descending: true | false)
-                        .where("date", isEqualTo: c_date)
-                        .where("time", isEqualTo: afternoon[0])
+                        .where("time", isEqualTo: afternoon)
                         .get()
                         .then((myDocuments) {
                       setState(() {
@@ -589,57 +484,14 @@ class _Appoin_timeState extends State<Appoin_time> {
                       }
                       return SizedBox();
                     }),
+
                 FutureBuilder(
                     future: FirebaseFirestore.instance
                         .collection('pending')
                         .where('did', isEqualTo: widget.uid)
-                        // .orderBy('Created', descending: true | false)
+                    // .orderBy('Created', descending: true | false)
                         .where("date", isEqualTo: c_date)
-                        .where("time", isEqualTo: afternoon[1])
-                        .get()
-                        .then((myDocuments) {
-                      setState(() {
-                        today_app4 = myDocuments.docs.length;
-                      });
-                      print("${myDocuments.docs.length}");
-                    }),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (snapshot.hasError) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                      return SizedBox();
-                    }),
-                FutureBuilder(
-                    future: FirebaseFirestore.instance
-                        .collection('pending')
-                        .where('did', isEqualTo: widget.uid)
-                        // .orderBy('Created', descending: true | false)
-                        .where("date", isEqualTo: c_date)
-                        .where("time", isEqualTo: afternoon[2])
-                        .get()
-                        .then((myDocuments) {
-                      setState(() {
-                        today_app5 = myDocuments.docs.length;
-                      });
-                      print("${myDocuments.docs.length}");
-                    }),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (snapshot.hasError) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
-                      return SizedBox();
-                    }),
-                FutureBuilder(
-                    future: FirebaseFirestore.instance
-                        .collection('pending')
-                        .where('did', isEqualTo: widget.uid)
-                        // .orderBy('Created', descending: true | false)
-                        .where("date", isEqualTo: c_date)
-                        .where("time", isEqualTo: evening[0])
+                        .where("time", isEqualTo: evening)
                         .get()
                         .then((myDocuments) {
                       setState(() {
@@ -655,16 +507,17 @@ class _Appoin_timeState extends State<Appoin_time> {
                       }
                       return SizedBox();
                     }),
+
                 FutureBuilder(
                     future: FirebaseFirestore.instance
                         .collection('pending')
                         .where('did', isEqualTo: widget.uid)
                         .where("date", isEqualTo: c_date)
-                        .where("time", isEqualTo: evening[1])
+                        .where("time", isEqualTo: AllDay)
                         .get()
                         .then((myDocuments) {
                       setState(() {
-                        today_app7 = myDocuments.docs.length;
+                        today_app1 = myDocuments.docs.length;
                       });
                       print("${myDocuments.docs.length}");
                     }),
@@ -675,7 +528,8 @@ class _Appoin_timeState extends State<Appoin_time> {
                         return const Center(child: CircularProgressIndicator());
                       }
                       return SizedBox();
-                    })
+                    }),
+
               ],
             ),
           ),
@@ -695,16 +549,16 @@ class _Appoin_timeState extends State<Appoin_time> {
         ),
         child: Center(
             child: Text(
-          time,
-          style: TextStyle(color: Colors.white),
-        )) // child widget, replace with your own
-        );
+              time,
+              style: TextStyle(color: Colors.white),
+            )) // child widget, replace with your own
+    );
   }
 
   Widget time_Button_active(
-    time,
-    button_time,
-  ) {
+      time,
+      button_time,
+      ) {
     return Container(
         height: 50,
         width: 150,
@@ -715,10 +569,10 @@ class _Appoin_timeState extends State<Appoin_time> {
         ),
         child: Center(
             child: Text(
-          time,
-          style: TextStyle(color: Colors.white),
-        )) // child widget, replace with your own
-        );
+              time,
+              style: TextStyle(color: Colors.white),
+            )) // child widget, replace with your own
+    );
   }
 }
 
@@ -746,7 +600,7 @@ class AdvanceCustomAlert extends StatelessWidget {
                     Text(
                       'Dr. ' + name,
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                     SizedBox(
                       height: 5,
@@ -765,7 +619,7 @@ class AdvanceCustomAlert extends StatelessWidget {
                             context,
                             MaterialPageRoute<dynamic>(
                                 builder: (BuildContext context) => HomePage()),
-                            (route) => false);
+                                (route) => false);
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: kPrimaryColor),
@@ -783,7 +637,7 @@ class AdvanceCustomAlert extends StatelessWidget {
               child: CircleAvatar(
                 backgroundColor: Colors.grey,
                 radius: 45,
-                child: Image.asset('assets/images/logo1.jpg'),
+                child: Image.asset('assets/images/logo1.png'),
               ),
             )
           ],

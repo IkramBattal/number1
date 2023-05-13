@@ -32,10 +32,10 @@ class _DocRegistrationState extends State<DocRegistration> {
   String dropdownvalue = 'Select Your Category';
   var items = [
     'Select Your Category',
-    'Permanent babysitter',
-    'Weekday babysitter',
-    'Weekend babysitter',
-    'Summer babysitter',
+    'Babysitter',
+    'Ortophoniste',
+    'Aide soignant',
+    'Aide familial',
   ];
 
   var t_name,
