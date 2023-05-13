@@ -118,7 +118,7 @@ class _Confirm_AppointmentState extends State<Confirm_Appointment> {
                                                                 left: 8.0,
                                                                 top: 8.0),
                                                         child: Text(
-                                                          "Dr. " +
+                                                          (doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                                                               doc['doctor_name'],
                                                           style: TextStyle(
                                                               color:

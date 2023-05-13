@@ -8,6 +8,7 @@ import 'package:hospital_appointment/Screens/login/doctorlogin.dart';
 import 'package:hospital_appointment/constants.dart';
 import 'package:hospital_appointment/models/doctor.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../newapp/doctorProfile.dart';
 import '../services/shared_preferences_service.dart';
 
 class DocDrawer extends StatefulWidget {
@@ -142,7 +143,10 @@ class _DocDrawerState extends State<DocDrawer> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => notvisited()));
                 }),
-                // Privacy Policy
+                CustomList(Icons.person, "Profile", () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DoctorProfile()));
+                }),             // Privacy Policy
                 CustomList(Icons.announcement, "Privacy Policy", () async {
                   final Uri _url = Uri.parse(
                       'https://nik-jordan-privacy-policy.blogspot.com/2021/08/privacy-policy.html');

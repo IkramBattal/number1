@@ -9,6 +9,7 @@ class RatingModel {
   String? rating;
   String? time;
   String? visited;
+  String? gender;
 
   RatingModel({
     this.visited,
@@ -21,6 +22,7 @@ class RatingModel {
     this.rating,
     this.time,
     this.phone,
+    this.gender,
   });
 
 //reciving data from server
@@ -36,6 +38,7 @@ class RatingModel {
       rating: map['rating'],
       time: map['time'],
       phone: map['phone'],
+      gender:map['gender'],
     );
   }
 
@@ -52,6 +55,7 @@ class RatingModel {
       'rating': rating,
       'time': time,
       'phone': phone,
+      'gender':gender,
     };
   }
 }

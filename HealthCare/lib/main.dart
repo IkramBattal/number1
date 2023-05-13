@@ -10,6 +10,7 @@ Future<void> main() async {
 
   //test
   //test2dbchufiwachtl3lik
+  //test3
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
