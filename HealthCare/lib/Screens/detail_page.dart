@@ -449,7 +449,7 @@ class _DetailPageState extends State<DetailPage> {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            /*hanabdelt hna */
+
                             TextButton(
                               onPressed: () {
                                 Navigator.push(

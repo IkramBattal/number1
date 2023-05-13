@@ -16,7 +16,7 @@ import '../../constants.dart';
 import '../../models/patient_data.dart';
 import '../../newapp/searchList.dart';
 import '../Appointment.dart';
-import '../disease_page.dart';
+
 import '../docter_page.dart';
 import 'dart:ui';
 import 'package:flutter/painting.dart';
@@ -493,22 +493,7 @@ class _HomePageState extends State<HomePage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Disease()),
-                );
-              },
-              child: Text(
-                'More..',
-                style: TextStyle(
-                  color: kPrimaryColor,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            )
+
           ],
         ),
         SizedBox(
@@ -668,19 +653,19 @@ class _HomePageState extends State<HomePage> {
     List<Category> categories = <Category>[];
     categories.add(Category(
       title: 'Babysitter',
-      icon: "assets/svg/brainstorm.png",
+      icon: "assets/svg/babysitter.png",
     ));
     categories.add(Category(
-      icon: "assets/svg/ear.png",
-      title: 'Ortophoniste',
+      icon: "assets/svg/ortho.png",
+      title: 'Orthophoniste',
     ));
     categories.add(Category(
-      icon: "assets/svg/eye.png",
+      icon: "assets/svg/aide.png",
       title: 'Aide soignant',
     ));
     categories.add(Category(
-      icon: "assets/svg/hair.png",
-      title: 'Aide familial',
+      icon: "assets/svg/aide fam.png",
+      title: 'Aide familiale',
     ));
     return categories;
   }

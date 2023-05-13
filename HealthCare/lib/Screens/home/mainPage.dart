@@ -11,7 +11,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:typicons_flutter/typicons_flutter.dart';
 import '../../models/patient_data.dart';
 import '../../newapp/userProfile.dart';
-import '../disease_page.dart';
+
 
 class MainPage extends StatefulWidget {
   @override
@@ -23,7 +23,7 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   List<Widget> _pages = [
     HomePage(),
-    Disease(),
+
     Appointment(),
     UserProfile(),
   ];
@@ -156,11 +156,7 @@ class _MainPageState extends State<MainPage> {
                         _selectedIndex == 0 ? Icons.home : Icons.home_outlined,
                     text: 'Home',
                   ),
-                  GButton(
-                    iconSize: _selectedIndex == 1 ? 30 : 27,
-                    icon: Icons.medical_services,
-                    text: 'Disease',
-                  ),
+
                   GButton(
                     iconSize: 28,
                     icon: _selectedIndex == 2
