@@ -316,7 +316,7 @@ class _doctor_pageState extends State<doctor_page> {
                                               break;
                                             case "user-not-found":
                                               errorMessage =
-                                              "Doctor with this email doesn't exist.";
+                                              "Service provider with this email doesn't exist.";
                                               break;
                                             case "user-disabled":
                                               errorMessage =

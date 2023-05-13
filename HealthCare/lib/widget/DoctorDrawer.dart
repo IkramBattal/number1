@@ -135,11 +135,11 @@ class _DocDrawerState extends State<DocDrawer> {
                   width: 10,
                   color: kPrimaryLightColor,
                 ),
-                CustomList(Icons.check, "Visited Patients", () {
+                CustomList(Icons.check, "Visited Parents", () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => visited()));
                 }),
-                CustomList(Icons.timelapse, "Pending Patients", () {
+                CustomList(Icons.timelapse, "Pending Parents", () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => notvisited()));
                 }),

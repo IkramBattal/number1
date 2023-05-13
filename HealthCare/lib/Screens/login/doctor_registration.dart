@@ -170,7 +170,7 @@ class _DocRegistrationState extends State<DocRegistration> {
                         child: Container(
                           child: Center(
                               child: Text(
-                                "Doctor Registration",
+                                "Service provider Registration",
                                 style: TextStyle(
                                     fontSize: 32,
                                     color: Colors.black,

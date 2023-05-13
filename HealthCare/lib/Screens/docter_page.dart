@@ -78,7 +78,7 @@ class _Docter_pageState extends State<Docter_page> {
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (!snapshot.hasData) {
-                        return Center(child: Text("Doctor Not Available"));
+                        return Center(child: Text("Service provider not available"));
                       } else {
                         return ListView.builder(
                           controller: ScrollController(keepScrollOffset: false),

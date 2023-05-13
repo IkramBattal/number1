@@ -52,7 +52,7 @@ class _SearchListState extends State<SearchList> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'No Doctor Found!',
+                            'No service provider found!',
                             style: TextStyle(
                               color: Colors.blue[800],
                               fontSize: 25,

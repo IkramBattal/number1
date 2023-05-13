@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_appointment/newapp/searchList.dart';
-import '../Screens/disease_page.dart';
+
 
 class DoctorsList extends StatefulWidget {
   @override
@@ -48,7 +48,7 @@ class _DoctorsListState extends State<DoctorsList> {
                   ),
                   filled: true,
                   fillColor: Colors.grey[300],
-                  hintText: 'Search Doctor',
+                  hintText: 'Search service provider',
                   hintStyle: TextStyle(
                     color: Colors.black26,
                     fontSize: 18,
@@ -104,24 +104,7 @@ class _DoctorsListState extends State<DoctorsList> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Disease()),
-                          );
-                          setState(() {
-                            _length = 1;
-                          });
-                        },
-                        child: Text(
-                          'Show All',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
+
                       Image(image: AssetImage('assets/images/search-bg.png')),
                     ],
                   ),

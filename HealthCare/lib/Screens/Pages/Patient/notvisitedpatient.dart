@@ -76,7 +76,7 @@ class _notvisitedState extends State<notvisited> {
               Navigator.pop(context);
             }),
         title: Text(
-          'Pending Patients',
+          'Pending parents',
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
@@ -313,7 +313,7 @@ class alertdialog extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 48),
                     child: Text(
-                      'Are you sure this patient not visited yet?',
+                      'Are you sure this parent not visited yet?',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -418,7 +418,7 @@ class confirm extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 48),
                     child: Text(
-                      'Are you sure this patient visited?',
+                      'Are you sure you this parent visited?',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
