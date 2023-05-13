@@ -82,7 +82,7 @@ class _visitedState extends State<visited> {
               Navigator.pop(context);
             }),
         title: Text(
-          'Visited Patients',
+          'Visited Parents',
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
@@ -107,7 +107,7 @@ class _visitedState extends State<visited> {
                   ),
                   filled: true,
                   fillColor: Colors.grey[200],
-                  hintText: 'Search Visited Patient',
+                  hintText: 'Search Visited Parent',
                   hintStyle: TextStyle(
                     color: Colors.black26,
                     fontSize: 18,

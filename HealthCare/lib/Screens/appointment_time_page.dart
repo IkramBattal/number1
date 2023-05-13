@@ -611,7 +611,7 @@ class AdvanceCustomAlert extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      'Pending till doctor confirm this appointment request.',
+                      'Pending till confirming this appointment request.',
                       style: TextStyle(fontSize: 20),
                       textAlign: TextAlign.center,
                     ),

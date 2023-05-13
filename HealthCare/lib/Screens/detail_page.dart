@@ -255,7 +255,7 @@ class _DetailPageState extends State<DetailPage> {
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
-                            widget.specialist + ' Specialist',
+                            widget.specialist ,
                             style: TextStyle(
                               color: HexColor('#FFBF11'),
                               fontSize: 11,
@@ -720,7 +720,7 @@ class _DetailPageState extends State<DetailPage> {
       scheme: 'sms',
       path: widget.phone,
       queryParameters: <String, String>{
-        'body': Uri.encodeComponent('HelloDoctor'),
+        'body': Uri.encodeComponent('Hello'),
       },
     );
     return AppBar(

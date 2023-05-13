@@ -324,7 +324,7 @@ class _login_pageState extends State<login_page> {
                                               break;
                                             case "user-not-found":
                                               errorMessage =
-                                              "Patient with this email doesn't exist.";
+                                              "Parent with this email doesn't exist.";
                                               break;
                                             case "user-disabled":
                                               errorMessage =
@@ -352,7 +352,7 @@ class _login_pageState extends State<login_page> {
                                           Fluttertoast.showToast(
                                               msg: errorMessage);
                                           if (errorMessage ==
-                                              "Patient with this email doesn't exist.") {
+                                              "Parent with this email doesn't exist.") {
                                             Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(

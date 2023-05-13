@@ -117,7 +117,7 @@ class _TrdCellState extends State<TrdCell> {
               height: 8,
             ),
             Text(
-              widget.specialist + ' Specialist',
+              widget.specialist ,
               style: TextStyle(
                 color: kPrimaryhinttext,
                 fontSize: 14,

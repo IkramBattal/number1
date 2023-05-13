@@ -47,7 +47,7 @@ class _SearchList2State extends State<SearchList2> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'No Patient Found!',
+                            'No Parent Found!',
                             style: TextStyle(
                               color: Colors.blue[800],
                               fontSize: 25,

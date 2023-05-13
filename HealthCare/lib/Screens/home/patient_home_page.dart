@@ -150,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                     alignment: Alignment.centerLeft,
                     padding: EdgeInsets.only(left: 20, bottom: 15),
                     child: Text(
-                      "Let's Find Your\nBabySitter",
+                      "Let's Find Your\nService provider",
                       style: TextStyle(
                         fontSize: 35,
                         color: kPrimaryColor,
@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         filled: true,
                         fillColor: Colors.grey[200],
-                        hintText: 'Search BabySitter',
+                        hintText: 'Search you service provider',
                         hintStyle: TextStyle(
                           color: Colors.black26,
                           fontSize: 18,
@@ -225,22 +225,7 @@ class _HomePageState extends State<HomePage> {
                   ),
 
 //ads..
-                  Container(
-                    padding: EdgeInsets.only(left: 23, bottom: 20),
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "We care for you",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: kPrimaryColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Carouselslider(),
-                  ),
+
 
                   Padding(
                     padding: EdgeInsets.only(left: 20, right: 20),
@@ -562,7 +547,7 @@ class _HomePageState extends State<HomePage> {
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) {
-                return new Text("Loding..");
+                return new Text("Loading..");
               } else {
                 return ListView.builder(
                   shrinkWrap: true,
@@ -688,7 +673,7 @@ void initFeatureBuilder() {
         .get()
         .then((myDocuments) {
       myDoc = myDocuments.docs.length.toString();
-      print("${"lenght ub = " + myDocuments.docs.length.toString()}");
+      print("${"length ub = " + myDocuments.docs.length.toString()}");
 
       return myDocuments;
     }),
