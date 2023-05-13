@@ -86,7 +86,7 @@ class _Confirm_AppointmentState extends State<Confirm_Appointment> {
 
                             Future.delayed(Duration(seconds: 3));
                             return snapshot.hasData == null
-                                ? Center(child: Text("Doctor Not Available"))
+                                ? Center(child: Text("Not Available"))
                                 : Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 8, vertical: 6),

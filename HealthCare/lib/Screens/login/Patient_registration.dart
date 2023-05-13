@@ -160,7 +160,7 @@ class _RegistrationState extends State<Registration> {
                         child: Container(
                           child: Center(
                               child: Text(
-                                "Parent Registration",
+                                "New Registration",
                                 style: TextStyle(
                                     fontSize: 32,
                                     color: Colors.black,
@@ -350,7 +350,7 @@ class _RegistrationState extends State<Registration> {
                           Icon(Icons.arrow_drop_down, color: kPrimaryColor),
                           decoration: buildInputDecoration(
                               Icons.phone, "Contact Number"),
-                          initialCountryCode: 'IN',
+                          initialCountryCode: 'MA',
                           onChanged: (phone) {
                             print(phone.completeNumber);
                             phoneController = phone.completeNumber.toString();

@@ -587,7 +587,7 @@ class _DetailPageState extends State<DetailPage> {
                             children: [
                               DetailCell(
                                   title: patient_count.toString(),
-                                  subTitle: 'Patients'),
+                                  subTitle: 'Parents'),
                               DetailCell(
                                   title: widget.experience + '+',
                                   subTitle: 'Exp. Years'),

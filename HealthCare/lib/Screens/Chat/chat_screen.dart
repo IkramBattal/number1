@@ -118,7 +118,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         TextButton(
                           onPressed: messageText != null
                               ? () {
-                                  print("Doctor Uid = " +
+                                  print("Service provider Uid = " +
                                       loggedInUser.uid.toString());
                                   messageTextController.clear();
                                   _firestore

@@ -88,7 +88,7 @@ class _PendingState extends State<Pending> {
                                 snapshot.data!.docs[index];
 
                             return snapshot.hasError
-                                ? Center(child: Text("Doctor Not Available"))
+                                ? Center(child: Text("Not Available"))
                                 : Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 8, vertical: 6),

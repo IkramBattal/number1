@@ -340,7 +340,7 @@ class _Profile_pageState extends State<DProfile_page> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        "addresss",
+                        "address",
                         style: TextStyle(
                             color: kPrimaryColor,
                             fontWeight: FontWeight.w600),
@@ -612,7 +612,7 @@ class _Profile_pageState extends State<DProfile_page> {
                           dropdownTextStyle: TextStyle(fontSize: 16),
                           dropdownIcon: Icon(Icons.arrow_drop_down,
                               color: kPrimaryColor),
-                          initialCountryCode: 'IN',
+                          initialCountryCode: 'MA',
                           onChanged: (phone) {
                             print(phone.completeNumber);
                             phoneController =
@@ -624,6 +624,7 @@ class _Profile_pageState extends State<DProfile_page> {
                     ],
                   ),
                 ),
+
                 Container(
                   margin:
                   EdgeInsets.only(left: margin_left, top: margin_top),

@@ -31,7 +31,7 @@ class _DoctorsListState extends State<DoctorsList> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text('Find Doctors'),
+        title: Text('Find Service provider'),
         actions: <Widget>[
           SafeArea(
             child: Container(

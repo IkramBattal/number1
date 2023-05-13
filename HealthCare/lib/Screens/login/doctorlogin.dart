@@ -344,7 +344,7 @@ class _doctor_pageState extends State<doctor_page> {
                                           Fluttertoast.showToast(
                                               msg: errorMessage);
                                           if (errorMessage ==
-                                              "Doctor with this email doesn't exist.") {
+                                              "Service provider with this email doesn't exist.") {
                                             Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(

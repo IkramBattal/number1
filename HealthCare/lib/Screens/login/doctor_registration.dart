@@ -170,7 +170,7 @@ class _DocRegistrationState extends State<DocRegistration> {
                         child: Container(
                           child: Center(
                               child: Text(
-                                "Service provider Registration",
+                                "New Registration",
                                 style: TextStyle(
                                     fontSize: 32,
                                     color: Colors.black,
@@ -236,7 +236,7 @@ class _DocRegistrationState extends State<DocRegistration> {
                           keyboardType: TextInputType.name,
                           cursorColor: kPrimaryColor,
                           decoration: buildInputDecoration(
-                              Icons.person, "Doctor Full Name"),
+                              Icons.person, "Full Name"),
                           validator: (var value) {
                             if (value!.isEmpty) {
                               return "Enter Your Name";
@@ -260,7 +260,7 @@ class _DocRegistrationState extends State<DocRegistration> {
                           keyboardType: TextInputType.text,
                           cursorColor: kPrimaryColor,
                           decoration: buildInputDecoration(Icons.add_location,
-                              "Hospital or Clinic Name & Address"),
+                              "Address"),
                           onChanged: (address) {
                             t_address = address;
                           },
@@ -304,7 +304,7 @@ class _DocRegistrationState extends State<DocRegistration> {
                           keyboardType: TextInputType.emailAddress,
                           cursorColor: kPrimaryColor,
                           decoration: buildInputDecoration(
-                              Icons.email, "Doctor Email "),
+                              Icons.email, "Email "),
                           onChanged: (email) {
                             t_email = email.trim();
                             print("Email: " + t_email + ":");
@@ -336,7 +336,7 @@ class _DocRegistrationState extends State<DocRegistration> {
                           Icon(Icons.arrow_drop_down, color: kPrimaryColor),
                           decoration: buildInputDecoration(
                               Icons.phone, "Contact Number"),
-                          initialCountryCode: 'IN',
+                          initialCountryCode: 'MA',
                           onChanged: (phone) {
                             print(phone.completeNumber);
                             phoneController = phone.completeNumber.toString();
@@ -636,7 +636,7 @@ class _DocRegistrationState extends State<DocRegistration> {
                           keyboardType: TextInputType.multiline,
                           cursorColor: kPrimaryColor,
                           decoration: buildInputDecoration(
-                              Icons.accessibility, "Doctor Description"),
+                              Icons.accessibility, "Description"),
                           //onChanged: (){},
                           validator: (var value) {
                             if (value!.isEmpty) {
