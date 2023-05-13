@@ -5,6 +5,7 @@ class HDCell extends StatefulWidget {
   final valid;
   final name;
   final email;
+  final gender;
   final specialist;
   final profileImage;
   final Function onTap;
@@ -13,10 +14,12 @@ class HDCell extends StatefulWidget {
     required this.valid,
     required this.name,
     required this.email,
+    required this.gender,
     required this.specialist,
     required this.onTap,
     required this.profileImage,
   });
+
 
   @override
   State<HDCell> createState() => _HDCellState();
@@ -56,7 +59,7 @@ class _HDCellState extends State<HDCell> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Dr.',
+                    (widget.gender == 'female' ? 'Ms.  ' : 'Mrs.  '),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14,

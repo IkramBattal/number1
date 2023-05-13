@@ -191,7 +191,7 @@ class _Patient_RecentListState extends State<Patient_RecentList> {
                                                           decoration:
                                                               BoxDecoration(),
                                                           child: Text(
-                                                            "Dr. " +
+                                                            (doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                                                                 doc['doctor_name'],
                                                             style: TextStyle(
                                                                 color: Colors
@@ -273,7 +273,7 @@ class _Patient_RecentListState extends State<Patient_RecentList> {
                                                           decoration:
                                                               BoxDecoration(),
                                                           child: Text(
-                                                            "Dr. " +
+                                                            (doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                                                                 doc['doctor_name'],
                                                             style: TextStyle(
                                                                 color: Colors

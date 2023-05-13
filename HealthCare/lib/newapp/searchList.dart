@@ -18,6 +18,7 @@ class _SearchListState extends State<SearchList> {
   final CollectionReference firebase =
       FirebaseFirestore.instance.collection('Sitter');
   var appointment = FirebaseFirestore.instance;
+  var a='Mr  ';
   User? user = FirebaseAuth.instance.currentUser;
 
   bool isLoading = true;
@@ -75,6 +76,7 @@ class _SearchListState extends State<SearchList> {
                       itemCount: snapshot.data!.size,
                       itemBuilder: (context, index) {
                         DocumentSnapshot doctor = snapshot.data!.docs[index];
+                        if (doctor['gender']=='female'){a='Ms.  ';}
                         return Padding(
                           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: Card(
@@ -104,6 +106,7 @@ class _SearchListState extends State<SearchList> {
                                         profileImage: doctor['profileImage'],
                                         description: doctor['description'],
                                         phone: doctor['phone'],
+                                        gender: doctor['gender'],
                                         available: doctor['available'],
                                         doctor: _doctorName,
                                       ),
@@ -137,7 +140,7 @@ class _SearchListState extends State<SearchList> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Dr. ' + doctor['name'],
+                                          a + doctor['name'],
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 17,

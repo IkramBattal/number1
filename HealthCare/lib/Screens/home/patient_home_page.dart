@@ -331,7 +331,7 @@ class _HomePageState extends State<HomePage> {
                                               child: Center(
                                                 child: doc['approve'] == false
                                                     ? Text(
-                                                        "Your appointment with Dr. " +
+                                                        "Your appointment with "+(doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                                                             doc['doctor_name'] +
                                                             " is Pending at  " +
                                                             doc['date'] +
@@ -428,6 +428,7 @@ class _HomePageState extends State<HomePage> {
                                   profileImage: doc['profileImage'],
                                   description: doc['description'],
                                   phone: doc['phone'],
+                                  gender: doc['gender'],
                                   available: doc['available'],
                                   doctor: _doctorName,
                                 ),
@@ -436,6 +437,7 @@ class _HomePageState extends State<HomePage> {
                         name: doc["name"].toString(),
                         email: doc["email"].toString(),
                         specialist: doc["specialist"].toString(),
+                        gender: doc['gender'].toString(),
                         profileImage: doc['profileImage'],
                         valid: doc['valid'],
                       );
@@ -459,7 +461,7 @@ class _HomePageState extends State<HomePage> {
                 child: Text(
               "Mr." +
                   loggedInUser.name.toString() +
-                  " confirm appointmentpon with Dr." +
+                  " confirm appointmentpon with"+ (doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                   doc['age'] +
                   " on " +
                   doc['date'] +
@@ -585,6 +587,7 @@ class _HomePageState extends State<HomePage> {
                                 profileImage: doc['profileImage'],
                                 description: doc['description'],
                                 available: doc['available'],
+                                gender: doc['gender'],
                                 phone: doc['phone'],
                                 doctor: null,
                               ),
@@ -593,6 +596,7 @@ class _HomePageState extends State<HomePage> {
                       name: doc["name"].toString(),
                       email: doc["email"].toString(),
                       rating: doc["rating"],
+                      gender:doc["gender"].toString(),
                       specialist: doc["specialist"].toString(),
                       profileImage: doc['profileImage'],
                     );
@@ -614,7 +618,7 @@ class _HomePageState extends State<HomePage> {
               onTap: () {
                 if (doc['available'].toString() == false) {
                   Fluttertoast.showToast(
-                      msg: "Dr. " +
+                      msg: (doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                           doc['name'] +
                           " is not available...Visit later",
                       textColor: Colors.white,
@@ -634,6 +638,7 @@ class _HomePageState extends State<HomePage> {
                         profileImage: doc['profileImage'],
                         description: doc['description'],
                         phone: doc['phone'],
+                        gender: doc['gender'],
                         available: doc['available'],
                         doctor: _doctorName,
                       ),
@@ -643,6 +648,7 @@ class _HomePageState extends State<HomePage> {
               email: doc["email"].toString(),
               profileImage: doc['profileImage'],
               rating: doc['rating'].toString(),
+              gender: doc['gender'].toString(),
               specialist: doc["specialist"].toString(),
             ))
         .toList();

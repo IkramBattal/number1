@@ -120,7 +120,7 @@ class _PendingState extends State<Pending> {
                                                                 left: 8.0,
                                                                 top: 8.0),
                                                         child: Text(
-                                                          "Dr. " +
+                                                          (doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                                                               doc['doctor_name'],
                                                           style: TextStyle(
                                                               color:

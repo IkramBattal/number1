@@ -14,9 +14,10 @@ class ChatScreen1 extends StatefulWidget {
   var did;
   var doctor_name;
   var phone;
+  var gender;
 
   ChatScreen1(
-      {required this.did, required this.doctor_name, required this.phone});
+      {required this.did, required this.doctor_name, required this.phone,required this.gender});
 
   @override
   _ChatScreen1State createState() => _ChatScreen1State();
@@ -30,7 +31,6 @@ class _ChatScreen1State extends State<ChatScreen1> {
   User? user = FirebaseAuth.instance.currentUser;
 
   var messageText;
-
   @override
   void initState() {
     super.initState();
@@ -63,7 +63,7 @@ class _ChatScreen1State extends State<ChatScreen1> {
             },
           ),
         ],
-        title: Text("Dr. " + widget.doctor_name),
+        title: Text((widget.gender== 'female' ? 'Ms.  ' : 'Mrs.  ')+ widget.doctor_name),
       ),
       body: SafeArea(
         child: Column(
