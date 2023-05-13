@@ -6,6 +6,7 @@ class TrdCell extends StatefulWidget {
   final name;
   final email;
   final specialist;
+  final gender;
   final profileImage;
   final rating;
   final Function onTap;
@@ -14,10 +15,12 @@ class TrdCell extends StatefulWidget {
     required this.name,
     required this.email,
     required this.specialist,
+    required this.gender,
     required this.rating,
     required this.onTap,
     required this.profileImage,
   });
+
 
   @override
   State<TrdCell> createState() => _TrdCellState();
@@ -104,7 +107,7 @@ class _TrdCellState extends State<TrdCell> {
               height: 24,
             ),
             Text(
-              'Dr. ' + widget.name /* ' ' + widget.email*/,
+              (widget.gender == 'female' ? 'Ms.  ' : 'Mrs.  ') + widget.name /* ' ' + widget.email*/,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,

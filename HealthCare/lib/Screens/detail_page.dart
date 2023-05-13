@@ -25,6 +25,7 @@ class DetailPage extends StatefulWidget {
   var description;
   var phone;
   var available;
+  var gender;
 
   DetailPage({
     required this.uid,
@@ -38,6 +39,7 @@ class DetailPage extends StatefulWidget {
     required this.description,
     required this.phone,
     required this.available,
+    required this.gender,
     required doctor,
   });
 
@@ -143,7 +145,7 @@ class _DetailPageState extends State<DetailPage> {
                               AsyncSnapshot<QuerySnapshot> snapshot) {
                             if (widget.available == false) {
                               Fluttertoast.showToast(
-                                  msg: "Dr. " +
+                                  msg: (widget.gender == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                                       widget.name +
                                       " is not available...Visit later",
                                   textColor: Colors.white,
@@ -232,7 +234,7 @@ class _DetailPageState extends State<DetailPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Dr. ' + widget.name,
+                          (widget.gender == 'female' ? 'Ms.  ' : 'Mrs.  ') + widget.name,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 22,
@@ -648,7 +650,7 @@ class _DetailPageState extends State<DetailPage> {
                                               builder: (context) => Appoin_time(
                                                     uid: widget.uid,
                                                     name: widget.name,
-                                                  )),
+                                                  gender:widget.gender,)),
                                         );
                                       },
                                       child: Container(
@@ -675,7 +677,7 @@ class _DetailPageState extends State<DetailPage> {
                                       ),
                                       onPressed: () {
                                         Fluttertoast.showToast(
-                                            msg: "Dr. " +
+                                            msg: (widget.gender== 'female' ? 'Ms.  ' : 'Mrs.  ') +
                                                 widget.name +
                                                 " is not available...Visit later",
                                             textColor: Colors.white,

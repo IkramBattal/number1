@@ -11,10 +11,12 @@ import 'home/patient_home_page.dart';
 class Appoin_time extends StatefulWidget {
   var uid;
   var name;
+  var gender;
 
   Appoin_time({
     this.uid,
     this.name,
+    this.gender,
   });
 
   @override
@@ -406,6 +408,7 @@ class _Appoin_timeState extends State<Appoin_time> {
                           'time': time,
                           'approve': false,
                           'did': widget.uid,
+                          'gender':widget.gender.toString(),
                           'phone': loggedInUser.phone,
                           'doctor_name': widget.name.toString(),
                           'visited': false,
@@ -578,9 +581,11 @@ class _Appoin_timeState extends State<Appoin_time> {
 
 class AdvanceCustomAlert extends StatelessWidget {
   var name;
+  var gender;
 
   AdvanceCustomAlert(String name) {
     this.name = name;
+    this.gender=gender;
   }
 
   @override
@@ -598,7 +603,7 @@ class AdvanceCustomAlert extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'Dr. ' + name,
+                      (gender== 'female' ? 'Ms.  ' : 'Mrs.  ') + name,
                       style:
                       TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),

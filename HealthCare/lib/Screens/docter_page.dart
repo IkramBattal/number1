@@ -106,6 +106,7 @@ class _Docter_pageState extends State<Docter_page> {
                                           specialist: doc['specialist'],
                                           profileImage: doc['profileImage'],
                                           description: doc['description'],
+                                          gender: doc['gender'],
                                           phone: doc['phone'],
                                           available: doc['available'],
                                           doctor: _doctorName,
