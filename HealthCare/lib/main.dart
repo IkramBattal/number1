@@ -5,6 +5,10 @@ import 'package:hospital_appointment/constants.dart';
 import 'Screens/splash_view.dart';
 
 Future<void> main() async {
+
+
+
+  //test
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
