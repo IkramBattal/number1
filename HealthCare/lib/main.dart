@@ -9,6 +9,7 @@ Future<void> main() async {
 
 
   //test
+  //test2dbchufiwachtl3lik
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
