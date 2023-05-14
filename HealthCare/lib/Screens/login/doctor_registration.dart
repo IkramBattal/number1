@@ -614,7 +614,7 @@ class _DocRegistrationState extends State<DocRegistration> {
                           //onChanged: (){},
                           validator: (var value) {
                             if (value!.isEmpty) {
-                              return "Enter Your Experince";
+                              return "Enter Your Experience";
                             } else if (value.length > 2) {
                               return "Experience must be in two digit";
                             }

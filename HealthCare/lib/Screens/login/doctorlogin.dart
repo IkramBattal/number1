@@ -141,7 +141,7 @@ class _doctor_pageState extends State<doctor_page> {
                         Container(
                           child: Center(
                               child: Text(
-                                "Sitter Login",
+                                "Service provider Login",
                                 style: TextStyle(
                                     fontSize: 22,
                                     color: Colors.black,

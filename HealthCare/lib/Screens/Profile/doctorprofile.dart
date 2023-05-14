@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hospital_appointment/constants.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -40,15 +41,28 @@ class _Profile_pageState extends State<DProfile_page> {
   var file;
   var phoneController;
   var gender;
+  var status;
+  var email;
 
   setSelectedgender(int val) {
     setState(() {
       gender = val;
     });
   }
-
+  setSelectedstatus(int val1) {
+    setState(() {
+      status = val1;
+    });
+  }
+  chooseImage2() async {
+    XFile? xfile2 = await ImagePicker().pickImage(source: ImageSource.gallery);
+    print("file " + xfile2!.path);
+    file= File(xfile2.path);
+    Fluttertoast.showToast(msg: "Chosen File:" + file.path);
+    setState(() {});
+  }
   var subscription;
-  bool status = false;
+
 
   var result;
 
@@ -323,7 +337,23 @@ class _Profile_pageState extends State<DProfile_page> {
                           ),
                         ),
                         padding: EdgeInsets.all(8),
-                        child: Text("${loggedInUser.email}".toString()),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          cursorColor: kPrimaryColor,
+                          initialValue: loggedInUser.email,
+                          onChanged: (email) {
+                            email = email;
+                          },
+                          validator: (var value) {
+                            if (value!.isEmpty) {
+                              return "Enter Your email";
+                            }
+                            return null;
+                          },
+                          onSaved: (var email) {
+                            email = email;
+                          },
+                        ),
                       )
                     ],
                   ),
@@ -570,8 +600,37 @@ class _Profile_pageState extends State<DProfile_page> {
                           BorderRadius.all(Radius.circular(5.0)),
                         ),
                         padding: EdgeInsets.all(8),
-                        child: Text("${loggedInUser.gender}"),
+                        child:
+                          Row(
+                            children: <Widget>[
+                              ButtonBar(
+                                alignment: MainAxisAlignment.center,
+                                children: [
+
+                                  Radio(
+                                      value: 1,
+                                      groupValue: gender,
+                                      activeColor: kPrimaryColor,
+                                      onChanged: (val) {
+                                        setSelectedgender(val as int);
+                                      }),
+                                  Text("Male"),
+                                  Radio(
+                                      value: 2,
+                                      activeColor: kPrimaryColor,
+                                      groupValue: gender,
+                                      onChanged: (val) {
+                                        setSelectedgender(val as int);
+                                      }),
+                                  Text("Female"),
+                                ],
+                              )
+                            ],
+                          ),
+
+
                       )
+
                     ],
                   ),
                 ),
@@ -625,6 +684,48 @@ class _Profile_pageState extends State<DProfile_page> {
                   ),
                 ),
 
+
+                Container(
+                  margin:
+                  EdgeInsets.only(left: margin_left, top: margin_top),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Proof",
+                        style: TextStyle(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: margin_right),
+                        width: boder,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 1.0, color: Colors.black12),
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(5.0)
+                            //  <--- border radius here
+                          ),
+                        ),
+                        child: Padding(
+                          padding:
+                          const EdgeInsets.only(left: 40.0),
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: kPrimaryColor,
+                                  shape: StadiumBorder()),
+                              onPressed: () async {
+                                chooseImage2();
+                              },
+                              child: Text("Update proof")),
+                        ),
+
+                      )
+                    ],
+                  ),
+                ),
+
                 Container(
                   margin:
                   EdgeInsets.only(left: margin_left, top: margin_top),
@@ -650,7 +751,36 @@ class _Profile_pageState extends State<DProfile_page> {
                           ),
                         ),
                         padding: EdgeInsets.all(8),
-                        child: Text("${loggedInUser.status}"),
+                        child:
+                        Row(
+
+                        children: <Widget>[
+                          ButtonBar(
+                            alignment: MainAxisAlignment.center,
+                            children: [
+
+                              Radio(
+                                value: 1,
+                                groupValue: status,
+                                activeColor: kPrimaryColor,
+                                onChanged: (val1) {
+                                  setSelectedstatus(val1 as int);
+                                },
+                              ),
+                              Text("Unmarried"),
+                              Radio(
+                                  value: 2,
+                                  groupValue: status,
+                                  activeColor: kPrimaryColor,
+                                  onChanged: (val1) {
+                                    setSelectedstatus(val1 as int);
+                                  }),
+                              Text("Married"),
+                            ],
+                          )
+                        ],
+                      ),
+
                       )
                     ],
                   ),

@@ -40,15 +40,21 @@ class _Profile_pageState extends State<Profile_page> {
   var file;
   var phoneController;
   var gender;
+  var status;
 
   setSelectedgender(int val) {
     setState(() {
       gender = val;
     });
   }
+  setSelectedstatus(int val1) {
+    setState(() {
+      status = val1;
+    });
+  }
 
   var subscription;
-  bool status = false;
+
 
   var result;
 
@@ -323,7 +329,23 @@ class _Profile_pageState extends State<Profile_page> {
                                     ),
                               ),
                               padding: EdgeInsets.all(8),
-                              child: Text("${loggedInUser.email}".toString()),
+                              child: TextFormField(
+                                keyboardType: TextInputType.text,
+                                cursorColor: kPrimaryColor,
+                                initialValue: loggedInUser.email,
+                                onChanged: (email) {
+                                  email = email;
+                                },
+                                validator: (var value) {
+                                  if (value!.isEmpty) {
+                                    return "Enter Your email";
+                                  }
+                                  return null;
+                                },
+                                onSaved: (var email) {
+                                  email = email;
+                                },
+                              ),
                             )
                           ],
                         ),
@@ -340,7 +362,7 @@ class _Profile_pageState extends State<Profile_page> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "addresss",
+                              "address",
                               style: TextStyle(
                                   color: kPrimaryColor,
                                   fontWeight: FontWeight.w600),
@@ -570,7 +592,35 @@ class _Profile_pageState extends State<Profile_page> {
                                     BorderRadius.all(Radius.circular(5.0)),
                               ),
                               padding: EdgeInsets.all(8),
-                              child: Text("${loggedInUser.gender}"),
+                              child:
+                              Row(
+                                children: <Widget>[
+                                  ButtonBar(
+                                    alignment: MainAxisAlignment.center,
+                                    children: [
+
+                                      Radio(
+                                          value: 1,
+                                          groupValue: gender,
+                                          activeColor: kPrimaryColor,
+                                          onChanged: (val) {
+                                            setSelectedgender(val as int);
+                                          }),
+                                      Text("Male"),
+                                      Radio(
+                                          value: 2,
+                                          activeColor: kPrimaryColor,
+                                          groupValue: gender,
+                                          onChanged: (val) {
+                                            setSelectedgender(val as int);
+                                          }),
+                                      Text("Female"),
+                                    ],
+                                  )
+                                ],
+                              ),
+
+
                             )
                           ],
                         ),
@@ -649,7 +699,35 @@ class _Profile_pageState extends State<Profile_page> {
                                     ),
                               ),
                               padding: EdgeInsets.all(8),
-                              child: Text("${loggedInUser.status}"),
+                              child:
+                              Row(
+
+                                children: <Widget>[
+                                  ButtonBar(
+                                    alignment: MainAxisAlignment.center,
+                                    children: [
+
+                                      Radio(
+                                        value: 1,
+                                        groupValue: status,
+                                        activeColor: kPrimaryColor,
+                                        onChanged: (val1) {
+                                          setSelectedstatus(val1 as int);
+                                        },
+                                      ),
+                                      Text("Unmarried"),
+                                      Radio(
+                                          value: 2,
+                                          groupValue: status,
+                                          activeColor: kPrimaryColor,
+                                          onChanged: (val1) {
+                                            setSelectedstatus(val1 as int);
+                                          }),
+                                      Text("Married"),
+                                    ],
+                                  )
+                                ],
+                              ),
                             )
                           ],
                         ),
