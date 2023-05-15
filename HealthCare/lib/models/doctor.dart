@@ -25,11 +25,14 @@ class DoctorModel {
   String? specialist;
   String? password;
   String? description;
+  String? age;
   String? phone;
+  String? dob;
   String? rating;
   var available;
   var valid;
   var profileImage;
+  var proof;
 
   DoctorModel({
     this.uid,
@@ -42,10 +45,13 @@ class DoctorModel {
     this.specialist,
     this.password,
     this.description,
+    this.dob,
     this.phone,
     this.rating,
     this.available,
     this.valid,
+    this.age,
+    this.proof,
     this.profileImage,
   });
 
@@ -64,11 +70,17 @@ class DoctorModel {
       description: map['description'],
       phone: map['phone'],
       profileImage: map['profileImage'],
+      proof:map['proof'],
+      age:map['age'],
+      dob:map['dob'],
       rating: map['rating'],
       available: map['available'],
       valid: map['valid'],
     );
   }
+
+
+
 
 //sending data to our server
   Map<String, dynamic> toMap() {
@@ -83,6 +95,9 @@ class DoctorModel {
       'specialist': specialist,
       'password': password,
       'description': description,
+      'age':age,
+      'dob':dob,
+      'proof':proof,
       'phone': phone,
       'profileImage': profileImage,
       'rating': rating,

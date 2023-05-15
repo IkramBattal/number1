@@ -35,12 +35,15 @@ class _Profile_pageState extends State<Profile_page> {
   var mydate;
   var t_date;
   var t_age;
-  var name;
-  var last_name;
+  var t_name;
+  var t_last_name;
   var file;
   var phoneController;
   var gender;
+  var selectedStatus;
   var status;
+
+ var selectedGender ;
 
   setSelectedgender(int val) {
     setState(() {
@@ -133,6 +136,8 @@ class _Profile_pageState extends State<Profile_page> {
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
+
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(
@@ -238,7 +243,7 @@ class _Profile_pageState extends State<Profile_page> {
                                 cursorColor: kPrimaryColor,
                                 initialValue: loggedInUser.name,
                                 onChanged: (name) {
-                                  name = name;
+                                  t_name = name;
                                 },
                                 validator: (var value) {
                                   if (value!.isEmpty) {
@@ -247,7 +252,7 @@ class _Profile_pageState extends State<Profile_page> {
                                   return null;
                                 },
                                 onSaved: (var name) {
-                                  name = name;
+                                  t_name = name;
                                 },
                               ),
                             )
@@ -284,7 +289,7 @@ class _Profile_pageState extends State<Profile_page> {
                                 cursorColor: kPrimaryColor,
                                 initialValue: loggedInUser.last_name,
                                 onChanged: (last_name) {
-                                  last_name = last_name;
+                                  t_last_name = last_name;
                                 },
                                 validator: (var value) {
                                   if (value!.isEmpty) {
@@ -293,7 +298,7 @@ class _Profile_pageState extends State<Profile_page> {
                                   return null;
                                 },
                                 onSaved: (var last_name) {
-                                  last_name = last_name;
+                                  t_last_name = last_name;
                                 },
                               ),
                             )
@@ -569,63 +574,77 @@ class _Profile_pageState extends State<Profile_page> {
                       // ************************************
                       // Gender Field
                       //*************************************
-                      Container(
-                        margin:
-                            EdgeInsets.only(left: margin_left, top: margin_top),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Gender",
-                              style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(
-                                  left: margin_left, right: margin_right),
-                              width: boder,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5.0)),
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child:
-                              Row(
-                                children: <Widget>[
-                                  ButtonBar(
-                                    alignment: MainAxisAlignment.center,
-                                    children: [
 
-                                      Radio(
-                                          value: 1,
-                                          groupValue: gender,
-                                          activeColor: kPrimaryColor,
-                                          onChanged: (val) {
-                                            setSelectedgender(val as int);
-                                          }),
-                                      Text("Male"),
-                                      Radio(
-                                          value: 2,
-                                          activeColor: kPrimaryColor,
-                                          groupValue: gender,
-                                          onChanged: (val) {
-                                            setSelectedgender(val as int);
-                                          }),
-                                      Text("Female"),
-                                    ],
-                                  )
-                                ],
-                              ),
+          Container(
+            margin:
+            EdgeInsets.only(left: margin_left, top: margin_top),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  "Gender",
+                  style: TextStyle(
+                      color: kPrimaryColor,
+                      fontWeight: FontWeight.w600),
+                ),
+        Container(
+        margin: EdgeInsets.only(left: margin_left, right: margin_right),
+        width: boder,
+        decoration: BoxDecoration(
+          border: Border.all(width: 1.0, color: Colors.black12),
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+        ),
+        padding: EdgeInsets.all(8),
+        child: Row(
+          children: <Widget>[
+            ButtonBar(
+              alignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    Radio(
+                      value: "male",
+                      groupValue: loggedInUser.gender,
+                      activeColor: kPrimaryColor,
+                      onChanged: (val) {
+                        setState(() {
+                          loggedInUser.gender = val as String;
+                          selectedGender = val as String;
+                          // Update the user's gender in loggedInUser
+                        });
+                      },
+                    ),
+                    Text("Male"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Radio(
+                      value: "female",
+                      activeColor: kPrimaryColor,
+                      groupValue: loggedInUser.gender,
+                      onChanged: (val) {
+                        setState(() {
+                          loggedInUser.gender = val as String;
+                          selectedGender = val as String;// Update the user's gender in loggedInUser
+                        });
+
+                      },
+                    ),
+                    Text("Female"),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+          ],),),
 
 
-                            )
-                          ],
-                        ),
-                      ),
-                      // ************************************
+
+
+      // ************************************
                       // Countact Number
                       //*************************************
 
@@ -657,7 +676,7 @@ class _Profile_pageState extends State<Profile_page> {
                                 cursorColor: kPrimaryColor,
                                 style: TextStyle(fontSize: 16),
                                 disableLengthCheck: false,
-                                initialValue: loggedInUser.phone?.substring(3),
+                                initialValue: loggedInUser.phone?.substring(4),
                                 textAlignVertical: TextAlignVertical.center,
                                 dropdownTextStyle: TextStyle(fontSize: 16),
                                 dropdownIcon: Icon(Icons.arrow_drop_down,
@@ -674,66 +693,74 @@ class _Profile_pageState extends State<Profile_page> {
                           ],
                         ),
                       ),
-                      Container(
-                        margin:
-                            EdgeInsets.only(left: margin_left, top: margin_top),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "status",
-                              style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(
-                                  left: margin_left, right: margin_right),
-                              width: boder,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(5.0)
-                                    //                 <--- border radius here
-                                    ),
+          Container(
+            margin: EdgeInsets.only(left: margin_left, top: margin_top),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  "Status",
+                  style: TextStyle(
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: margin_left, right: margin_right),
+                  width: boder,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1.0, color: Colors.black12),
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                  ),
+                  padding: EdgeInsets.all(8),
+                  child: Row(
+                    children: <Widget>[
+                      ButtonBar(
+                        alignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            children: [
+                              Radio(
+                                value: "unmarried",
+                                groupValue: loggedInUser.status,
+                                activeColor: kPrimaryColor,
+                                onChanged: (val) {
+                                  setState(() {
+                                    loggedInUser.status = val as String;
+                                    selectedStatus = val as String;
+                                  });
+                                },
                               ),
-                              padding: EdgeInsets.all(8),
-                              child:
-                              Row(
-
-                                children: <Widget>[
-                                  ButtonBar(
-                                    alignment: MainAxisAlignment.center,
-                                    children: [
-
-                                      Radio(
-                                        value: 1,
-                                        groupValue: status,
-                                        activeColor: kPrimaryColor,
-                                        onChanged: (val1) {
-                                          setSelectedstatus(val1 as int);
-                                        },
-                                      ),
-                                      Text("Unmarried"),
-                                      Radio(
-                                          value: 2,
-                                          groupValue: status,
-                                          activeColor: kPrimaryColor,
-                                          onChanged: (val1) {
-                                            setSelectedstatus(val1 as int);
-                                          }),
-                                      Text("Married"),
-                                    ],
-                                  )
-                                ],
+                              Text("Unmarried"),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Radio(
+                                value: "married",
+                                groupValue: loggedInUser.status,
+                                activeColor: kPrimaryColor,
+                                onChanged: (val) {
+                                  setState(() {
+                                    loggedInUser.status = val as String;
+                                    selectedStatus = val as String;
+                                  });
+                                },
                               ),
-                            )
-                          ],
-                        ),
+                              Text("Married"),
+                            ],
+                          ),
+                        ],
                       ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
 
-                      Container(
+
+          Container(
                         width: size.width * 0.8,
                         margin: EdgeInsets.all(10),
                         child: ElevatedButton(
@@ -765,15 +792,19 @@ class _Profile_pageState extends State<Profile_page> {
                                     .collection('parent')
                                     .doc(loggedInUser.uid)
                                     .update({
-                                      'name': name == null
+                                      'name': t_name == null
                                           ? loggedInUser.name
-                                          : name,
-                                      'last name': last_name == null
+                                          : t_name,
+                                      'last name': t_last_name == null
                                           ? loggedInUser.last_name
-                                          : last_name,
+                                          : t_last_name,
                                       'address': t_address == null
                                           ? loggedInUser.address
                                           : t_address,
+
+                                  'gender': selectedGender == null
+                                      ? loggedInUser.gender
+                                      : selectedGender,
                                   'city': t_city == null
                                       ? loggedInUser.city
                                       : t_city,
@@ -783,6 +814,9 @@ class _Profile_pageState extends State<Profile_page> {
                                       'dob': t_date == null
                                           ? loggedInUser.dob
                                           : t_date,
+                                  'status': selectedStatus == null
+                                      ? loggedInUser.status
+                                      : selectedStatus,
                                       'phone': phoneController == null
                                           ? loggedInUser.phone
                                           : phoneController,
