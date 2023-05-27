@@ -36,8 +36,8 @@ class _SearchListState extends State<SearchList> {
               .collection('Sitter')
               .orderBy('name')
               .where('valid', isEqualTo: true)
-              .startAt([widget.searchKey]).endAt(
-                  [widget.searchKey + '\uf8ff']).snapshots(),
+              .startAt([widget.searchKey.toLowerCase()]).endAt(
+              [widget.searchKey.toLowerCase() + '\uf8ff']).snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData)

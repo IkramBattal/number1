@@ -115,7 +115,7 @@ class _Appoin_timeState extends State<Appoin_time> {
                           lastDate: DateTime.now().add(Duration(days: 2)));
 
                       setState(() {
-                        c_date = DateFormat('dd-MM-yyyy').format(mydate);
+                        c_date = Timestamp.fromDate(mydate);
                       });
                     },
                     child: Center(
@@ -129,7 +129,7 @@ class _Appoin_timeState extends State<Appoin_time> {
                             style: TextStyle(color: Colors.white),
                           )
                               : Text(
-                            c_date,
+                            DateFormat('dd-MM-yyyy').format(c_date.toDate()).toString(),
                             style: TextStyle(color: Colors.white),
                           ),
                           Icon(
@@ -401,9 +401,9 @@ class _Appoin_timeState extends State<Appoin_time> {
                             .collection('pending')
                             .add({
                           'pid': loggedInUser.uid.toString(),
-                          'name': loggedInUser.name.toString() +
+                          'name': loggedInUser.name.toString().toLowerCase() +
                               " " +
-                              loggedInUser.last_name.toString(),
+                              loggedInUser.last_name.toString().toLowerCase(),
                           'date': c_date,
                           'time': time,
                           'approve': false,
@@ -412,6 +412,7 @@ class _Appoin_timeState extends State<Appoin_time> {
                           'phone': loggedInUser.phone,
                           'doctor_name': widget.name.toString(),
                           'visited': false,
+
                         })
                             .then((value) => Fluttertoast.showToast(
                             msg: "Pending Appointment",

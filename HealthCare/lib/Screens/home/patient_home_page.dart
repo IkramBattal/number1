@@ -319,7 +319,7 @@ class _HomePageState extends State<HomePage> {
                                                         "Your appointment with "+(doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                                                             doc['doctor_name'] +
                                                             " is Pending at  " +
-                                                            doc['date'] +
+                                                             DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString() +
                                                             " and  " +
                                                             doc['time']
                                                                 .toString(),
@@ -334,7 +334,7 @@ class _HomePageState extends State<HomePage> {
                                                         " Your confirm appointment with  " +
                                                             doc['doctor_name'] +
                                                             " is Confirmed at " +
-                                                            doc['date'] +
+                                                            DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString()+
                                                             " and  " +
                                                             doc['time']
                                                                 .toString(),
@@ -449,7 +449,7 @@ class _HomePageState extends State<HomePage> {
                   " confirm appointmentpon with"+ (doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                   doc['age'] +
                   " on " +
-                  doc['date'] +
+                   DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString()+
                   " and  " +
                   doc['time'].toString(),
               style: TextStyle(color: Colors.white),

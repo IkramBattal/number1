@@ -8,6 +8,7 @@ import 'package:hospital_appointment/Screens/login/doctorlogin.dart';
 import 'package:hospital_appointment/constants.dart';
 import 'package:hospital_appointment/models/doctor.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../newapp/confirmed.dart';
 import '../newapp/doctorProfile.dart';
 import '../services/shared_preferences_service.dart';
 
@@ -55,9 +56,8 @@ class _DocDrawerState extends State<DocDrawer> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: <Color>[
-                        kPrimaryColor,
-                        kPrimaryLightColor,
-                      ],
+                        Color(0xff6accce),
+                        Color(0xffd2eff1),                      ],
                     ),
                   ),
                   accountName: Text(loggedInUser.name.toString()),
@@ -135,15 +135,20 @@ class _DocDrawerState extends State<DocDrawer> {
                   width: 10,
                   color: kPrimaryLightColor,
                 ),
-                CustomList(Icons.check, "Visited Parents", () {
+
+                CustomList(Icons.done_all, "Visited Parents", () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => visited()));
+                }),
+                CustomList(Icons.check, "Confirmed Parents", () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => confirmed()));
                 }),
                 CustomList(Icons.timelapse, "Pending Parents", () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => notvisited()));
                 }),
-                CustomList(Icons.person, "Profile", () {
+                CustomList(Icons.account_circle, "Profile", () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => DoctorProfile()));
                 }),             // Privacy Policy

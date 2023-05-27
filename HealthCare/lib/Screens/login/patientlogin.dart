@@ -379,7 +379,7 @@ class _login_pageState extends State<login_page> {
                                               email: t_email,
                                               password: t_password)
                                               .then((value) =>
-                                              _prefService.createCache(1))
+                                              _prefService.createCache(2))
                                               .then((uid) => {
                                             print("Login Successful"),
                                             Fluttertoast.showToast(

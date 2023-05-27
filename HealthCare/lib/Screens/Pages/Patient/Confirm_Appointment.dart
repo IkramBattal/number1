@@ -142,8 +142,7 @@ class _Confirm_AppointmentState extends State<Confirm_Appointment> {
                                                                     .only(
                                                                 left: 8.0),
                                                         child: Text(
-                                                          "Date: " +
-                                                              doc['date'],
+                                                          "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
                                                           style: TextStyle(
                                                               color:
                                                                   Colors.white,
