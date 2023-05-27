@@ -56,6 +56,7 @@ class _SelectCardState extends State<SelectCard> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -65,8 +66,16 @@ class _SelectCardState extends State<SelectCard> {
         height: 200,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-          color: kPrimaryColor,
+          color: Color(0xFFFFFFFF),
           borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              blurRadius: 10,
+              spreadRadius: 2,
+              offset: Offset(0, 4),
+            ),
+          ],
         ),
         child: Stack(
           children: [
@@ -86,22 +95,21 @@ class _SelectCardState extends State<SelectCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   Text(
-                    widget.name ,
+                    widget.name,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFF151313),
                       fontSize: 22,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(
                     height: 16,
                   ),
                   Text(
-                    widget.specialist + "blabla" ,
+                    widget.specialist,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.grey,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                     ),
@@ -120,14 +128,17 @@ class _SelectCardState extends State<SelectCard> {
                     height: 16,
                   ),
                   Row(
-                      children: new List.generate(
-                          5,
+                    children: new List.generate(
+                      5,
                           (index) => buildStar(
-                              context,
-                              index,
-                              double.parse(widget.rating) != 'NaN'
-                                  ? double.parse(widget.rating)
-                                  : 0.0))),
+                        context,
+                        index,
+                        double.parse(widget.rating) != 'NaN'
+                            ? double.parse(widget.rating)
+                            : 0.0,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -138,13 +149,12 @@ class _SelectCardState extends State<SelectCard> {
                 width: 77,
                 height: 54,
                 decoration: BoxDecoration(
-                  color: kPrimarydark,
-                  borderRadius:
-                      BorderRadius.only(topRight: Radius.circular(32)),
+                  color: Color(0xFF4CA6A8),
+                  borderRadius: BorderRadius.only(topRight: Radius.circular(32)),
                 ),
                 child: Icon(
                   Icons.arrow_forward,
-                  color: kPrimaryLightColor,
+                  color: Color(0xFFFFFFFF),
                   size: 25,
                 ),
               ),
@@ -155,23 +165,23 @@ class _SelectCardState extends State<SelectCard> {
               child: Container(
                 child: CircleAvatar(
                   radius: 65,
-                  backgroundColor: Colors.white,
+                  backgroundColor: Color(0xFF4CA6A8),
                   child: widget.profileImage == false
                       ? CircleAvatar(
-                          radius: 60,
-                          backgroundImage:
-                              AssetImage('assets/images/account.png'),
-                        )
+                    radius: 60,
+                    backgroundImage: AssetImage('assets/images/account.png'),
+                  )
                       : CircleAvatar(
-                          radius: 60,
-                          backgroundImage: NetworkImage(widget.profileImage),
-                        ),
+                    radius: 60,
+                    backgroundImage: NetworkImage(widget.profileImage),
+                  ),
                 ),
               ),
             ),
           ],
         ),
       ),
+
     );
   }
 

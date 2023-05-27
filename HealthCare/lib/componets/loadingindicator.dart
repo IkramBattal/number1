@@ -32,13 +32,15 @@ void showLoadingDialog({
 }
 
 List<Color> _kDefaultRainbowColors = const [
-  kPrimaryColor,
-  kPrimarydark,
-  kPrimaryLightColor,
-  kPrimaryLightdark,
-  kprimaryLightBlue,
-  kPrimaryhinttext
+  Color(0xFF4CA6A8),
+  Color(0x6FFAFAFA),
+  Colors.grey,
+  Color(0xFF32A4A4),
+  Color(0xFF5C9FA1),
+  Color(0xFF77A6A6)
+
 ];
+
 
 class Loading extends StatelessWidget {
   @override

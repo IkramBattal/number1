@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hospital_appointment/constants.dart';
 import '../services/shared_preferences_service.dart';
 import 'home/patient_home_page.dart';
-import 'home/doctor_home_page.dart';
 import 'login/loginas.dart';
 
 class SplashView extends StatefulWidget {
@@ -17,24 +16,25 @@ class SplashViewState extends State<SplashView> {
   @override
   void initState() {
     _prefService.readCache("password").then((value) {
-      if (value == 2) {
+      print(value.toString());
+      if (value == 1) {
         return Timer(Duration(seconds: 2), () {
           Navigator.pushAndRemoveUntil<dynamic>(
             context,
             MaterialPageRoute<dynamic>(
               builder: (BuildContext context) => HomePage(),
             ),
-                (route) => false,
+            (route) => false, //if you want to disable back feature set to false
           );
         });
-      } else if (value == 1) {
+      } else if (value == 2) {
         return Timer(
           Duration(seconds: 2),
-              () => Navigator.pushAndRemoveUntil<dynamic>(
+          () => Navigator.pushAndRemoveUntil<dynamic>(
               context,
               MaterialPageRoute<dynamic>(
-                  builder: (BuildContext context) => DocHomePage()),
-                  (route) => false),
+                  builder: (BuildContext context) => HomePage()),
+              (route) => false),
         );
       } else {
         return Timer(Duration(seconds: 2), () {
@@ -57,11 +57,8 @@ class SplashViewState extends State<SplashView> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 200),
-              child: Image.asset(
-                "assets/images/Splash.jpg",
-                width: 250,
-                height: 250,
-              ),
+              child: Image.asset("assets/images/Splash.jpg",
+                  width: 250, height: 250),
             ),
             Text(
               "BabyCare",
@@ -77,12 +74,11 @@ class SplashViewState extends State<SplashView> {
             Padding(
               padding: const EdgeInsets.only(bottom: 2),
               child: Text(
-                "Powered By WeCare®",
+                "Powered By Rana Corporation®",
                 style: TextStyle(
-                  fontSize: 16,
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.bold,
-                ),
+                    fontSize: 16,
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ],
