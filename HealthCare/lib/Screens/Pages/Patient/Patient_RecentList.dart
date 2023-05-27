@@ -211,8 +211,8 @@ class _Patient_RecentListState extends State<Patient_RecentList> {
                                                           decoration:
                                                               BoxDecoration(),
                                                           child: Text(
-                                                            "Date: " +
-                                                                doc['date'],
+                                                            "Date: " + DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
+
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .white,
@@ -293,8 +293,7 @@ class _Patient_RecentListState extends State<Patient_RecentList> {
                                                           decoration:
                                                               BoxDecoration(),
                                                           child: Text(
-                                                            "Date: " +
-                                                                doc['date'],
+                                                            "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .white,

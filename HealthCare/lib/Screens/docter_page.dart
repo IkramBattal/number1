@@ -48,6 +48,8 @@ class _Docter_pageState extends State<Docter_page> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
+
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back,

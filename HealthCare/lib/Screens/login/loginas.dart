@@ -86,14 +86,10 @@ class _LoginasState extends State<Loginas> {
             padding: const EdgeInsets.only(top: 140),
             child: Container(
               constraints: BoxConstraints.expand(),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    "assets/images/12.Jpg",
-                  ),
-                  fit: BoxFit.cover,
-                ),
+              decoration:  BoxDecoration (
+                color:  Color(0xfffbfbfb),
               ),
+
             ),
           ),
           Container(
@@ -103,9 +99,9 @@ class _LoginasState extends State<Loginas> {
                   child: Text(
                 "What Are You?",
                 style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+                    fontSize:  30,
+                    fontWeight:  FontWeight.w700,
+                    color:  Color(0xff1a1d1e)
                 ),
               )),
             ),

@@ -134,7 +134,6 @@ class _doctor_pageState extends State<doctor_page> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-
                         SizedBox(
                           height: size.height * 0.39,
                         ),

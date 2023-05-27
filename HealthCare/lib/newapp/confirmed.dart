@@ -16,17 +16,19 @@ import '../../widget/DoctorDrawer.dart';
 import 'dart:ui';
 import 'package:flutter/painting.dart';
 
+import 'SearchList5.dart';
+
 late BuildContext context1;
 var uid;
 
-class DocHomePage extends StatefulWidget {
+class confirmed extends StatefulWidget {
   @override
-  _DocHomePageState createState() => _DocHomePageState();
+  _confirmedState createState() => _confirmedState();
 }
 
 var myDoc;
 
-class _DocHomePageState extends State<DocHomePage> {
+class _confirmedState extends State<confirmed> {
   String uid = FirebaseAuth.instance.currentUser!.uid;
 
   var today_date = (DateFormat('dd-MM-yyyy')).format(DateTime.now()).toString();
@@ -105,47 +107,47 @@ class _DocHomePageState extends State<DocHomePage> {
     TextEditingController _searchController = TextEditingController();
 
     return  Container(
-        height: 55,
-        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-    width: MediaQuery.of(context).size.width,
-    decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.all(Radius.circular(13)),
-    boxShadow: <BoxShadow>[
-    BoxShadow(
-    color: LightColor.grey.withOpacity(.3),
-    blurRadius: 15,
-    offset: Offset(5, 5),
-    ),
-    ],
-    ),
-    child: TextField(
-    controller: _searchController, // Add the controller here
-    decoration: InputDecoration(
-    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-    border: InputBorder.none,
-    hintText: "Search",
-    hintStyle: TextStyle(color:Color(0xFF424040)),
-    suffixIcon: SizedBox(
-    width: 50,
-    child: Icon(Icons.search,color: Color(0xff388081))
-        .alignCenter
-        .ripple(() {
-    String searchKey = _searchController.text;
-    if (searchKey.isNotEmpty) {
-    Navigator.push(
-    context,
-    MaterialPageRoute(
-              builder: (context) => SearchList2(
-                searchKey: searchKey,
-              ),
-    ),
-    );
-    }
-    }, borderRadius: BorderRadius.circular(13)),
-    ),
-    ),
-    ),
+      height: 55,
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(13)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: LightColor.grey.withOpacity(.3),
+            blurRadius: 15,
+            offset: Offset(5, 5),
+          ),
+        ],
+      ),
+      child: TextField(
+        controller: _searchController, // Add the controller here
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          border: InputBorder.none,
+          hintText: "Search",
+          hintStyle: TextStyle(color:Color(0xFF424040)),
+          suffixIcon: SizedBox(
+            width: 50,
+            child: Icon(Icons.search,color: Color(0xff388081))
+                .alignCenter
+                .ripple(() {
+              String searchKey = _searchController.text;
+              if (searchKey.isNotEmpty) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SearchList5(
+                      searchKey: searchKey,
+                    ),
+                  ),
+                );
+              }
+            }, borderRadius: BorderRadius.circular(13)),
+          ),
+        ),
+      ),
     );
 
   }
@@ -274,13 +276,12 @@ class _DocHomePageState extends State<DocHomePage> {
 // Firestore query
     var firebase = appointment
         .collection('pending')
-        .where('date', isGreaterThanOrEqualTo: currentTimestamp)
-        .where('date', isLessThanOrEqualTo: next8DaysTimestamp)
-        .where('did', isEqualTo: loggedInUser.uid)
         .where('visited', isEqualTo: false)
+        .where('approve', isEqualTo: true)
+        .where('did', isEqualTo: loggedInUser.uid)
         .snapshots();
 
-print(loggedInUser.uid);
+    print(loggedInUser.uid);
     var size = MediaQuery.of(context).size;
 
     context1 = context;
@@ -332,7 +333,7 @@ print(loggedInUser.uid);
               padding: EdgeInsets.only(top: 46),
               alignment: Alignment.topCenter,
               child: Text(
-                "CareMate",
+                "Confirmed",
                 style:  TextStyle (
                   fontFamily: 'Poppins',
                   fontSize: 30,
@@ -359,20 +360,9 @@ print(loggedInUser.uid);
               height: 30,
             ),
             // Hello
-            _header(_message),
             _searchField(),
             //Search patient
-            Container(
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: 20, bottom: 10),
-              child: Text("Your Week's Appointments : ", style:  TextStyle (
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                height: 1,
-                color: Color(0xff151313),
-              ),)
-            ),
+
 
             StreamBuilder<QuerySnapshot>(
                 stream: firebase,
@@ -425,168 +415,168 @@ print(loggedInUser.uid);
                                   ),
                                 ],
                               ),
-                                child: Stack(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Container(
-                                          width: double.infinity,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(left: 8.0, top: 8.0),
-                                            child: Text(
-                                              doc['name'][0].toUpperCase()+doc['name'].substring(1),
-                                              style: TextStyle(
-                                                  fontFamily: 'Poppins',
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w500,
-                                                  height: 1,
-                                                  color: Color(0xff151313),
+                              child: Stack(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Container(
+                                        width: double.infinity,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                                          child: Text(
+                                            doc['name'][0].toUpperCase()+doc['name'].substring(1),
+                                            style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500,
+                                              height: 1,
+                                              color: Color(0xff151313),
 
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: double.infinity,
-                                          margin: EdgeInsets.only(top: 3),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(left: 8.0),
-                                            child: Text(
-                                              "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
-
-                                              style:  TextStyle (
-                                                fontFamily: 'Poppins',
-                                                fontSize: 15,
-
-                                                fontWeight: FontWeight.w500,
-                                                height: 1,
-                                                color:  Color(0xff6a6a6a),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: double.infinity,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(left: 8.0, top: 4),
-                                            child: Text(
-                                              "Time   : "+doc['time'],
-                                              style:  TextStyle (
-                                                fontFamily: 'Poppins',
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500,
-                                                height: 1,
-                                                color:  Color(0xff6a6a6a),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: double.infinity,
-                                          margin: EdgeInsets.only(top: 3),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(left: 8.0),
-                                            child: Text(
-                                              doc['approve']==false ?"Status : Pending":"Status : Confirmed",
-                                              style:  TextStyle (
-                                                fontFamily: 'Poppins',
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500,
-                                                height: 1,
-                                                color:  Color(0xff6a6a6a),                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Positioned(
-                                      top: 4,
-                                      right: 10,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Color(0xD35DD982),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(12),
-                                          ),
-                                          minimumSize: Size(10, 10),
-                                          // Adjust the size as needed
-                                        ),
-                                        onPressed: () {
-                                          showDialog(
-                                            context: context,
-                                            barrierDismissible: false,
-                                            builder: (BuildContext context) {
-                                              if (doc['approve'] == true) {
-                                                return confirm3(id: doc.id);
-                                              } else {
-                                                return confirm1(id: doc.id);
-                                              }
-                                            },
-                                          );
-                                        },
-
-                                        child: Container(
-                                          margin: EdgeInsets.only(left: 0, right: 0),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(top: 10.0, bottom: 10),
-                                            child: doc['approve']
-                                                ? Text(
-                                              '  Visited  ',
-                                              style: TextStyle(fontSize: 14),
-                                            )
-                                                : Icon(
-                                              Icons.check,
-                                              size: 16,
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    Positioned(
-                                      bottom: 4,
-                                      right: 10,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Color(0xE4F65656),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(12),
-                                          ),
-                                          minimumSize: Size(10, 10),
-                                        ),
-                                        onPressed: () {
-                                          showDialog(
-                                            context: context,
-                                            barrierDismissible: false,
-                                            builder: (BuildContext context) => alertdialog(id: doc.id),
-                                          );
-                                        },
-                                        child: Container(
-                                          margin: EdgeInsets.only(left: 0, right: 0),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(top: 10.0, bottom: 10),
-                                            child: doc['approve']
-                                                ? Text(
-                                              'Not Visited',
-                                              style: TextStyle(fontSize: 12),
-                                            )
-                                                : Icon(
-                                              Icons.close,
-                                              size: 16,
+                                      Container(
+                                        width: double.infinity,
+                                        margin: EdgeInsets.only(top: 3),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(left: 8.0),
+                                          child: Text(
+                                            "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
+
+                                            style:  TextStyle (
+                                              fontFamily: 'Poppins',
+                                              fontSize: 15,
+
+                                              fontWeight: FontWeight.w500,
+                                              height: 1,
+                                              color:  Color(0xff6a6a6a),
                                             ),
                                           ),
                                         ),
                                       ),
+                                      Container(
+                                        width: double.infinity,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(left: 8.0, top: 4),
+                                          child: Text(
+                                            "Time   : "+doc['time'],
+                                            style:  TextStyle (
+                                              fontFamily: 'Poppins',
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500,
+                                              height: 1,
+                                              color:  Color(0xff6a6a6a),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        margin: EdgeInsets.only(top: 3),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(left: 8.0),
+                                          child: Text(
+                                            doc['approve']==false ?"Status : Pending":"Status : Confirmed",
+                                            style:  TextStyle (
+                                              fontFamily: 'Poppins',
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500,
+                                              height: 1,
+                                              color:  Color(0xff6a6a6a),                                              ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Positioned(
+                                    top: 4,
+                                    right: 10,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Color(0xD35DD982),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(12),
+                                        ),
+                                        minimumSize: Size(10, 10),
+                                        // Adjust the size as needed
+                                      ),
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          barrierDismissible: false,
+                                          builder: (BuildContext context) {
+                                            if (doc['approve'] == true) {
+                                              return confirm3(id: doc.id);
+                                            } else {
+                                              return confirm1(id: doc.id);
+                                            }
+                                          },
+                                        );
+                                      },
+
+                                      child: Container(
+                                        margin: EdgeInsets.only(left: 0, right: 0),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 10.0, bottom: 10),
+                                          child: doc['approve']
+                                              ? Text(
+                                            '  Visited  ',
+                                            style: TextStyle(fontSize: 14),
+                                          )
+                                              : Icon(
+                                            Icons.check,
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ),
                                     ),
+                                  ),
+                                  Positioned(
+                                    bottom: 4,
+                                    right: 10,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Color(0xE4F65656),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(12),
+                                        ),
+                                        minimumSize: Size(10, 10),
+                                      ),
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          barrierDismissible: false,
+                                          builder: (BuildContext context) => alertdialog(id: doc.id),
+                                        );
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.only(left: 0, right: 0),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(top: 10.0, bottom: 10),
+                                          child: doc['approve']
+                                              ? Text(
+                                            'Not Visited',
+                                            style: TextStyle(fontSize: 12),
+                                          )
+                                              : Icon(
+                                            Icons.close,
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
 
 
-                                  ],
+                                ],
 
                               ),
                             ),
 
 
                           );
-                              ;
+                          ;
                         },
                       ),
                     );
