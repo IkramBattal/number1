@@ -111,7 +111,6 @@ class _UserProfileState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
       body: SafeArea(
         child: ListView(
           physics: ClampingScrollPhysics(),
@@ -126,8 +125,8 @@ class _UserProfileState extends State<UserProfile> {
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: <Color>[
-                            Color(0xFF4CA6A8),
-                            Color(0xFFE8F5F6),
+                            kPrimaryColor,
+                            kPrimaryLightColor,
                           ],
                         ),
                       ),
@@ -138,8 +137,8 @@ class _UserProfileState extends State<UserProfile> {
                         child: IconButton(
                           icon: Icon(
                             Icons.settings,
-                            color: Color(0xFF4CA6A8),
-                            size: 30,
+                            color: Colors.white,
+                            size: 20,
                           ),
                           onPressed: () {
                             Navigator.push(
@@ -163,8 +162,8 @@ class _UserProfileState extends State<UserProfile> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: <Color>[
-                        Color(0xFF4CA6A8),
-                        Color(0xFFE8F5F6),
+                        kPrimaryColor,
+                        kPrimaryLightColor,
                       ],
                     ),
                   ),
@@ -173,7 +172,7 @@ class _UserProfileState extends State<UserProfile> {
                   currentAccountPicture: Container(
                     child: CircleAvatar(
                       radius: 50,
-                      backgroundColor: Color(0xFFF5F5F5), // ),
+                      backgroundColor: Colors.white, // ),
                       backgroundImage: AssetImage('assets/images/person.jpg'),
                     ),
                   ),
@@ -186,15 +185,8 @@ class _UserProfileState extends State<UserProfile> {
               height: MediaQuery.of(context).size.height / 7,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                color: Color(0xFFFFFFFF),
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.3),
-                    blurRadius: 10,
-                    offset: Offset(0, 3),
-                  ),
-                ],
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.blueGrey[50],
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -273,15 +265,8 @@ class _UserProfileState extends State<UserProfile> {
               height: MediaQuery.of(context).size.height / 7,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                color: Color(0xFFFFFFFF),
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.3),
-                    blurRadius: 10,
-                    offset: Offset(0, 3),
-                  ),
-                ],
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.blueGrey[50],
               ),
               child: Column(
                 children: [
@@ -325,15 +310,8 @@ class _UserProfileState extends State<UserProfile> {
               height: MediaQuery.of(context).size.height / 5,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                color: Color(0xFFFFFFFF),
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.3),
-                    blurRadius: 10,
-                    offset: Offset(0, 3),
-                  ),
-                ],
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.blueGrey[50],
               ),
               child: Column(
                 children: [
@@ -375,12 +353,7 @@ class _UserProfileState extends State<UserProfile> {
                                   builder: (contex) => Appointment(),
                                 ));
                               },
-                              child: Text('Show All',
-                                style: TextStyle(
-
-                                  color: Colors.grey,
-                                ),
-                              ),
+                              child: Text('View all'),
                             ),
                           ),
                         ),

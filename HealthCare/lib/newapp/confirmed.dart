@@ -16,19 +16,19 @@ import '../../widget/DoctorDrawer.dart';
 import 'dart:ui';
 import 'package:flutter/painting.dart';
 
+import 'SearchList5.dart';
+
 late BuildContext context1;
 var uid;
 
-
-
-class DocHomePage extends StatefulWidget {
+class confirmed extends StatefulWidget {
   @override
-  _DocHomePageState createState() => _DocHomePageState();
+  _confirmedState createState() => _confirmedState();
 }
 
 var myDoc;
 
-class _DocHomePageState extends State<DocHomePage> {
+class _confirmedState extends State<confirmed> {
   String uid = FirebaseAuth.instance.currentUser!.uid;
 
   var today_date = (DateFormat('dd-MM-yyyy')).format(DateTime.now()).toString();
@@ -138,7 +138,7 @@ class _DocHomePageState extends State<DocHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SearchList2(
+                    builder: (context) => SearchList5(
                       searchKey: searchKey,
                     ),
                   ),
@@ -156,6 +156,45 @@ class _DocHomePageState extends State<DocHomePage> {
 
 
 
+  Widget _category() {
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(top: 8, right: 16, left: 16, bottom: 4),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text("Category", style: TextStyles.title.bold),
+              Text(
+                "See All",
+                style: TextStyles.titleNormal
+                    .copyWith(color: Theme.of(context).primaryColor),
+              ).p(8).ripple(() {})
+            ],
+          ),
+        ),
+        SizedBox(
+          height: AppTheme.fullHeight(context) * .28,
+          width: AppTheme.fullWidth(context),
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: <Widget>[
+              _categoryCard("Chemist & Drugist", "350 + Stores",
+                  color: LightColor.green, lightColor: LightColor.lightGreen),
+              _categoryCard("Covid - 19 Specialist", "899 Doctors",
+                  color: LightColor.skyBlue, lightColor: LightColor.lightBlue),
+              _categoryCard("Cardiologists Specialist", "500 + Doctors",
+                  color: LightColor.orange, lightColor: LightColor.lightOrange),
+              _categoryCard("Dermatologist", "300 + Doctors",
+                  color: LightColor.green, lightColor: LightColor.lightGreen),
+              _categoryCard("General Surgeon", "500 + Doctors",
+                  color: LightColor.skyBlue, lightColor: LightColor.lightBlue)
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 
   Widget _categoryCard(String title, String subtitle,
       {required Color color, required Color lightColor}) {
@@ -237,10 +276,9 @@ class _DocHomePageState extends State<DocHomePage> {
 // Firestore query
     var firebase = appointment
         .collection('pending')
-        .where('date', isGreaterThanOrEqualTo: currentTimestamp)
-        .where('date', isLessThanOrEqualTo: next8DaysTimestamp)
-        .where('did', isEqualTo: loggedInUser.uid)
         .where('visited', isEqualTo: false)
+        .where('approve', isEqualTo: true)
+        .where('did', isEqualTo: loggedInUser.uid)
         .snapshots();
 
     print(loggedInUser.uid);
@@ -295,7 +333,7 @@ class _DocHomePageState extends State<DocHomePage> {
               padding: EdgeInsets.only(top: 46),
               alignment: Alignment.topCenter,
               child: Text(
-                "CareMate",
+                "Confirmed",
                 style:  TextStyle (
                   fontFamily: 'Poppins',
                   fontSize: 30,
@@ -322,20 +360,9 @@ class _DocHomePageState extends State<DocHomePage> {
               height: 30,
             ),
             // Hello
-            _header(_message),
             _searchField(),
             //Search patient
-            Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.only(left: 20, bottom: 10),
-                child: Text("Your Week's Appointments : ", style:  TextStyle (
-                  fontFamily: 'Poppins',
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  height: 1,
-                  color: Color(0xff151313),
-                ),)
-            ),
+
 
             StreamBuilder<QuerySnapshot>(
                 stream: firebase,

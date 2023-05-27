@@ -29,10 +29,13 @@ class DoctorModel {
   String? phone;
   String? dob;
   String? rating;
+  String? status;
+
   var available;
   var valid;
   var profileImage;
   var proof;
+
 
   DoctorModel({
     this.uid,
@@ -53,6 +56,7 @@ class DoctorModel {
     this.age,
     this.proof,
     this.profileImage,
+    this.status,
   });
 
 //reciving data from server
@@ -76,6 +80,7 @@ class DoctorModel {
       rating: map['rating'],
       available: map['available'],
       valid: map['valid'],
+      status:map['status'],
     );
   }
 
@@ -103,6 +108,7 @@ class DoctorModel {
       'rating': rating,
       'available': available,
       'valid':valid,
+      'status':status,
     };
   }
 }

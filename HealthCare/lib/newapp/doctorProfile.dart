@@ -8,7 +8,6 @@ import '../Screens/Profile/doctorprofile.dart';
 import '../Screens/Profile/profile.dart';
 import '../constants.dart';
 import '../models/doctor.dart';
-import '../models/patient_data.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
@@ -127,8 +126,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: <Color>[
-                            kPrimaryColor,
-                            kPrimaryLightColor,
+                            Color(0xFF4CA6A8),
+                            Color(0xFFE8F5F6),
                           ],
                         ),
                       ),
@@ -139,7 +138,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                         child: IconButton(
                           icon: Icon(
                             Icons.settings,
-                            color: Colors.white,
+                            color: Color(0xFF4CA6A8),
                             size: 20,
                           ),
                           onPressed: () {
@@ -164,8 +163,8 @@ class _DoctorProfileState extends State<DoctorProfile> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: <Color>[
-                        kPrimaryColor,
-                        kPrimaryLightColor,
+                        Color(0xFF4CA6A8),
+                        Color(0xFFE8F5F6),
                       ],
                     ),
                   ),
@@ -187,8 +186,15 @@ class _DoctorProfileState extends State<DoctorProfile> {
               height: MediaQuery.of(context).size.height / 7,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.blueGrey[50],
+                color: Color(0xFFFFFFFF),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
+                  ),
+                ],
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -267,8 +273,15 @@ class _DoctorProfileState extends State<DoctorProfile> {
               height: MediaQuery.of(context).size.height / 7,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.blueGrey[50],
+                color: Color(0xFFFFFFFF),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
+                  ),
+                ],
               ),
               child: Column(
                 children: [
