@@ -34,7 +34,7 @@ class _PendingState extends State<Pending> {
         .then((value) {
       print(user!.uid);
       loggedInUser = UserModel.fromMap(value.data());
-      Future<void>.delayed(const Duration(seconds: 2), () {
+      Future<void>.delayed(const Duration(seconds: 0), () {
         if (mounted) {
           // Check that the widget is still mounted
           setState(() {
@@ -101,9 +101,17 @@ class _PendingState extends State<Pending> {
                                         ),
                                         child: Container(
                                           decoration: BoxDecoration(
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey.withOpacity(0.2),
+                                                spreadRadius: 2,
+                                                blurRadius: 4,
+                                                offset: Offset(0, 2),
+                                              ),
+                                            ],
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
-                                            color: kPrimaryLightColor,
+                                            color: Color(0xFFFFFFFF),
                                           ),
                                           child: Stack(
                                             children: [
@@ -124,7 +132,7 @@ class _PendingState extends State<Pending> {
                                                               doc['doctor_name'],
                                                           style: TextStyle(
                                                               color:
-                                                                  Colors.black,
+                                                              Color(0xFF151313),
                                                               fontSize: 20,
                                                               fontWeight:
                                                                   FontWeight
@@ -144,10 +152,10 @@ class _PendingState extends State<Pending> {
                                                                     .only(
                                                                 left: 8.0),
                                                         child: Text(
-                                                          "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
+                                                          "Date: " +
+                                                              doc['date'],
                                                           style: TextStyle(
-                                                              color: Colors
-                                                                  .black87,
+                                                              color: Color(0xFF151313),
                                                               fontSize: 14,
                                                               fontWeight:
                                                                   FontWeight
@@ -168,8 +176,7 @@ class _PendingState extends State<Pending> {
                                                           "Time: " +
                                                               doc['time'],
                                                           style: TextStyle(
-                                                              color: Colors
-                                                                  .black87,
+                                                              color: Color(0xFF151313),
                                                               fontSize: 14,
                                                               fontWeight:
                                                                   FontWeight
@@ -185,7 +192,7 @@ class _PendingState extends State<Pending> {
                                                 child: Text(
                                                   "Status : Pending",
                                                   style: TextStyle(
-                                                      color: Colors.black87,
+                                                      color: Colors.grey,
                                                       fontSize: 16,
                                                       fontWeight:
                                                           FontWeight.w500),
@@ -197,7 +204,7 @@ class _PendingState extends State<Pending> {
                                                 child: ElevatedButton(
                                                   style:
                                                       ElevatedButton.styleFrom(
-                                                    backgroundColor: Colors.red,
+                                                    backgroundColor: Color(0xFF4CA6A8),
                                                     shape:
                                                         RoundedRectangleBorder(
                                                       borderRadius:
@@ -325,7 +332,7 @@ class alertdialog extends StatelessWidget {
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.green,
+                              backgroundColor: Color(0xFF4CA6A8),
                               shape: RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.circular(8), // <-- Radius

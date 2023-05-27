@@ -137,19 +137,27 @@ class _Profile_pageState extends State<Profile_page> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-
+        backgroundColor: Color(0xFFF5F5F5),
         appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Color(0xFFF5F5F5),
           leading: IconButton(
             icon: Icon(
-              Icons.arrow_back,
-              size: 30,
-              color: Colors.white,
+              Icons.arrow_back_ios,
+              size: 25,
+              color: Color(0xFF4CA6A8),
             ),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          title: Text('Profile'),
+          title: Text('Profile',
+            style: TextStyle(
+              fontSize: 20,
+              color:  Color(0xFF4CA6A8),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         body: isLoading
             ? Loading()
@@ -222,25 +230,29 @@ class _Profile_pageState extends State<Profile_page> {
                             Text(
                               "First Name",
                               style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontWeight: FontWeight.w600),
+                                  color: Color(0xFF151313),
+                                  fontWeight: FontWeight.bold),
                             ),
                             Container(
                               margin: EdgeInsets.only(
                                   left: margin_left, right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(5.0)
-                                    //                 <--- border radius here
-                                    ),
+                                color: Color(0xFFFFFFFF),
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    blurRadius: 10,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
+
                               ),
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(12),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                cursorColor: kPrimaryColor,
+                                cursorColor:  Color(0xFF4CA6A8),
                                 initialValue: loggedInUser.name,
                                 onChanged: (name) {
                                   t_name = name;
@@ -268,25 +280,29 @@ class _Profile_pageState extends State<Profile_page> {
                             Text(
                               "Last Name",
                               style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontWeight: FontWeight.w600),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
                             ),
                             Container(
                               margin: EdgeInsets.only(
                                   left: margin_left, right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(5.0)
-                                    //                 <--- border radius here
-                                    ),
+
+                                color: Color(0xFFFFFFFF),
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    blurRadius: 10,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
                               ),
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(12),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                cursorColor: kPrimaryColor,
+                                cursorColor: Color(0xFF4CA6A8),
                                 initialValue: loggedInUser.last_name,
                                 onChanged: (last_name) {
                                   t_last_name = last_name;
@@ -318,25 +334,28 @@ class _Profile_pageState extends State<Profile_page> {
                             Text(
                               "Email",
                               style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontWeight: FontWeight.w600),
+                                  color:  Colors.black,
+                                  fontWeight: FontWeight.w700),
                             ),
                             Container(
                               margin: EdgeInsets.only(
                                   left: margin_left, right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(5.0)
-                                    //                 <--- border radius here
-                                    ),
+                                color: Color(0xFFFFFFFF),
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    blurRadius: 10,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
                               ),
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(12),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                cursorColor: kPrimaryColor,
+                                cursorColor: Color(0xFF4CA6A8),
                                 initialValue: loggedInUser.email,
                                 onChanged: (email) {
                                   email = email;
@@ -367,27 +386,30 @@ class _Profile_pageState extends State<Profile_page> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "address",
+                              "Address",
                               style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontWeight: FontWeight.w600),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
                             ),
                             Container(
                               margin: EdgeInsets.only(
                                   left: margin_left, right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(5.0)
-                                    //                 <--- border radius here
-                                    ),
+                                color: Color(0xFFFFFFFF),
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    blurRadius: 10,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
                               ),
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(12),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                cursorColor: kPrimaryColor,
+                                cursorColor: Color(0xFF4CA6A8),
                                 initialValue: loggedInUser.address,
                                 onChanged: (address) {
                                   t_address = address;
@@ -413,27 +435,30 @@ class _Profile_pageState extends State<Profile_page> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "city",
+                              "City",
                               style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontWeight: FontWeight.w600),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
                             ),
                             Container(
                               margin: EdgeInsets.only(
                                   left: margin_left, right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(5.0)
-                                  //                 <--- border radius here
-                                ),
+                                color: Color(0xFFFFFFFF),
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    blurRadius: 10,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
                               ),
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(12),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                cursorColor: kPrimaryColor,
+                                cursorColor: Color(0xFF4CA6A8),
                                 initialValue: loggedInUser.city,
                                 onChanged: (city) {
                                   t_city = city;
@@ -464,21 +489,24 @@ class _Profile_pageState extends State<Profile_page> {
                             Text(
                               "Date Of Birth",
                               style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontWeight: FontWeight.w600),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
                             ),
                             Container(
                               margin: EdgeInsets.only(right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(5.0)
-                                    //                 <--- border radius here
-                                    ),
+                                color: Color(0xFFFFFFFF),
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    blurRadius: 10,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
                               ),
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(12),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -513,7 +541,8 @@ class _Profile_pageState extends State<Profile_page> {
                                       },
                                       icon: Icon(
                                         Icons.calendar_today,
-                                        color: kPrimaryColor,
+                                        color: Color(0xFF4CA6A8),
+
                                         size: 16,
                                       ))
                                 ],
@@ -534,25 +563,28 @@ class _Profile_pageState extends State<Profile_page> {
                             Text(
                               "Age",
                               style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontWeight: FontWeight.w600),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
                             ),
                             Container(
                               margin: EdgeInsets.only(
                                   left: margin_left, right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(5.0)
-                                    //                 <--- border radius here
-                                    ),
+                                color: Color(0xFFFFFFFF),
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    blurRadius: 10,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
                               ),
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(12),
                               child: TextFormField(
                                 keyboardType: TextInputType.number,
-                                cursorColor: kPrimaryColor,
+                                cursorColor: Color(0xFF4CA6A8),
                                 initialValue: loggedInUser.age,
                                 onChanged: (age) {
                                   t_age = age;
@@ -584,15 +616,22 @@ class _Profile_pageState extends State<Profile_page> {
                 Text(
                   "Gender",
                   style: TextStyle(
-                      color: kPrimaryColor,
-                      fontWeight: FontWeight.w600),
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
                 ),
         Container(
         margin: EdgeInsets.only(left: margin_left, right: margin_right),
         width: boder,
         decoration: BoxDecoration(
-          border: Border.all(width: 1.0, color: Colors.black12),
-          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+          color: Color(0xFFFFFFFF),
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              blurRadius: 10,
+              offset: Offset(0, 3),
+            ),
+          ],
         ),
         padding: EdgeInsets.all(8),
         child: Row(
@@ -605,7 +644,7 @@ class _Profile_pageState extends State<Profile_page> {
                     Radio(
                       value: "male",
                       groupValue: loggedInUser.gender,
-                      activeColor: kPrimaryColor,
+                      activeColor: Color(0xFF4CA6A8),
                       onChanged: (val) {
                         setState(() {
                           loggedInUser.gender = val as String;
@@ -621,7 +660,7 @@ class _Profile_pageState extends State<Profile_page> {
                   children: [
                     Radio(
                       value: "female",
-                      activeColor: kPrimaryColor,
+                      activeColor: Color(0xFF4CA6A8),
                       groupValue: loggedInUser.gender,
                       onChanged: (val) {
                         setState(() {
@@ -657,30 +696,33 @@ class _Profile_pageState extends State<Profile_page> {
                             Text(
                               "Contact No",
                               style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontWeight: FontWeight.w600),
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
                             ),
                             Container(
                               margin: EdgeInsets.only(right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5.0)
-                                        //  <--- border radius here
-                                        ),
+                                color: Color(0xFFFFFFFF),
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    blurRadius: 10,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
                               ),
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(12),
                               child: IntlPhoneField(
-                                cursorColor: kPrimaryColor,
+                                cursorColor:Color(0xFF4CA6A8),
                                 style: TextStyle(fontSize: 16),
                                 disableLengthCheck: false,
                                 initialValue: loggedInUser.phone?.substring(4),
                                 textAlignVertical: TextAlignVertical.center,
                                 dropdownTextStyle: TextStyle(fontSize: 16),
                                 dropdownIcon: Icon(Icons.arrow_drop_down,
-                                    color: kPrimaryColor),
+                                    color: Color(0xFF4CA6A8)),
                                 initialCountryCode: 'MA',
                                 onChanged: (phone) {
                                   print(phone.completeNumber);
@@ -701,16 +743,23 @@ class _Profile_pageState extends State<Profile_page> {
                 Text(
                   "Status",
                   style: TextStyle(
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 Container(
                   margin: EdgeInsets.only(left: margin_left, right: margin_right),
                   width: boder,
                   decoration: BoxDecoration(
-                    border: Border.all(width: 1.0, color: Colors.black12),
-                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    color: Color(0xFFFFFFFF),
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        blurRadius: 10,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
                   ),
                   padding: EdgeInsets.all(8),
                   child: Row(
@@ -723,7 +772,7 @@ class _Profile_pageState extends State<Profile_page> {
                               Radio(
                                 value: "unmarried",
                                 groupValue: loggedInUser.status,
-                                activeColor: kPrimaryColor,
+                                activeColor:  Color(0xFF4CA6A8),
                                 onChanged: (val) {
                                   setState(() {
                                     loggedInUser.status = val as String;
@@ -731,7 +780,10 @@ class _Profile_pageState extends State<Profile_page> {
                                   });
                                 },
                               ),
-                              Text("Unmarried"),
+                              Text("Unmarried",
+                                style: TextStyle(
+                                  fontSize: 13, // Adjust the font size as needed
+                                ),),
                             ],
                           ),
                           Row(
@@ -739,7 +791,7 @@ class _Profile_pageState extends State<Profile_page> {
                               Radio(
                                 value: "married",
                                 groupValue: loggedInUser.status,
-                                activeColor: kPrimaryColor,
+                                activeColor: Color(0xFF4CA6A8),
                                 onChanged: (val) {
                                   setState(() {
                                     loggedInUser.status = val as String;
@@ -747,7 +799,11 @@ class _Profile_pageState extends State<Profile_page> {
                                   });
                                 },
                               ),
-                              Text("Married"),
+                              Text("Married",
+                                style: TextStyle(
+                                  fontSize: 13, // Adjust the font size as needed
+                                ),
+                              ),
                             ],
                           ),
                         ],
@@ -768,7 +824,7 @@ class _Profile_pageState extends State<Profile_page> {
                             shape: StadiumBorder(),
                             padding: EdgeInsets.symmetric(
                                 horizontal: 40, vertical: 15),
-                            backgroundColor: kPrimaryColor,
+                            backgroundColor: Color(0xFF4CA6A8),
                           ),
                           onPressed: () async {
                             var url;

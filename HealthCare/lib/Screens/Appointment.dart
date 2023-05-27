@@ -50,14 +50,14 @@ class _AppointmentState extends State<Appointment>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kPrimaryColor,
+        backgroundColor:Color(0xFF4CA6A8),
         iconTheme: IconThemeData(color: Colors.white),
         leading: IconButton(
           icon: Container(
             width: 50,
             child: Icon(
-              Icons.arrow_back,
-              size: 35,
+              Icons.arrow_back_ios,
+              size: 25,
             ),
           ),
           onPressed: () {
@@ -67,16 +67,20 @@ class _AppointmentState extends State<Appointment>
         title: Text(
           'Appointment',
           style: TextStyle(
-              color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+              color:Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
         actions: <Widget>[],
         bottom: TabBar(
           controller: tabController,
-          labelStyle: TextStyle(fontSize: 18),
-          indicatorColor: Colors.white,
+          labelStyle: TextStyle(fontSize: 18,
+              color:Color(0xFF4CA6A8),fontWeight: FontWeight.bold
+
+          ),
+          indicatorColor: Color(0xFF4CA6A8),
           tabs: [
             Tab(
               text: 'Confirm',
+
             ),
             Tab(
               text: 'Pending',

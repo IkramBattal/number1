@@ -41,7 +41,7 @@ class _TrdCellState extends State<TrdCell> {
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.only(left: 5),
         decoration: BoxDecoration(
-          color: kPrimarydark1,
+          color: Color(0xFFFFFFFF),
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
@@ -79,7 +79,7 @@ class _TrdCellState extends State<TrdCell> {
           height: 60,
           width: 60,
           decoration: BoxDecoration(
-            color: kPrimaryColor,
+            color: Color(0xFFABD3F1),
             borderRadius: BorderRadius.circular(50),
             image: widget.profileImage == false
                 ? DecorationImage(
@@ -110,7 +110,8 @@ class _TrdCellState extends State<TrdCell> {
               (widget.gender == 'female' ? 'Ms.  ' : 'Mrs.  ') + widget.name /* ' ' + widget.email*/,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 16,
+                fontSize: 20,
+                color: Color(0xFF1A1D1E),
               ),
             ),
             SizedBox(
@@ -119,9 +120,9 @@ class _TrdCellState extends State<TrdCell> {
             Text(
               widget.specialist ,
               style: TextStyle(
-                color: kPrimaryhinttext,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
+                color: Colors.grey,
+                fontSize: 17,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ],

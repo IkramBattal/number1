@@ -34,9 +34,8 @@ class _HDCellState extends State<HDCell> {
         width: 283,
         height: 150,
         margin: EdgeInsets.only(left: 10),
-        clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-          color: kPrimaryColor,
+          color:Color(0xFFFFFFFF),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Stack(
@@ -61,15 +60,15 @@ class _HDCellState extends State<HDCell> {
                   Text(
                     (widget.gender == 'female' ? 'Ms.  ' : 'Mrs.  '),
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
+                      color: Color(0xFF151313),
+                      fontSize: 18,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   Text(
                     widget.name,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFF151313),
                       fontSize: 22,
                       fontWeight: FontWeight.w700,
                     ),
@@ -80,8 +79,8 @@ class _HDCellState extends State<HDCell> {
                   Text(
                     widget.specialist ,
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
+                      color: Colors.grey,
+                      fontSize: 17,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -95,13 +94,12 @@ class _HDCellState extends State<HDCell> {
                 width: 77,
                 height: 54,
                 decoration: BoxDecoration(
-                  color: kPrimarydark,
-                  borderRadius:
-                      BorderRadius.only(topRight: Radius.circular(32)),
+                  color: Color(0xFF4CA6A8),
+                  borderRadius: BorderRadius.only(topRight: Radius.circular(32)),
                 ),
                 child: Icon(
                   Icons.arrow_forward,
-                  color: kPrimaryLightColor,
+                  color: Colors.white,
                   size: 25,
                 ),
               ),
@@ -113,23 +111,23 @@ class _HDCellState extends State<HDCell> {
               child: Container(
                 child: CircleAvatar(
                   radius: 65,
-                  backgroundColor: Colors.white,
+                  backgroundColor:Color(0xFF4CA6A8),
                   child: widget.profileImage == false
                       ? CircleAvatar(
-                          radius: 60,
-                          backgroundImage:
-                              AssetImage('assets/images/account.png'),
-                        )
+                    radius: 60,
+                    backgroundImage: AssetImage('assets/images/account.png'),
+                  )
                       : CircleAvatar(
-                          radius: 60,
-                          backgroundImage: NetworkImage(widget.profileImage),
-                        ),
+                    radius: 60,
+                    backgroundImage: NetworkImage(widget.profileImage),
+                  ),
                 ),
               ),
             ),
           ],
         ),
       ),
+
     );
   }
 }

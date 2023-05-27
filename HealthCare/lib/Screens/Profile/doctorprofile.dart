@@ -16,8 +16,10 @@ import 'package:path/path.dart';
 import '../../componets/loadingindicator.dart';
 import '../../componets/text_field_container.dart';
 import '../../models/doctor.dart';
+import '../../models/patient_data.dart';
 import '../../widget/Alert_Dialog.dart';
 import '../home/doctor_home_page.dart';
+import '../home/patient_home_page.dart';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -207,16 +209,7 @@ class _Profile_pageState extends State<DProfile_page> {
               Navigator.pop(context);
             },
           ),
-          centerTitle: true,
-          title: Text(
-              'Profile',
-
-              style: TextStyle(
-                fontSize: 22, // Adjust the font size as needed
-              ),
-            ),
-
-            backgroundColor: Color(0xFF4CA6A8),
+          title: Text('Profile'),
         ),
         body: isLoading
             ? Loading()
@@ -289,7 +282,7 @@ class _Profile_pageState extends State<DProfile_page> {
                       Text(
                         "First Name",
                         style: TextStyle(
-                            color: Color(0xFF3A8183),
+                            color: kPrimaryColor,
                             fontWeight: FontWeight.w600),
                       ),
                       Container(
@@ -300,14 +293,14 @@ class _Profile_pageState extends State<DProfile_page> {
                           border: Border.all(
                               width: 1.0, color: Colors.black12),
                           borderRadius: BorderRadius.all(
-                              Radius.circular(15.0)
+                              Radius.circular(5.0)
                             //                 <--- border radius here
                           ),
                         ),
                         padding: EdgeInsets.all(8),
                         child: TextFormField(
                           keyboardType: TextInputType.text,
-                          cursorColor: Color(0xFF3A8183),
+                          cursorColor: kPrimaryColor,
                           initialValue: loggedInUser.name,
                           onChanged: (name) {
                             name = name;
@@ -321,9 +314,6 @@ class _Profile_pageState extends State<DProfile_page> {
                           onSaved: (var name) {
                             name = name;
                           },
-                          decoration: InputDecoration(
-                            border: InputBorder.none, // Set the border to none
-                          ),
                         ),
                       )
                     ],
@@ -343,7 +333,7 @@ class _Profile_pageState extends State<DProfile_page> {
                       Text(
                         "Email",
                         style: TextStyle(
-                            color: Color(0xFF3A8183),
+                            color: kPrimaryColor,
                             fontWeight: FontWeight.w600),
                       ),
                       Container(
@@ -354,18 +344,17 @@ class _Profile_pageState extends State<DProfile_page> {
                           border: Border.all(
                               width: 1.0, color: Colors.black12),
                           borderRadius: BorderRadius.all(
-                              Radius.circular(15.0)
+                              Radius.circular(5.0)
                             //                 <--- border radius here
                           ),
                         ),
                         padding: EdgeInsets.all(8),
                         child: TextFormField(
                           keyboardType: TextInputType.text,
-                          cursorColor: Color(0xFF3A8183),
+                          cursorColor: kPrimaryColor,
                           initialValue: loggedInUser.email,
                           onChanged: (email) {
                             email = email;
-
                           },
                           validator: (var value) {
                             if (value!.isEmpty) {
@@ -376,9 +365,6 @@ class _Profile_pageState extends State<DProfile_page> {
                           onSaved: (var email) {
                             email = email;
                           },
-                          decoration: InputDecoration(
-                            border: InputBorder.none, // Set the border to none
-                          ),
                         ),
                       )
                     ],
@@ -398,7 +384,7 @@ class _Profile_pageState extends State<DProfile_page> {
                       Text(
                         "address",
                         style: TextStyle(
-                            color: Color(0xFF3A8183),
+                            color: kPrimaryColor,
                             fontWeight: FontWeight.w600),
                       ),
                       Container(
@@ -409,14 +395,14 @@ class _Profile_pageState extends State<DProfile_page> {
                           border: Border.all(
                               width: 1.0, color: Colors.black12),
                           borderRadius: BorderRadius.all(
-                              Radius.circular(15.0)
+                              Radius.circular(5.0)
                             //                 <--- border radius here
                           ),
                         ),
                         padding: EdgeInsets.all(8),
                         child: TextFormField(
                           keyboardType: TextInputType.text,
-                          cursorColor: Color(0xFF3A8183),
+                          cursorColor: kPrimaryColor,
                           initialValue: loggedInUser.address,
                           onChanged: (address) {
                             t_address = address;
@@ -430,9 +416,6 @@ class _Profile_pageState extends State<DProfile_page> {
                           onSaved: (var address) {
                             t_address =address;
                           },
-                          decoration: InputDecoration(
-                            border: InputBorder.none, // Set the border to none
-                          ),
                         ),
                       )
                     ],
@@ -447,7 +430,7 @@ class _Profile_pageState extends State<DProfile_page> {
                       Text(
                         "city",
                         style: TextStyle(
-                            color: Color(0xFF3A8183),
+                            color: kPrimaryColor,
                             fontWeight: FontWeight.w600),
                       ),
                       Container(
@@ -458,14 +441,14 @@ class _Profile_pageState extends State<DProfile_page> {
                           border: Border.all(
                               width: 1.0, color: Colors.black12),
                           borderRadius: BorderRadius.all(
-                              Radius.circular(15.0)
+                              Radius.circular(5.0)
                             //                 <--- border radius here
                           ),
                         ),
                         padding: EdgeInsets.all(8),
                         child: TextFormField(
                           keyboardType: TextInputType.text,
-                          cursorColor: Color(0xFF3A8183),
+                          cursorColor: kPrimaryColor,
                           initialValue: loggedInUser.city,
                           onChanged: (city) {
                             t_city = city;
@@ -479,9 +462,6 @@ class _Profile_pageState extends State<DProfile_page> {
                           onSaved: (var city) {
                             t_city = city;
                           },
-                          decoration: InputDecoration(
-                            border: InputBorder.none, // Set the border to none
-                          ),
                         ),
                       )
                     ],
@@ -491,16 +471,16 @@ class _Profile_pageState extends State<DProfile_page> {
                 // Date of Birth Field
                 //*************************************
                 Container(
-                  margin: EdgeInsets.only(left: margin_left, top: margin_top),
+                  margin:
+                  EdgeInsets.only(left: margin_left, top: margin_top),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
                         "Date Of Birth",
                         style: TextStyle(
-                          color: Color(0xFF3A8183),
-                          fontWeight: FontWeight.w600,
-                        ),
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.w600),
                       ),
                       Container(
                         margin: EdgeInsets.only(right: margin_right),
@@ -508,51 +488,55 @@ class _Profile_pageState extends State<DProfile_page> {
                         decoration: BoxDecoration(
                           border: Border.all(
                               width: 1.0, color: Colors.black12),
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(5.0)
+                            //                 <--- border radius here
+                          ),
                         ),
                         padding: EdgeInsets.all(8),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                          //  crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Center(
                               child: t_date == null
                                   ? Text(
                                 loggedInUser.dob.toString(),
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(
+                                    color: Colors.black54),
                               )
                                   : Text(
                                 t_date,
                                 style: TextStyle(
                                     color: Colors.black,
-                                    ),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                             IconButton(
-                              onPressed: () async {
-                                mydate = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(1950),
-                                  lastDate: DateTime.now(),
-                                );
+                                onPressed: () async {
+                                  mydate = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(1950),
+                                      lastDate: DateTime.now());
 
-                                setState(() {
-                                  t_date = DateFormat('dd-MM-yyyy').format(mydate);
-                                });
-                              },
-                              icon: Icon(
-                                Icons.calendar_today,
-                                color: Color(0xFF4A7879),
-                                size: 16,
-                              ),
-                            ),
+                                  setState(() {
+                                    t_date = DateFormat('dd-MM-yyyy')
+                                        .format(mydate);
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.calendar_today,
+                                  color: kPrimaryColor,
+                                  size: 16,
+                                ))
                           ],
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
-
                 // ************************************
                 // Age Field
                 //*************************************
@@ -565,7 +549,7 @@ class _Profile_pageState extends State<DProfile_page> {
                       Text(
                         "Age",
                         style: TextStyle(
-                            color: Color(0xFF3A8183),
+                            color: kPrimaryColor,
                             fontWeight: FontWeight.w600),
                       ),
                       Container(
@@ -575,12 +559,15 @@ class _Profile_pageState extends State<DProfile_page> {
                         decoration: BoxDecoration(
                           border: Border.all(
                               width: 1.0, color: Colors.black12),
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(5.0)
+                            //                 <--- border radius here
+                          ),
                         ),
                         padding: EdgeInsets.all(8),
                         child: TextFormField(
                           keyboardType: TextInputType.number,
-                          cursorColor: Color(0xFF3A8183),
+                          cursorColor: kPrimaryColor,
                           initialValue: loggedInUser.age,
                           onChanged: (age) {
                             t_age = age;
@@ -594,9 +581,6 @@ class _Profile_pageState extends State<DProfile_page> {
                           onSaved: (var age) {
                             t_age = age;
                           },
-                          decoration: InputDecoration(
-                            border: InputBorder.none, // Set the border to none
-                          ),
                         ),
                       )
                     ],
@@ -615,7 +599,7 @@ class _Profile_pageState extends State<DProfile_page> {
                       Text(
                         "Gender",
                         style: TextStyle(
-                            color: Color(0xFF3A8183),
+                            color: kPrimaryColor,
                             fontWeight: FontWeight.w600),
                       ),
                       Container(
@@ -623,7 +607,7 @@ class _Profile_pageState extends State<DProfile_page> {
                         width: boder,
                         decoration: BoxDecoration(
                           border: Border.all(width: 1.0, color: Colors.black12),
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          borderRadius: BorderRadius.all(Radius.circular(5.0)),
                         ),
                         padding: EdgeInsets.all(8),
                         child: Row(
@@ -636,7 +620,7 @@ class _Profile_pageState extends State<DProfile_page> {
                                     Radio(
                                       value: "male",
                                       groupValue: loggedInUser.gender,
-                                      activeColor: Color(0xFF59C5CC),
+                                      activeColor: kPrimaryColor,
                                       onChanged: (val) {
                                         setState(() {
                                           loggedInUser.gender = val as String;
@@ -652,7 +636,7 @@ class _Profile_pageState extends State<DProfile_page> {
                                   children: [
                                     Radio(
                                       value: "female",
-                                      activeColor: Color(0xFF59C5CC),
+                                      activeColor: kPrimaryColor,
                                       groupValue: loggedInUser.gender,
                                       onChanged: (val) {
                                         setState(() {
@@ -684,18 +668,17 @@ class _Profile_pageState extends State<DProfile_page> {
                       Text(
                         "Contact No",
                         style: TextStyle(
-                            color: Color(0xFF3A8183),
+                            color: kPrimaryColor,
                             fontWeight: FontWeight.w600),
                       ),
                       Container(
                         margin: EdgeInsets.only(right: margin_right),
                         width: boder,
-
                         decoration: BoxDecoration(
                           border: Border.all(
                               width: 1.0, color: Colors.black12),
                           borderRadius:
-                          BorderRadius.all(Radius.circular(15.0),
+                          BorderRadius.all(Radius.circular(5.0)
                             //  <--- border radius here
                           ),
                         ),
@@ -704,7 +687,7 @@ class _Profile_pageState extends State<DProfile_page> {
                           cursorColor: kPrimaryColor,
                           style: TextStyle(fontSize: 16),
                           disableLengthCheck: false,
-                          initialValue: loggedInUser.phone?.substring(4),
+                          initialValue: loggedInUser.phone?.substring(3),
                           textAlignVertical: TextAlignVertical.center,
                           dropdownTextStyle: TextStyle(fontSize: 16),
                           dropdownIcon: Icon(Icons.arrow_drop_down,
@@ -715,9 +698,6 @@ class _Profile_pageState extends State<DProfile_page> {
                             phoneController =
                                 phone.completeNumber.toString();
                           },
-                          decoration: InputDecoration(
-                            border: InputBorder.none, // Set the border to none
-                          ),
                         ),
                         //  child: Text("${loggedInUser.phone}"),
                       )
@@ -728,8 +708,8 @@ class _Profile_pageState extends State<DProfile_page> {
 
 
             // Usage example
-
-               Column(
+            TextFieldContainer(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -739,17 +719,17 @@ class _Profile_pageState extends State<DProfile_page> {
                         alignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "      Upload A Valid Proof",
+                            "Upload A Valid Proof:",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF3A8183),
+                              color: kPrimaryColor,
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 40.0),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Color(0xFF66C9CC),
+                                backgroundColor: kPrimaryColor,
                                 shape: StadiumBorder(),
                               ),
                               onPressed: () async {
@@ -764,94 +744,68 @@ class _Profile_pageState extends State<DProfile_page> {
                   ),
                 ],
               ),
-
+            ),
 
 
                 Container(
-                  margin: EdgeInsets.only(left: margin_left, top: margin_top),
+                  margin:
+                  EdgeInsets.only(left: margin_left, top: margin_top),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        "Status",
+                        "status",
                         style: TextStyle(
-                          color: Color(0xFF3A8183),
-                          fontWeight: FontWeight.w600,
-                        ),
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.w600),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: margin_left, right: margin_right),
+                        margin: EdgeInsets.only(
+                            left: margin_left, right: margin_right),
                         width: boder,
                         decoration: BoxDecoration(
-                          border: Border.all(width: 1.0, color: Colors.black12),
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                          border: Border.all(
+                              width: 1.0, color: Colors.black12),
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(5.0)
+                            //                 <--- border radius here
+                          ),
                         ),
                         padding: EdgeInsets.all(8),
-                        child: Row(
+                        child:
+                        Row(
+
                           children: <Widget>[
                             ButtonBar(
                               alignment: MainAxisAlignment.center,
                               children: [
-                                Row(
 
-                                  children: [
-                                    Radio(
-
-                                      value: "unmarried",
-                                      groupValue: loggedInUser.status,
-                                      activeColor: Color(0xFF59C5CC),
-                                      onChanged: (val) {
-                                        setState(() {
-                                          loggedInUser.status = val as String;
-                                          selectedStatus = val as String;
-                                        });
-                                      },
-                                    ),
-                                    Container(
-                                      // Adjust the size of the Text widget here
-                                      child: Text(
-                                        "Unmarried",
-                                        style: TextStyle(
-                                          fontSize: 13, // Adjust the font size as needed
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                Radio(
+                                  value: 1,
+                                  groupValue: status,
+                                  activeColor: kPrimaryColor,
+                                  onChanged: (val1) {
+                                    setSelectedstatus(val1 as int);
+                                  },
                                 ),
-                                Row(
-                                  children: [
-                                    Radio(
-                                      value: "married",
-                                      groupValue: loggedInUser.status,
-                                      activeColor:Color(0xFF59C5CC),
-                                      onChanged: (val) {
-                                        setState(() {
-                                          loggedInUser.status = val as String;
-                                          selectedStatus = val as String;
-                                        });
-                                      },
-                                    ),
-                                    Container(
-                                      // Adjust the size of the Text widget here
-                                      child: Text(
-                                        "Married",
-                                        style: TextStyle(
-                                          fontSize: 13, // Adjust the font size as needed
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                Text("Unmarried"),
+                                Radio(
+                                    value: 2,
+                                    groupValue: status,
+                                    activeColor: kPrimaryColor,
+                                    onChanged: (val1) {
+                                      setSelectedstatus(val1 as int);
+                                    }),
+                                Text("Married"),
                               ],
-                            ),
+                            )
                           ],
                         ),
-                      ),
+
+                      )
                     ],
                   ),
                 ),
-
-
 
                 Container(
                   width: size.width * 0.8,
@@ -861,7 +815,7 @@ class _Profile_pageState extends State<DProfile_page> {
                       shape: StadiumBorder(),
                       padding: EdgeInsets.symmetric(
                           horizontal: 40, vertical: 15),
-                      backgroundColor: Color(0xFF3A8183),
+                      backgroundColor: kPrimaryColor,
                     ),
                     onPressed: () async {
                       var url;
@@ -907,12 +861,6 @@ class _Profile_pageState extends State<DProfile_page> {
                             'profileImage': url == null
                                 ? loggedInUser.profileImage
                                 : url,
-                            'status': selectedStatus == null
-                                ? loggedInUser.status
-                                : selectedStatus,
-                            'gender': selectedGender==null
-                            ?loggedInUser.gender
-                                :selectedGender,
                           })
                               .then((value) => Loading())
                               .then((value) =>

@@ -29,15 +29,15 @@ class _SearchListState extends State<SearchList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFF5F5F5),
       body: SafeArea(
         child: StreamBuilder(
           stream: FirebaseFirestore.instance
               .collection('Sitter')
               .orderBy('name')
               .where('valid', isEqualTo: true)
-              .startAt([widget.searchKey.toLowerCase()]).endAt(
-              [widget.searchKey.toLowerCase() + '\uf8ff']).snapshots(),
+              .startAt([widget.searchKey]).endAt(
+                  [widget.searchKey + '\uf8ff']).snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData)
@@ -54,7 +54,7 @@ class _SearchListState extends State<SearchList> {
                           Text(
                             'No service provider found!',
                             style: TextStyle(
-                              color: Colors.blue[800],
+                              color:  Color(0xFF4CA6A8),
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
                             ),
@@ -80,101 +80,97 @@ class _SearchListState extends State<SearchList> {
                         return Padding(
                           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: Card(
-                            color: Colors.blue[100],
+                            color:Color(0xFFF5F5F5),
                             elevation: 5,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Container(
-                              padding:
-                                  EdgeInsets.only(left: 10, right: 10, top: 0),
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height / 9,
-                              child: TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => DetailPage(
-                                        uid: doctor['uid'],
-                                        name: doctor['name'],
-                                        email: doctor['email'],
-                                        address: doctor['address'],
-                                        city: doctor['city'],
-                                        experience: doctor['experience'],
-                                        specialist: doctor['specialist'],
-                                        profileImage: doctor['profileImage'],
-                                        description: doctor['description'],
-                                        phone: doctor['phone'],
-                                        gender: doctor['gender'],
-                                        available: doctor['available'],
-                                        doctor: _doctorName,
+
+                            child:Container(
+                              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                              decoration: BoxDecoration(
+                                color:  Color(0xFF4CA6A8),
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    blurRadius: 10,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              child: Material(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => DetailPage(
+                                          uid: doctor['uid'],
+                                          name: doctor['name'],
+                                          email: doctor['email'],
+                                          address: doctor['address'],
+                                          city: doctor['city'],
+                                          experience: doctor['experience'],
+                                          specialist: doctor['specialist'],
+                                          profileImage: doctor['profileImage'],
+                                          description: doctor['description'],
+                                          phone: doctor['phone'],
+                                          gender: doctor['gender'],
+                                          available: doctor['available'],
+                                          doctor: _doctorName,
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                },
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    doctor['profileImage'] == false
-                                        ? CircleAvatar(
-                                            backgroundImage: AssetImage(
-                                                'assets/images/account.png'),
-                                            backgroundColor: Colors.transparent,
-                                            radius: 25,
-                                          )
-                                        : CircleAvatar(
-                                            backgroundImage: NetworkImage(
-                                                doctor['profileImage']),
-                                            backgroundColor: Colors.transparent,
-                                            radius: 25,
-                                          ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                    );
+                                  },
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(10),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
-                                        Text(
-                                          a + doctor['name'],
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 17,
-                                            color: Colors.black87,
+                                        doctor['profileImage'] == false
+                                            ? CircleAvatar(
+                                          backgroundImage: AssetImage('assets/images/account.png'),
+                                          backgroundColor: Colors.transparent,
+                                          radius: 25,
+                                        )
+                                            : CircleAvatar(
+                                          backgroundImage: NetworkImage(doctor['profileImage']),
+                                          backgroundColor: Colors.transparent,
+                                          radius: 25,
+                                        ),
+                                        SizedBox(width: 10),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                a + doctor['name'],
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 17,
+                                                  color: Colors.black87,
+                                                ),
+                                              ),
+                                              Text(
+                                                doctor['specialist'] + ' Specialist',
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.black54,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        Text(
-                                          doctor['specialist'] + ' Specialist',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black54),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                        alignment: Alignment.centerRight,
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
+                                        Row(
                                           children: [
                                             Icon(
                                               Typicons.star_full_outline,
                                               size: 20,
                                               color: Colors.yellow[400],
                                             ),
-                                            SizedBox(
-                                              width: 3,
-                                            ),
+                                            SizedBox(width: 3),
                                             Text(
                                               doctor['rating'].toString(),
                                               style: TextStyle(
@@ -185,12 +181,14 @@ class _SearchListState extends State<SearchList> {
                                             ),
                                           ],
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
+
+
                           ),
                         );
                       },

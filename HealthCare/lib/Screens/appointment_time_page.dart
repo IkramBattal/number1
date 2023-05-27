@@ -75,12 +75,15 @@ class _Appoin_timeState extends State<Appoin_time> {
 
     return SafeArea(
       child: Scaffold(
+          backgroundColor:Color(0xFFF5F5F5),
         appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Color(0xFFF5F5F5),
           leading: IconButton(
             icon: Icon(
-              Icons.arrow_back,
-              size: 30,
-              color: Colors.white,
+              Icons.arrow_back_ios,
+              size: 25,
+              color:Color(0xFF4CA6A8),
             ),
             onPressed: () {
               Navigator.pop(context);
@@ -88,9 +91,11 @@ class _Appoin_timeState extends State<Appoin_time> {
           ),
           title: Text(
             "Appointment Time",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400),
+            style: TextStyle(color: Color(0xFF4CA6A8),
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
           ),
-        ),
+        ),),
         body: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Container(
@@ -103,19 +108,22 @@ class _Appoin_timeState extends State<Appoin_time> {
                   margin: EdgeInsets.all(10),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: kPrimaryColor,
-                        fixedSize: Size(double.infinity, 50),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15))),
+                      backgroundColor: Color(0xFF4CA6A8),
+                      fixedSize: Size(double.infinity, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
                     onPressed: () async {
                       mydate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now().add(Duration(days: 1)),
-                          firstDate: DateTime.now().add(Duration(days: 1)),
-                          lastDate: DateTime.now().add(Duration(days: 2)));
+                        context: context,
+                        initialDate: now,
+                        firstDate: now,
+                        lastDate: DateTime(9999),
+                      );
 
                       setState(() {
-                        c_date = Timestamp.fromDate(mydate);
+                        c_date = DateFormat('dd-MM-yyyy').format(mydate);
                       });
                     },
                     child: Center(
@@ -129,19 +137,20 @@ class _Appoin_timeState extends State<Appoin_time> {
                             style: TextStyle(color: Colors.white),
                           )
                               : Text(
-                            DateFormat('dd-MM-yyyy').format(c_date.toDate()).toString(),
+                            c_date,
                             style: TextStyle(color: Colors.white),
                           ),
                           Icon(
                             Icons.calendar_today,
                             color: Colors.white,
-                            size: 16,
+                            size: 20,
                           )
                         ],
                       ),
                     ),
                   ),
                 ),
+
 
                 //************************************************
                 //  MORNING
@@ -151,19 +160,22 @@ class _Appoin_timeState extends State<Appoin_time> {
                     Icon(
                       Icons.wb_twighlight,
                       color: Colors.amber,
+                      size: 20,
                     ),
                     SizedBox(
                       width: 5,
                     ),
                     Text(
-                      "MORNING",
+                      "Morning",
                       style: TextStyle(
-                          color: kPrimaryColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400),
+                        color:Colors.black ,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -178,8 +190,8 @@ class _Appoin_timeState extends State<Appoin_time> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.0),
                               color: time == morining
-                                  ? Colors.green
-                                  : kPrimaryColor,
+                                  ? Color(0xFF4CA6A8)
+                                  : Color(0xFF4CA6A8),
                             ),
                             child: Center(
                                 child: Text(
@@ -209,19 +221,25 @@ class _Appoin_timeState extends State<Appoin_time> {
                 //************************************************
                 Row(
                   children: [
-                    Icon(Icons.wb_sunny, color: Colors.amber),
+                    Icon(
+                      Icons.wb_sunny,
+                      color: Colors.amber,
+                      size: 20,
+                    ),
                     SizedBox(
                       width: 5,
                     ),
                     Text(
-                      "AFTERNOON",
+                      "Afternoon",
                       style: TextStyle(
-                          color: kPrimaryColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400),
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -249,8 +267,8 @@ class _Appoin_timeState extends State<Appoin_time> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             color: time == afternoon
-                                ? Colors.green
-                                : kPrimaryColor,
+                                ? Color(0xFF4CA6A8)
+                                : Color(0xFF4CA6A8),
                           ),
                           child: Center(
                               child: Text(
@@ -268,19 +286,25 @@ class _Appoin_timeState extends State<Appoin_time> {
                 //************************************************
                 Row(
                   children: [
-                    Icon(Icons.wb_twighlight, color: Colors.amber),
+                    Icon(
+                      Icons.wb_twighlight,
+                      color: Colors.amber,
+                      size: 20,
+                    ),
                     SizedBox(
                       width: 5,
                     ),
                     Text(
-                      "EVENING",
+                      "Evening",
                       style: TextStyle(
-                          color: kPrimaryColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400),
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -308,8 +332,8 @@ class _Appoin_timeState extends State<Appoin_time> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             color: time == evening
-                                ? Colors.green
-                                : kPrimaryColor,
+                                ? Color(0xFF4CA6A8)
+                                : Color(0xFF4CA6A8),
                           ),
                           child: Center(
                               child: Text(
@@ -326,19 +350,22 @@ class _Appoin_timeState extends State<Appoin_time> {
                     Icon(
                       Icons.wb_twighlight,
                       color: Colors.amber,
+                      size: 20,
                     ),
                     SizedBox(
                       width: 5,
                     ),
                     Text(
-                      "All Day",
+                      "Whole Day",
                       style: TextStyle(
-                          color: kPrimaryColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400),
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
+
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -353,8 +380,8 @@ class _Appoin_timeState extends State<Appoin_time> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8.0),
                                 color: time == AllDay
-                                    ? Colors.green
-                                    : kPrimaryColor,
+                                    ? Color(0xFF4CA6A8)
+                                    : Color(0xFF4CA6A8),
                               ),
                               child: Center(
                                   child: Text(
@@ -391,48 +418,54 @@ class _Appoin_timeState extends State<Appoin_time> {
                         shape: StadiumBorder(),
                         padding:
                         EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                        backgroundColor: kPrimaryColor,
+                        backgroundColor: Color(0xFF4CA6A8),
                       ),
                       onPressed: isEnabled1
                           ? () {
-                        FirebaseFirestore firebaseFirestore =
-                            FirebaseFirestore.instance;
-                        firebaseFirestore
-                            .collection('pending')
-                            .add({
+                        FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+                        DateTime selectedDateTime = DateTime(
+                          mydate.year,
+                          mydate.month,
+                          mydate.day,
+                        );
+                        Timestamp timestamp = Timestamp.fromDate(selectedDateTime);
+
+                        firebaseFirestore.collection('pending').add({
                           'pid': loggedInUser.uid.toString(),
                           'name': loggedInUser.name.toString().toLowerCase() +
                               " " +
                               loggedInUser.last_name.toString().toLowerCase(),
-                          'date': c_date,
+                          'date': timestamp, // Store the date as a timestamp
                           'time': time,
                           'approve': false,
                           'did': widget.uid,
-                          'gender':widget.gender.toString(),
+                          'gender': widget.gender.toString(),
                           'phone': loggedInUser.phone,
                           'doctor_name': widget.name.toString(),
                           'visited': false,
-
-                        })
-                            .then((value) => Fluttertoast.showToast(
-                            msg: "Pending Appointment",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: kPrimaryColor,
-                            textColor: Colors.white,
-                            fontSize: 16.0))
+                        }).then((value) => Fluttertoast.showToast(
+                          msg: "Pending Appointment",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Color(0xFF4CA6A8),
+                          textColor: Colors.white,
+                          fontSize: 18.0,
+                        ))
                             .then((value) => showDialog(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (BuildContext context) =>
-                                AdvanceCustomAlert(
-                                    widget.name.toString())))
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (BuildContext context) => AdvanceCustomAlert(
+                            widget.name.toString(),
+                          ),
+                        ))
                             .catchError((e) {
                           print('Error Data2' + e.toString());
                         });
                       }
                           : null,
+
+
                       child: Text(
                         'Book Appointment',
                         style: TextStyle(
@@ -628,7 +661,7 @@ class AdvanceCustomAlert extends StatelessWidget {
                                 (route) => false);
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: kPrimaryColor),
+                          backgroundColor: Color(0xFF4CA6A8)),
                       child: Text(
                         'Okay',
                         style: TextStyle(color: Colors.white),
@@ -641,7 +674,7 @@ class AdvanceCustomAlert extends StatelessWidget {
             Positioned(
               top: 15,
               child: CircleAvatar(
-                backgroundColor: Colors.grey,
+                backgroundColor: Colors.white,
                 radius: 45,
                 child: Image.asset('assets/images/logo1.png'),
               ),

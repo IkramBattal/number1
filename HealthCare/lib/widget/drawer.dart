@@ -55,8 +55,9 @@ class _MyDrawerState extends State<MyDrawer> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: <Color>[
-                        kPrimaryColor,
-                        kPrimaryLightColor,
+                        Color(0xFF4CA6A8),
+                        Color(0xFFE8F5F6),
+
                       ],
                     ),
                   ),
@@ -82,10 +83,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => UserProfile()));
                 }),
-                CustomList(Icons.question_mark, "FAQs", () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => faqs()));
-                }),
+
                 // Privacy Policy
                 CustomList(Icons.announcement, "Privacy Policy", () async {
                   final Uri _url = Uri.parse(

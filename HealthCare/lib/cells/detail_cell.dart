@@ -18,10 +18,19 @@ class DetailCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       width: 100,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        color: kPrimaryLightColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 4,
+            offset: Offset(0, 2),
+          ),
+        ],
+        color: Color(0xFFFFFFFF),
         borderRadius: BorderRadius.circular(14),
       ),
       child: Stack(
@@ -46,7 +55,7 @@ class DetailCell extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    color: kPrimaryColor,
+                    color: Colors.black,
                     fontSize: 25,
                     fontWeight: FontWeight.w700,
                   ),

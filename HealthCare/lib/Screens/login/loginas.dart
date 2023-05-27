@@ -79,33 +79,25 @@ class _LoginasState extends State<Loginas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack(
+      backgroundColor: Color(0xFFFFFFFF),
+      body:Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 140),
-            child: Container(
-              constraints: BoxConstraints.expand(),
-              decoration:  BoxDecoration (
-                color:  Color(0xfffbfbfb),
-              ),
-
-            ),
-          ),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 170),
-              child: Center(
-                  child: Text(
-                "What Are You?",
-                style: TextStyle(
-                    fontSize:  30,
-                    fontWeight:  FontWeight.w700,
-                    color:  Color(0xff1a1d1e)
+          Positioned(
+            top: 250,
+            child: SizedBox(
+              height: 50, // Adjust the height as needed
+              width: MediaQuery.of(context).size.width, // Set the width to match the screen width
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/caremate.png'), // Replace with your image path
+                    fit: BoxFit.fitHeight,
+                  ),
                 ),
-              )),
+              ),
             ),
           ),
+
           SafeArea(
             child: Align(
               alignment: Alignment.bottomCenter,
@@ -113,27 +105,28 @@ class _LoginasState extends State<Loginas> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
-                    height: 220,
+                    height: 500,
                     decoration: BoxDecoration(
-                      color: Colors.black26.withOpacity(0.25),
-                      borderRadius: BorderRadius.circular(20),
+                      //color: Colors.black26.withOpacity(0.25),
+                      //borderRadius: BorderRadius.circular(20),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Container(
-                          width: MediaQuery.of(context).size.width / 1.1,
+                          width: MediaQuery.of(context).size.width / 1.5,
                           child: SizedBox(
                             width: double.infinity,
                             height: 50.0,
                             child: ElevatedButton(
                               child: Text(
-                                "I'M A SITTER",
+                                "SERVICE PROVIDER",
                                 style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18.0,
+                                  color:  Color(0xFF4CA6A8),
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
+                                  fontFamily: 'Proxima Nova',
                                 ),
                               ),
                               onPressed: () {
@@ -144,8 +137,8 @@ class _LoginasState extends State<Loginas> {
                               },
                               style: ElevatedButton.styleFrom(
                                 elevation: 2,
-                                backgroundColor: Colors.deepPurple[600],
-                                foregroundColor: Colors.deepPurple[600],
+                                backgroundColor: Color(0xFFFAFAFA),
+
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(32.0),
                                 ),
@@ -155,17 +148,18 @@ class _LoginasState extends State<Loginas> {
                           padding: const EdgeInsets.all(16),
                           alignment: Alignment.center,
                         ),
+                        SizedBox(height: 30),
                         Container(
-                          width: MediaQuery.of(context).size.width / 1.1,
+                          width: MediaQuery.of(context).size.width / 1.5,
                           child: SizedBox(
                             width: double.infinity,
                             height: 50.0,
                             child: ElevatedButton(
                               child: Text(
-                                "I'AM A PARENT",
+                                "PARENT",
                                 style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18.0,
+                                  color: Color(0xFFFAFAFA),
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -177,8 +171,9 @@ class _LoginasState extends State<Loginas> {
                               },
                               style: ElevatedButton.styleFrom(
                                 elevation: 2,
-                                backgroundColor: Colors.deepPurple[600],
-                                foregroundColor: Colors.deepPurple[600],
+                                backgroundColor:
+                                  Color(0xFF4CA6A8),
+
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(32.0),
                                 ),

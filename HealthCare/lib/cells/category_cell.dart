@@ -18,7 +18,9 @@ class CategoryCell extends StatelessWidget {
       height: 100,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        color: kPrimarydark,
+        color: Color(0xFFFFFFFF),
+
+
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -37,9 +39,9 @@ class CategoryCell extends StatelessWidget {
                 child: Text(
                   category?.title,
                   style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 15,
                   ),
                 ),
               ),

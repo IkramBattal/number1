@@ -14,12 +14,13 @@ class _aboutState extends State<about> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kPrimaryColor,
+        elevation: 0,
+        backgroundColor:  Color(0xFFFFFFFF),
         leading: IconButton(
             splashRadius: 20,
             icon: Icon(
               Icons.arrow_back_ios,
-              color: Colors.white,
+              color: Color(0xFF4CA6A8),
             ),
             onPressed: () {
               Navigator.pop(context);
@@ -27,9 +28,9 @@ class _aboutState extends State<about> {
         title: Text(
           'About',
           style: TextStyle(
-            color: Colors.white,
+            color: Color(0xFF4CA6A8),
             fontSize: 20,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -45,7 +46,7 @@ class _aboutState extends State<about> {
                 alignment: Alignment.centerLeft,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.blueGrey[50],
+                  color: Color(0xFFF5F5F5),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

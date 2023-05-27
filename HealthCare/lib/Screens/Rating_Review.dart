@@ -18,11 +18,25 @@ class _Rating_ReviewState extends State<Rating_Review> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      backgroundColor:Color(0xFFF5F5F5),
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Color(0xFFF5F5F5),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+            color:Color(0xFF4CA6A8),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text(
           'Rating & Review',
           style: TextStyle(
-              color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+              color: Color(0xFF4CA6A8), fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
@@ -50,11 +64,15 @@ class _Rating_ReviewState extends State<Rating_Review> {
                           child: Container(
                             margin: EdgeInsets.only(bottom: 5),
                             decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1.0, color: Colors.grey),
-                              borderRadius: BorderRadius.all(Radius.circular(
-                                      10.0) //                 <--- border radius here
-                                  ),
+                              color: Color(0xFFFFFFFF),
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  blurRadius: 10,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -68,7 +86,8 @@ class _Rating_ReviewState extends State<Rating_Review> {
                                         doc['name'],
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.black),
+                                            color: Colors.black,
+                                            fontSize: 18),
                                       )),
                                   Row(
                                       children: new List.generate(

@@ -110,17 +110,53 @@ class _HomePageState extends State<HomePage> {
       },
     );
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFF5F5F5),
+
+
       key: _scaffoldKey,
-      drawer: loggedInUser.uid == null ? SizedBox() : MyDrawer(),
+      drawer: loggedInUser.uid == null ? SizedBox() : MyDrawer(), // Replace MyDrawer with your custom drawer widget
       appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.only(left: 78),
-          child: Text("HealthCare"),
+        backgroundColor: Color(0xFFF5F5F5),
+        elevation: 0,
+        title: Text(
+          "CareMate",
+          style: TextStyle(
+            color: Color(0xFF4CA6A8),
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        iconTheme: IconThemeData(color: Colors.white),
+        centerTitle: true,
+        leading: GestureDetector(
+          onTap: () {
+            if (loggedInUser.uid != null) {
+              _scaffoldKey.currentState?.openDrawer(); // Open the drawer
+            }
+          },
+          child: Container(
+            //width: 56,
+           // height: 56,
+            decoration: BoxDecoration(
+              color: Color(0xFF4CA6A8),
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(80),
+            ),
+            child: IconTheme(
+              data: IconThemeData(color: Colors.white),
+              child: Icon(
+                Icons.menu,
+              ),
+            ),
+          ),
+        ),
       ),
-      body: loggedInUser.uid == null
+
+
+
+
+
+
+    body: loggedInUser.uid == null
           ? Center(
               child: Text("Wait for few seconds"),
             )
@@ -134,88 +170,103 @@ class _HomePageState extends State<HomePage> {
                   ),
 // Hello
                   Container(
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.only(left: 20, bottom: 10),
-                    child: Text(
-                      "Hello " + loggedInUser.name.toString() + " " + _message,
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-// les's find doctor
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.only(left: 20, bottom: 15),
-                    child: Text(
-                      "Let's Find Your\nService provider",
-                      style: TextStyle(
-                        fontSize: 35,
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hello ,",
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.grey.withOpacity(0.7),
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                        loggedInUser.name.toString(),
+                              style: TextStyle(
+                                fontSize: 30,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
 
+// les's find doctor
+
                   //Search doctor
                   Container(
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 3),
+                    height: 55,
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFFFFFFF),
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.3),
+                          blurRadius: 10,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                    ),
                     child: TextFormField(
                       textInputAction: TextInputAction.search,
                       controller: _doctorName,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                      ),
                       decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.only(left: 20, top: 10, bottom: 10),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                          borderSide: BorderSide.none,
-                        ),
-                        filled: true,
-                        fillColor: Colors.grey[200],
-                        hintText: 'Search you service provider',
+                        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                        border: InputBorder.none,
+                        hintText: "Search your service provider",
                         hintStyle: TextStyle(
                           color: Colors.black26,
                           fontSize: 18,
                           fontWeight: FontWeight.w800,
                         ),
                         suffixIcon: Container(
+                          margin: EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: kPrimaryColor.withOpacity(0.8),
-                            borderRadius: BorderRadius.circular(15),
+                            color: Color(0xFF4CA6A8),
+                            borderRadius: BorderRadius.circular(30),
                           ),
                           child: IconButton(
-                            iconSize: 20,
-                            splashRadius: 20,
-                            color: Colors.white,
                             icon: Icon(Icons.search),
-                            onPressed: () {},
+                            color: Colors.white,
+                            onPressed: () {
+                              // Perform search action here
+                            },
                           ),
                         ),
                       ),
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
                       onFieldSubmitted: (String value) {
-                        setState(
-                          () {
-                            value.length == 0
-                                ? Container()
-                                : Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => SearchList(
-                                        searchKey: value,
-                                      ),
-                                    ),
-                                  );
-                          },
-                        );
+                        setState(() {
+                          value.length == 0
+                              ? Container()
+                              : Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SearchList(
+                                searchKey: value,
+                              ),
+                            ),
+                          );
+                        });
                       },
                     ),
                   ),
+
 
                   Container(
                       margin: EdgeInsets.only(top: 20),
@@ -226,7 +277,6 @@ class _HomePageState extends State<HomePage> {
 
 //ads..
 
-
                   Padding(
                     padding: EdgeInsets.only(left: 20, right: 20),
                     child: Row(
@@ -235,8 +285,8 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           'Appointment',
                           style: TextStyle(
-                            color: kPrimaryColor,
-                            fontSize: 18,
+                            color: Color(0xFF1A1D1E),
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -244,22 +294,25 @@ class _HomePageState extends State<HomePage> {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => Appointment()),
+                              MaterialPageRoute(builder: (context) => Appointment()),
                             );
                           },
+                          style: ButtonStyle(
+                            overlayColor: MaterialStateProperty.all(Colors.transparent),
+                          ),
                           child: Text(
-                            'More..',
+                            'Show All',
                             style: TextStyle(
-                              color: kPrimaryColor,
+                              color: Color(0xFF6A6A6A),
                               fontSize: 18,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
+
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
@@ -319,7 +372,7 @@ class _HomePageState extends State<HomePage> {
                                                         "Your appointment with "+(doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                                                             doc['doctor_name'] +
                                                             " is Pending at  " +
-                                                             DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString() +
+                                                            doc['date'] +
                                                             " and  " +
                                                             doc['time']
                                                                 .toString(),
@@ -334,7 +387,7 @@ class _HomePageState extends State<HomePage> {
                                                         " Your confirm appointment with  " +
                                                             doc['doctor_name'] +
                                                             " is Confirmed at " +
-                                                            DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString()+
+                                                            doc['date'] +
                                                             " and  " +
                                                             doc['time']
                                                                 .toString(),
@@ -449,7 +502,7 @@ class _HomePageState extends State<HomePage> {
                   " confirm appointmentpon with"+ (doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                   doc['age'] +
                   " on " +
-                   DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString()+
+                  doc['date'] +
                   " and  " +
                   doc['time'].toString(),
               style: TextStyle(color: Colors.white),
@@ -475,14 +528,14 @@ class _HomePageState extends State<HomePage> {
             Text(
               'Categories',
               style: TextStyle(
-                color: kPrimaryColor,
-                fontSize: 18,
+                color: Color(0xFF1A1D1E),
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-
           ],
         ),
+
         SizedBox(
           height: 7,
         ),
@@ -527,15 +580,16 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Top Rated ',
+              'Top Rated',
               style: TextStyle(
-                color: kPrimaryColor,
-                fontSize: 18,
+                color: Color(0xFF1A1D1E),
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ],
         ),
+
         SizedBox(
           height: 20,
         ),
@@ -645,18 +699,23 @@ class _HomePageState extends State<HomePage> {
     categories.add(Category(
       title: 'Babysitter',
       icon: "assets/svg/babysitter.png",
+      imageSize: 1000,
     ));
     categories.add(Category(
       icon: "assets/svg/ortho.png",
       title: 'Orthophoniste',
+      imageSize: 1000,
     ));
     categories.add(Category(
       icon: "assets/svg/aide.png",
       title: 'Aide soignant',
+      imageSize: 1000,
+
     ));
     categories.add(Category(
       icon: "assets/svg/aide fam.png",
       title: 'Aide familiale',
+      imageSize: 1000,
     ));
     return categories;
   }

@@ -32,7 +32,7 @@ class _Confirm_AppointmentState extends State<Confirm_Appointment> {
         .get()
         .then((value) {
       loggedInUser = UserModel.fromMap(value.data());
-      Future<void>.delayed(const Duration(seconds: 2), () {
+      Future<void>.delayed(const Duration(seconds: 0), () {
         if (mounted) {
           // Check that the widget is still mounted
           setState(() {
@@ -99,9 +99,18 @@ class _Confirm_AppointmentState extends State<Confirm_Appointment> {
                                         ),
                                         child: Container(
                                           decoration: BoxDecoration(
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey.withOpacity(0.2),
+                                                spreadRadius: 2,
+                                                blurRadius: 4,
+                                                offset: Offset(0, 2),
+                                              ),
+                                            ],
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
-                                            color: Colors.green.shade400,
+                                            color: Color(0xFFFFFFFF),
+
                                           ),
                                           child: Stack(
                                             children: [
@@ -122,7 +131,7 @@ class _Confirm_AppointmentState extends State<Confirm_Appointment> {
                                                               doc['doctor_name'],
                                                           style: TextStyle(
                                                               color:
-                                                                  Colors.white,
+                                                              Color(0xFF151313),
                                                               fontSize: 20,
                                                               fontWeight:
                                                                   FontWeight
@@ -142,10 +151,11 @@ class _Confirm_AppointmentState extends State<Confirm_Appointment> {
                                                                     .only(
                                                                 left: 8.0),
                                                         child: Text(
-                                                          "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
+                                                          "Date: " +
+                                                              doc['date'],
                                                           style: TextStyle(
                                                               color:
-                                                                  Colors.white,
+                                                              Color(0xFF151313),
                                                               fontSize: 14,
                                                               fontWeight:
                                                                   FontWeight
@@ -167,7 +177,7 @@ class _Confirm_AppointmentState extends State<Confirm_Appointment> {
                                                               doc['time'],
                                                           style: TextStyle(
                                                               color:
-                                                                  Colors.white,
+                                                                  Color(0xFF151313),
                                                               fontSize: 14,
                                                               fontWeight:
                                                                   FontWeight
@@ -183,7 +193,7 @@ class _Confirm_AppointmentState extends State<Confirm_Appointment> {
                                                 child: Text(
                                                   "Status : Confirm",
                                                   style: TextStyle(
-                                                      color: Colors.white,
+                                                      color: Colors.grey,
                                                       fontSize: 16,
                                                       fontWeight:
                                                           FontWeight.bold),
@@ -195,7 +205,7 @@ class _Confirm_AppointmentState extends State<Confirm_Appointment> {
                                                 child: ElevatedButton(
                                                   style:
                                                       ElevatedButton.styleFrom(
-                                                    backgroundColor: Colors.red,
+                                                    backgroundColor:Color(0xFF4CA6A8),
                                                     shape:
                                                         RoundedRectangleBorder(
                                                       borderRadius:

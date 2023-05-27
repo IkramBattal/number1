@@ -149,7 +149,7 @@ class _DetailPageState extends State<DetailPage> {
                                       widget.name +
                                       " is not available...Visit later",
                                   textColor: Colors.white,
-                                  backgroundColor: kPrimaryColor);
+                                  backgroundColor: Color(0xFFF5F5F5));
                             }
                             if (!snapshot.hasData) {
                               return SizedBox();
@@ -190,6 +190,7 @@ class _DetailPageState extends State<DetailPage> {
                           }),
                     ),
                     SizedBox(
+
                         child: FutureBuilder(
                       future: FirebaseFirestore.instance
                           .collection('pending')
@@ -226,6 +227,7 @@ class _DetailPageState extends State<DetailPage> {
                 children: [
                   _titleSection(size),
                   SizedBox(
+
                     height: 8,
                   ),
                   Padding(
@@ -245,104 +247,87 @@ class _DetailPageState extends State<DetailPage> {
                           height: 8,
                         ),
                         Container(
+
                           margin: EdgeInsets.only(left: 8),
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                           decoration: BoxDecoration(
-                            color: HexColor('#FFF9EA'),
-                            border: Border.all(
-                                color: HexColor('#FFEDBE'), width: 1),
-                            borderRadius: BorderRadius.circular(4),
+                            color: Color(0xFF4CA6A8),
+                            border: Border.all(color: Color(0xFF4CA6A8), width: 1),
+                            borderRadius: BorderRadius.circular(10),
                           ),
                           child: Text(
-                            widget.specialist ,
+                            widget.specialist,
                             style: TextStyle(
-                              color: HexColor('#FFBF11'),
+                              color: Colors.white,
                               fontSize: 11,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
                         ),
+
                         SizedBox(
                           height: 8,
                         ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.chevron_left_sharp,
-                              color: Colors.indigo,
-                              size: 30,
-                            ),
-                            SizedBox(
-                              width: 4,
-                            ),
-                            Flexible(
-                              child: Text(
-                                widget.address,
-                                style: TextStyle(
-                                  color: kPrimaryhinttext,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  overflow: TextOverflow.fade,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+
+
                         SizedBox(
                           height: 10,
                         ),
                         rating_len == 0
                             ? InkWell(
-                                onTap: () {
-                                  dialog();
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.only(bottom: 5),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 1.0, color: Colors.grey),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(
-                                            10.0) //                 <--- border radius here
-                                        ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Write a Review",
-                                          style: TextStyle(color: Colors.green),
-                                        ),
-                                        Row(
-                                          children: [
-                                            for (int i = 0; i < 5; i++)
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 8.0,
-                                                    top: 8.0,
-                                                    bottom: 8.0),
-                                                child: Icon(
-                                                  Icons.star,
-                                                  color: Colors.grey,
-                                                  size: 30,
-                                                ),
-                                              ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
+                          onTap: () {
+                            dialog();
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(bottom: 5),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(width: 1.0, color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.2),
+                                  spreadRadius: 2,
+                                  blurRadius: 4,
+                                  offset: Offset(0, 2),
                                 ),
-                              )
-                            : Text(
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Write a Review",
+                                    style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
+                                  ),
+                                  Row(
+                                    children: [
+                                      for (int i = 0; i < 5; i++)
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 8.0, top: 8.0, bottom: 8.0),
+                                          child: Icon(
+                                            Icons.star,
+                                            color: Colors.grey,
+                                            size: 30,
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
+
+
+          : Text(
                                 'Update Review',
-                                style: TextStyle(color: Colors.green),
+                                style: TextStyle(color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
                               ),
                         SizedBox(
                           height: 10,
@@ -381,13 +366,21 @@ class _DetailPageState extends State<DetailPage> {
                                             margin: EdgeInsets.only(bottom: 5),
                                             decoration: BoxDecoration(
                                               border: Border.all(
-                                                  width: 1.0,
-                                                  color: Colors.grey),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(
-                                                      10.0) //                 <--- border radius here
-                                                  ),
+                                                width: 1.0,
+                                                color: Color(0xFFFFFFFF),
+                                              ),
+                                              borderRadius: BorderRadius.circular(10.0),
+                                              color: Colors.white,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey.withOpacity(0.2),
+                                                  spreadRadius: 2,
+                                                  blurRadius: 4,
+                                                  offset: Offset(0, 2),
+                                                ),
+                                              ],
                                             ),
+
                                             child: Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
@@ -446,11 +439,12 @@ class _DetailPageState extends State<DetailPage> {
                             Text(
                               'Rating & Review',
                               style: TextStyle(
-                                color: kPrimaryColor,
+                                color: Colors.black,
                                 fontSize: 18,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
+
 
                             TextButton(
                               onPressed: () {
@@ -462,13 +456,14 @@ class _DetailPageState extends State<DetailPage> {
                                 );
                               },
                               child: Text(
-                                'More..',
+                                'Show All',
                                 style: TextStyle(
-                                  color: kPrimaryColor,
+                                  color: Color(0xFF6A6A6A),
                                   fontSize: 18,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w500,
                                 ),
-                              ),
+                              )
+
                             )
                           ],
                         ),
@@ -510,15 +505,26 @@ class _DetailPageState extends State<DetailPage> {
                                       return SingleChildScrollView(
                                         child: Container(
                                           margin: EdgeInsets.only(bottom: 5),
-                                          decoration: BoxDecoration(
+                                          decoration:BoxDecoration(
+                                            color:Color(0xFFFFFFFF),
                                             border: Border.all(
-                                                width: 1.0, color: Colors.grey),
+                                              width: 1.0,
+                                              color: Color(0xFFFFFFFF),
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey.withOpacity(0.2),
+                                                spreadRadius: 2,
+                                                blurRadius: 4,
+                                                offset: Offset(0, 2),
+                                              ),
+                                            ],
                                             borderRadius: BorderRadius.all(
-                                                Radius.circular(
-                                                    10.0) //                 <--- border radius here
-                                                ),
+                                              Radius.circular(10.0),
+                                            ),
                                           ),
-                                          child: Padding(
+
+                                            child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Column(
                                               mainAxisAlignment:
@@ -568,15 +574,8 @@ class _DetailPageState extends State<DetailPage> {
                         SizedBox(
                           height: 10,
                         ),
-                        Text(
-                          widget.description,
-                          style: TextStyle(
-                            color: kPrimaryhinttext,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.justify,
-                        ),
+
+
                         SizedBox(
                           height: 32,
                         ),
@@ -603,15 +602,19 @@ class _DetailPageState extends State<DetailPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFFFFBB23),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12)),
-                                ),
-                                onPressed: () {
+                        Container(
+                        padding: EdgeInsets.all(10),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Color(0xFF4CA6A8),
+
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+
+
+        onPressed: () {
                                   Navigator.pushAndRemoveUntil<dynamic>(
                                       context,
                                       MaterialPageRoute<dynamic>(
@@ -637,7 +640,12 @@ class _DetailPageState extends State<DetailPage> {
                               child: widget.available == true
                                   ? ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: kPrimaryColor,
+                                        backgroundColor:Color(0xFF4CA6A8),
+
+
+
+
+
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(
                                               12), // <-- Radius
@@ -662,7 +670,7 @@ class _DetailPageState extends State<DetailPage> {
                                             "Appointment",
                                             style: TextStyle(
                                                 color: Colors.white,
-                                                fontWeight: FontWeight.w600),
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                       ),
@@ -681,7 +689,7 @@ class _DetailPageState extends State<DetailPage> {
                                                 widget.name +
                                                 " is not available...Visit later",
                                             textColor: Colors.white,
-                                            backgroundColor: kPrimaryColor);
+                                            backgroundColor: Color(0xFF3879C7));
                                         ;
                                       },
                                       child: Container(
@@ -724,17 +732,20 @@ class _DetailPageState extends State<DetailPage> {
       },
     );
     return AppBar(
-      backgroundColor: kPrimaryColor,
+      backgroundColor: Color(0xFFF5F5F5),
       elevation: 0,
-      iconTheme: IconThemeData(color: Colors.white),
+      iconTheme: IconThemeData(color: Color(0xFF4CA6A8)),
       leading: IconButton(
-        icon: Icon(Icons.arrow_back, size: 25),
+        icon: Icon(Icons.arrow_back_ios, size: 20),
         onPressed: () => Navigator.pop(context),
       ),
       actions: [
         Container(
           child: IconButton(
-            icon: Icon(Icons.call, size: 25),
+            icon: Icon(Icons.call,
+                size: 25,
+              color: Color(0xFF4CA6A8),
+            ),
             onPressed: () async {
               final Uri _teleLaunchUri = Uri(
                 scheme: 'tel',
@@ -749,7 +760,7 @@ class _DetailPageState extends State<DetailPage> {
             icon: ImageIcon(
               AssetImage("assets/images/chat.png"),
               size: 25,
-              color: Colors.white,
+              color: Color(0xFF4CA6A8),
             ),
             onPressed: () {
               launchUrl(smsLaunchUri);
@@ -763,8 +774,9 @@ class _DetailPageState extends State<DetailPage> {
   //Title Section
   Container _titleSection(Size size) {
     return Container(
+
       height: 250,
-      color: kPrimaryColor,
+      color: Color(0xFFFFFFFF),
       child: Stack(
         children: [
           Align(
@@ -790,7 +802,7 @@ class _DetailPageState extends State<DetailPage> {
                     tag: widget.name,
                     child: CircleAvatar(
                       radius: 40,
-                      backgroundColor: Colors.white,
+                      backgroundColor: Color(0xFF4CA6A8),
                       child: widget.profileImage == false
                           ? CircleAvatar(
                               radius: 80,
@@ -877,7 +889,7 @@ class _DetailPageState extends State<DetailPage> {
             actions: <Widget>[
               TextButton(
                 style: TextButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: Color(0xFF4CA6A8),
                     foregroundColor: Colors.white),
                 child: Text('OK'),
                 onPressed: () {
@@ -921,13 +933,17 @@ class _DetailPageState extends State<DetailPage> {
                         ),
                         buildRating(), //child: ),
                         SizedBox(
+
                           height: 15,
                         ),
                         Padding(
+
                           padding: EdgeInsets.all(15),
                           child: TextField(
                             // controller: reviewController,
                             decoration: InputDecoration(
+
+
                               border: OutlineInputBorder(),
                               labelText: 'Review',
                               hintText: 'Review',
@@ -951,7 +967,7 @@ class _DetailPageState extends State<DetailPage> {
                                     Navigator.of(context).pop();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.red),
+                                      backgroundColor: Color(0xFF4CA6A8)),
                                   child: Text(
                                     'CANCEL',
                                     style: TextStyle(
@@ -982,9 +998,9 @@ class _DetailPageState extends State<DetailPage> {
                                     }
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor: kPrimaryColor),
+                                      backgroundColor: Color(0xFF4CA6A8)),
                                   child: Text(
-                                    'Ok',
+                                    'OK',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
@@ -1091,7 +1107,7 @@ class _DetailPageState extends State<DetailPage> {
                                     Navigator.of(context).pop();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.red),
+                                      backgroundColor:Color(0xFF4CA6A8)),
                                   child: Text(
                                     'CANCEL',
                                     style: TextStyle(
@@ -1118,9 +1134,9 @@ class _DetailPageState extends State<DetailPage> {
                                     }
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      backgroundColor: kPrimaryColor),
+                                      backgroundColor: Color(0xFF4CA6A8)),
                                   child: Text(
-                                    'Ok',
+                                    'OK',
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),

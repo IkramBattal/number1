@@ -46,15 +46,15 @@ class _Docter_pageState extends State<Docter_page> {
         .where('specialist', isEqualTo: widget.cotegory_name.toString());
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFF5F5F5),
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
-
-          leading: IconButton(
+          elevation: 0,
+          backgroundColor: Color(0xFFF5F5F5),
+        leading: IconButton(
             icon: Icon(
-              Icons.arrow_back,
-              size: 30,
-              color: Colors.white,
+              Icons.arrow_back_ios,
+              size: 25,
+              color: Color(0xFF4CA6A8),
             ),
             onPressed: () {
               Navigator.pop(context);
@@ -63,7 +63,7 @@ class _Docter_pageState extends State<Docter_page> {
           title: Text(
             widget.cotegory_name,
             style: TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                color: Color(0xFF4CA6A8), fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         body: isLoading

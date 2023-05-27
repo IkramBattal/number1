@@ -4,24 +4,11 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_appointment/constants.dart';
-import 'package:hospital_appointment/theme/extention.dart';
 import 'package:intl/intl.dart';
 import '../../../componets/loadingindicator.dart';
 import '../../../models/doctor.dart';
 import '../../../newapp/searchList3.dart';
-import '../../../theme/light_color.dart';
-import '../../../widget/DoctorDrawer.dart';
-import 'dart:io';
-import 'dart:math';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:hospital_appointment/models/doctor.dart';
-import 'package:hospital_appointment/theme/extention.dart';
 
-import 'dart:ui';
-import 'package:flutter/painting.dart';
 class visited extends StatefulWidget {
   @override
   _visitedState createState() => _visitedState();
@@ -37,7 +24,6 @@ class _visitedState extends State<visited> {
   final CollectionReference firebase =
       FirebaseFirestore.instance.collection("Sitter");
   User? user = FirebaseAuth.instance.currentUser;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool isLoading = true;
   late TabController tabController;
@@ -69,62 +55,13 @@ class _visitedState extends State<visited> {
       });
     });
   }
-  Widget _searchField() {
-    TextEditingController _searchController = TextEditingController();
-
-    return  Container(
-      height: 55,
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(13)),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: LightColor.grey.withOpacity(.3),
-            blurRadius: 15,
-            offset: Offset(5, 5),
-          ),
-        ],
-      ),
-      child: TextField(
-        controller: _searchController, // Add the controller here
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          border: InputBorder.none,
-          hintText: "Search",
-          hintStyle: TextStyle(color:Color(0xFF424040)),
-          suffixIcon: SizedBox(
-            width: 50,
-            child: Icon(Icons.search,color: Color(0xff388081))
-                .alignCenter
-                .ripple(() {
-              String searchKey = _searchController.text;
-              if (searchKey.isNotEmpty) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SearchList3(
-                      searchKey: searchKey,
-                    ),
-                  ),
-                );
-              }
-            }, borderRadius: BorderRadius.circular(13)),
-          ),
-        ),
-      ),
-    );
-
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var firebase = appointment
         .collection('pending')
+        .orderBy('date', descending: true)
         .orderBy('time', descending: false)
         .where('did', isEqualTo: loggedInUser.uid)
         .where('approve', isEqualTo: true)
@@ -133,65 +70,81 @@ class _visitedState extends State<visited> {
         .snapshots();
 
     return Scaffold(
-      backgroundColor: Color(0xfffbfbfb),
-      key: _scaffoldKey,
-      drawer: loggedInUser.uid == null ? SizedBox() : DocDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: IconThemeData(color: Colors.white),
-        flexibleSpace: Stack(
-          children: [
-            Positioned(
-              top: 26,
-              left: 3.5,
-              child: Container(
-                padding: EdgeInsets.fromLTRB(25 , 25, 25 , 25),
-                decoration: BoxDecoration(
-                  color: Color(0xff4ca6a8),
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(15),
-                    bottomRight: Radius.circular(15),
-                    topLeft: Radius.circular(15),
-                    bottomLeft: Radius.circular(15),
-                  ),
-                ),
-              ),
+        backgroundColor: kPrimaryColor,
+        leading: IconButton(
+            splashRadius: 20,
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
             ),
-
-            Container(
-              padding: EdgeInsets.only(top: 46),
-              alignment: Alignment.topCenter,
-              child: Text(
-                "Visited",
-                style:  TextStyle (
-                  fontFamily: 'Poppins',
-                  fontSize: 30,
-
-                  fontWeight:  FontWeight.w700,                  height: 1,
-                  color:  Color(0xff4ca5a7),
-                ),
-              ),
-
-            ),
-          ],
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+        title: Text(
+          'Visited Parents',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
         ),
       ),
-      body: loggedInUser.uid == null
-          ? Center(
-        child: Text("Wait for few seconds"),
-      )
-          : SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+      body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          SizedBox(
-          height: 30,
-        ),
-        //Search patient
-        _searchField(),
-
+            //Search patient
+            Container(
+              padding: EdgeInsets.fromLTRB(20, 15, 20, 13),
+              child: TextFormField(
+                textInputAction: TextInputAction.search,
+                decoration: InputDecoration(
+                  contentPadding:
+                  EdgeInsets.only(left: 20, top: 10, bottom: 5),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    borderSide: BorderSide.none,
+                  ),
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  hintText: 'Search Visited Parent',
+                  hintStyle: TextStyle(
+                    color: Colors.black26,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                  ),
+                  suffixIcon: Container(
+                    decoration: BoxDecoration(
+                      color: kPrimaryColor.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: IconButton(
+                      iconSize: 20,
+                      splashRadius: 20,
+                      color: Colors.white,
+                      icon: Icon(Icons.search),
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
+                onFieldSubmitted: (String value) {
+                  value.length == 0
+                      ? Container()
+                      : Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SearchList3(
+                        searchKey: value,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
             Container(
               width: size.width * 1,
               margin: EdgeInsets.only(left: 10),
@@ -232,7 +185,6 @@ class _visitedState extends State<visited> {
 
                     setState(() {
                       t_date = DateFormat('dd-MM-yyyy').format(mydate);
-                      print(t_date);
                     });
                   }
                 },
@@ -291,7 +243,7 @@ class _visitedState extends State<visited> {
                                     return snapshot.hasData == null
                                         ? Center(
                                             child: Text(
-                                                "Appointment Nottt Available"))
+                                                "Appointment Not Available"))
                                         : Padding(
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 8, vertical: 2),
@@ -356,7 +308,8 @@ class _visitedState extends State<visited> {
                                                                         left:
                                                                             8.0),
                                                                 child: Text(
-                                                                  "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
+                                                                  "Date: " +
+                                                                      doc['date'],
                                                                   style: TextStyle(
                                                                       color: Colors
                                                                           .white,

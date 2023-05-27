@@ -103,9 +103,13 @@ class _doctor_pageState extends State<doctor_page> {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Color(0xFFF5F5F5),
         appBar: AppBar(
         leading: IconButton(
-        icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back_ios,
+            size: 25,
+            color: Color(0xFF4CA6A8),
+          ),
     onPressed: () {
     Navigator.push(
     context,
@@ -123,38 +127,30 @@ class _doctor_pageState extends State<doctor_page> {
                   ? Loading()
                   : SingleChildScrollView(
                 child: Container(
-                  height: size.height * 1,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/images/74.png"),
-                        fit: BoxFit.cover),
-                  ),
+
 
                   child: Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+
                         SizedBox(
-                          height: size.height * 0.39,
+                          height: 100,
                         ),
                         Container(
                           child: Center(
                               child: Text(
                                 "Service provider Login",
                                 style: TextStyle(
-                                    fontSize: 22,
+                                    fontSize: 26,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
                               )),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 60,
                         ),
-                        Container(
-                          height: 2,
-                          width: 150,
-                          color: kPrimaryLightColor,
-                        ),
+
                         SizedBox(
                           height: 10,
                         ),
@@ -166,53 +162,84 @@ class _doctor_pageState extends State<doctor_page> {
                         //*************
                         Container(
                           width: size.width * 0.9,
-                          child: TextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            cursorColor: kPrimaryColor,
-                            decoration: buildInputDecoration(
-                                Icons.email, "Your Email "),
-                            onChanged: (email) {
-                              t_email = email.trim();
-                            },
-                            validator: (email) {
-                              if (isEmailValid(email!))
-                                return null;
-                              else
-                                return 'Enter a valid email address';
-                            },
-                            onSaved: (var email) {
-                              t_email = email.toString().trim();
-                            },
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50), // Set circular border radius
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                blurRadius: 10,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50), // Set circular border radius
+                            child: TextFormField(
+                              keyboardType: TextInputType.emailAddress,
+                              cursorColor: Color(0xFF4CA6A8),
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.email,
+                                  color: Color(0xFF4CA6A8),
+                                ),
+                                fillColor: Color(0xFFFFFFFF),
+                                filled: true,
+                                errorBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0), // Adjust padding
+                                hintText: "Your Email",
+                              ),
+                              onChanged: (email) {
+                                t_email = email.trim();
+                              },
+                              validator: (email) {
+                                if (isEmailValid(email!))
+                                  return null;
+                                else
+                                  return 'Enter a valid email address';
+                              },
+                              onSaved: (var email) {
+                                t_email = email.toString().trim();
+                              },
+                            ),
                           ),
                         ),
+
+
                         // ************
                         // Password Field
                         //*************
 
+                        SizedBox(height: 30),
                         Container(
-                          width: size.width * 0.9,
+                          width:  size.width * 0.9,
                           margin: EdgeInsets.all(10),
-                          child: TextFormField(
-                            obscureText: _isObscure,
-                            cursorColor: kPrimaryColor,
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25.0),
-                                  borderSide: BorderSide(
-                                    color: kPrimaryLightColor,
-                                    width: 2,
-                                  ),
-                                ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50), // Set circular border radius
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                blurRadius: 10,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50), // Set circular border radius
+                            child: TextFormField(
+                              obscureText: _isObscure,
+                              cursorColor: Color(0xFF4CA6A8),
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
                                 prefixIcon: Icon(
                                   Icons.lock,
-                                  color: kPrimaryColor,
+                                  color: Color(0xFF4CA6A8),
                                 ),
                                 suffixIcon: IconButton(
                                   icon: Icon(
-                                    _isObscure
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                    color: kPrimaryColor,
+                                    _isObscure ? Icons.visibility_off : Icons.visibility,
+                                    color: Color(0xFF4CA6A8),
                                   ),
                                   onPressed: () {
                                     setState(() {
@@ -221,51 +248,51 @@ class _doctor_pageState extends State<doctor_page> {
                                     });
                                   },
                                 ),
-                                fillColor: kPrimaryLightColor,
+                                fillColor: Color(0xFFFFFFFF),
                                 filled: true,
-                                errorBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(25.0),
-                                    borderSide: BorderSide(
-                                        color: Colors.red, width: 2)),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25.0),
-                                  borderSide: BorderSide(
-                                      color: kPrimaryColor, width: 2),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25.0),
-                                  borderSide: BorderSide(
-                                    color: kPrimaryLightColor,
-                                    width: 2,
-                                  ),
-                                ),
-                                hintText: "Password"),
-                            validator: (var value) {
-                              if (value!.isEmpty) {
-                                return "Enter Your Password";
-                              }
-                              return null;
-                            },
-                            onChanged: (password) {
-                              t_password = password;
-                            },
-                            onSaved: (var password) {
-                              t_password = password;
-                            },
+                                errorBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0), // Adjust padding
+                                hintText: "Password",
+                              ),
+                              validator: (var value) {
+                                if (value!.isEmpty) {
+                                  return "Enter Your Password";
+                                }
+                                return null;
+                              },
+                              onChanged: (password) {
+                                t_password = password;
+                              },
+                              onSaved: (var password) {
+                                t_password = password;
+                              },
+                            ),
                           ),
                         ),
+                        SizedBox(height: 40),
                         Column(
                           children: [
                             Container(
-                              width: size.width * 0.8,
+                              width: 210,
                               margin: EdgeInsets.only(
                                   left: 10, right: 10, top: 10, bottom: 5),
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    blurRadius: 10,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
+                              ),
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     shape: StadiumBorder(),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 40, vertical: 15),
-                                    backgroundColor: kPrimaryColor),
+                                    backgroundColor: Color(0xFF4CA6A8)),
                                 onPressed: () async {
                                   if (status == false) {
                                     showDialog(
@@ -285,7 +312,7 @@ class _doctor_pageState extends State<doctor_page> {
                                           .where('email', isEqualTo: t_email).get();
                                       if (querySnapshot.docs.isEmpty) {
                                         errorMessage =
-                                        "makaynch";
+                                        "User not found";
                                         Navigator.pushReplacement(
                                             context,
                                             MaterialPageRoute(
@@ -379,7 +406,7 @@ class _doctor_pageState extends State<doctor_page> {
                                                 ToastGravity.BOTTOM,
                                                 timeInSecForIosWeb: 1,
                                                 backgroundColor:
-                                                kPrimaryColor,
+                                                Color(0xFF4CA6A8),
                                                 textColor: Colors.white,
                                                 fontSize: 16.0),
                                             Navigator.pushAndRemoveUntil<
@@ -426,25 +453,26 @@ class _doctor_pageState extends State<doctor_page> {
                                               ForgetPassword()));
                                 }
                               },
+
                               child: Text(
                                 "Forget Password ?",
                                 style: TextStyle(
-                                    color: kPrimaryColor,
+                                    color: Colors.grey,
                                     fontSize: 14,
-                                    fontWeight: FontWeight.w600),
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
 
                             SizedBox(
-                              height: 10,
+                              height: 5,
                             ),
                             Container(
                               height: 2,
                               width: 150,
-                              color: kPrimaryLightColor,
+                              color: Color(0xFF4CA6A8),
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 20,
                             ),
                             // ************
                             // add new account
@@ -461,7 +489,7 @@ class _doctor_pageState extends State<doctor_page> {
                                         "Don't have an account?",
                                         style: TextStyle(
                                             color: Colors.black26,
-                                            fontSize: 14),
+                                            fontSize: 15),
                                       ),
                                     ),
                                     TextButton(
@@ -484,9 +512,9 @@ class _doctor_pageState extends State<doctor_page> {
                                       child: Text(
                                         " Create New Account",
                                         style: TextStyle(
-                                            color: kPrimaryColor,
+                                            color: Colors.black,
                                             fontSize: 14,
-                                            fontWeight: FontWeight.w600),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                   ],

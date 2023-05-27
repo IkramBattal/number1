@@ -16,7 +16,8 @@ class Patient_RecentList extends StatefulWidget {
   State<Patient_RecentList> createState() => _Patient_RecentListState();
 }
 
-var today_date = (DateFormat('dd-MM-yyyy')).format(DateTime.now()).toString();
+var today_date = Timestamp.fromDate(DateTime.now());
+
 
 class _Patient_RecentListState extends State<Patient_RecentList> {
   var appointment = FirebaseFirestore.instance;
@@ -31,7 +32,6 @@ class _Patient_RecentListState extends State<Patient_RecentList> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loggedInUser = DoctorModel();
     FirebaseFirestore.instance
@@ -39,16 +39,16 @@ class _Patient_RecentListState extends State<Patient_RecentList> {
         .doc(user!.uid)
         .get()
         .then((value) {
-      loggedInUser = DoctorModel.fromMap(value.data());
+      loggedInUser = DoctorModel.fromMap(value.data()!);
       firebase = appointment
           .collection('pending')
           .orderBy('date', descending: true)
           .where('pid', isEqualTo: loggedInUser.uid)
-          .where('date', isLessThanOrEqualTo: today_date)
+          .where('date', isGreaterThanOrEqualTo: today_date)
           .snapshots();
 
       setState(() {
-        sleep(Duration(seconds: 1));
+        sleep(Duration(seconds: 0));
         isLoading = false;
       });
     });
@@ -70,7 +70,7 @@ class _Patient_RecentListState extends State<Patient_RecentList> {
                 value: dropdownValue,
                 icon: Icon(Icons.arrow_drop_down),
                 iconSize: 24,
-                iconEnabledColor: kPrimaryColor,
+                iconEnabledColor: Color(0xFF4CA6A8),
                 buttonHeight: 50,
                 buttonPadding: const EdgeInsets.only(left: 14, right: 14),
                 buttonElevation: 2,
@@ -95,13 +95,14 @@ class _Patient_RecentListState extends State<Patient_RecentList> {
                     });
                   } else {
                     mydate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1950),
-                        lastDate: DateTime.now());
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime(9999),
+                    );
 
                     setState(() {
-                      t_date = DateFormat('dd-MM-yyyy').format(mydate);
+                      t_date = mydate != null ? Timestamp.fromDate(mydate!) : null;
                     });
                   }
                 },
@@ -119,232 +120,188 @@ class _Patient_RecentListState extends State<Patient_RecentList> {
             ),
             t_date != null
                 ? Container(
-                    width: size.width * 1,
-                    margin: EdgeInsets.only(left: 38),
-                    child: Text(
-                      t_date,
-                      style: TextStyle(fontSize: 18),
-                    ))
+              width: size.width * 1,
+              margin: EdgeInsets.only(left: 38),
+              child: Text(
+                  DateFormat('dd-MM-yyyy').format(t_date!.toDate()),
+
+                  style: TextStyle(fontSize: 18),
+              ),
+            )
                 : SizedBox(),
             Container(
               child: SingleChildScrollView(
                 child: StreamBuilder<QuerySnapshot>(
-                    stream: appointment
-                        .collection('pending')
-                        .orderBy('date', descending: true)
-                        .where('pid', isEqualTo: loggedInUser.uid)
-                        .where('date', isEqualTo: t_date)
-                        .snapshots(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (!snapshot.hasData) {
-                        return Container(
-                            margin: EdgeInsets.only(top: size.height * 0.4),
-                            child: Center(
-                              child: Loading(),
-                            ));
-                      } else {
-                        return isLoading
-                            ? Container(
-                                margin: EdgeInsets.only(top: size.height * 0.4),
-                                child: Center(
-                                  child: Loading(),
-                                ),
-                              )
-                            : SingleChildScrollView(
-                                physics: BouncingScrollPhysics(),
-                                child: ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: snapshot.data!.docs.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    final DocumentSnapshot doc =
-                                        snapshot.data!.docs[index];
+                  stream: firebase,
+                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (!snapshot.hasData) {
+                      return Container(
+                        margin: EdgeInsets.only(top: size.height * 0.4),
+                        child: Center(
+                          child: Loading(),
+                        ),
+                      );
+                    } else {
+                      return isLoading
+                          ? Container(
+                        margin: EdgeInsets.only(top: size.height * 0.4),
+                        child: Center(
+                          child: Loading(),
+                        ),
+                      )
+                          : SingleChildScrollView(
+                        physics: BouncingScrollPhysics(),
+                        child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final DocumentSnapshot doc = snapshot.data!.docs[index];
 
-                                    return Container(
+                            return Container(
+                              width: double.infinity,
+                              margin: EdgeInsets.all(3),
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.2),
+                                    spreadRadius: 2,
+                                    blurRadius: 4,
+                                    offset: Offset(0, 2),
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(8.0),
+                                color: doc['visited'] == false ? Color(0xFFFFFFFF) : Color(0xFFFFFFFF), //kPrimaryColor,
+                              ),
+                              child: Center(
+                                child: doc['visited'] == false
+                                    ? Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
                                         width: double.infinity,
-                                        margin: EdgeInsets.all(3),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            color: doc['visited'] == false
-                                                ? Colors.orangeAccent
-                                                : Colors.green //kPrimaryColor,
-                                            ),
-                                        child: Center(
-                                          child: doc['visited'] == false
-                                              ? Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      Container(
-                                                          width:
-                                                              double.infinity,
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child: Text(
-                                                            (doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
-                                                                doc['doctor_name'],
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ) // child widget, replace with your own
-                                                          ),
-                                                      Container(
-                                                          width:
-                                                              double.infinity,
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  top: 3),
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child: Text(
-                                                            "Date: " + DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
-
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                          ) // child widget, replace with your own
-                                                          ),
-                                                      Container(
-                                                          width:
-                                                              double.infinity,
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child: Text(
-                                                            "Time: " +
-                                                                doc['time'],
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                          ) // child widget, replace with your own
-                                                          ),
-                                                      SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Container(
-                                                        child: Text(
-                                                          "Status : Not Visited",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                )
-                                              : Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      Container(
-                                                          width:
-                                                              double.infinity,
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child: Text(
-                                                            (doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
-                                                                doc['doctor_name'],
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ) // child widget, replace with your own
-                                                          ),
-                                                      Container(
-                                                          width:
-                                                              double.infinity,
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  top: 3),
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child: Text(
-                                                            "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                          ) // child widget, replace with your own
-                                                          ),
-                                                      Container(
-                                                          width:
-                                                              double.infinity,
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child: Text(
-                                                            "Time: " +
-                                                                doc['time'],
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                          ) // child widget, replace with your own
-                                                          ),
-                                                      SizedBox(
-                                                        height: 10,
-                                                      ),
-                                                      Container(
-                                                        child: Text(
-                                                          "Status : Visited",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 16,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                        ) // child widget, replace with your own
-                                        );
-                                  },
+                                        decoration: BoxDecoration(),
+                                        child: Text(
+                                          (doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') + doc['doctor_name'],
+                                          style: TextStyle(
+                                            color: Color(0xFF151313),
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        margin: EdgeInsets.only(top: 3),
+                                        decoration: BoxDecoration(),
+                                        child: Text(
+                                          "Date: " + doc['date'],
+                                          style: TextStyle(
+                                            color: Color(0xFF151313),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(),
+                                        child: Text(
+                                          "Time: " + doc['time'],
+                                          style: TextStyle(
+                                            color: Color(0xFF151313),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        child: Text(
+                                          "Status : Not Visited",
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                                    : Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(),
+                                        child: Text(
+                                          (doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') + doc['doctor_name'],
+                                          style: TextStyle(
+                                            color: Color(0xFF151313),
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        margin: EdgeInsets.only(top: 3),
+                                        decoration: BoxDecoration(),
+                                        child: Text(
+                                          "Date: " + doc['date'],
+                                          style: TextStyle(
+                                            color: Color(0xFF151313),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(),
+                                        child: Text(
+                                          "Time: " + doc['time'],
+                                          style: TextStyle(
+                                            color: Color(0xFF151313),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        child: Text(
+                                          "Status : Visited",
+                                          style: TextStyle(
+                                            color: Colors.green,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              );
-                      }
-                    }),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    }
+                  },
+                ),
               ),
             ),
           ],
