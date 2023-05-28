@@ -73,7 +73,7 @@ class _Patient_ListState extends State<Patient_List> {
                               snapshot.data!.docs[index];
                           Future.delayed(Duration(seconds: 3));
                           return snapshot.hasError
-                              ? Center(child: Text("Parent not available"))
+                              ? Center(child: Text("Client not available"))
                               : CustomCard(
                                   pid: doc['uid'],
                                   did: loggedInUser.uid,

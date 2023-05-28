@@ -170,22 +170,15 @@ class _DocRegistrationState extends State<DocRegistration> {
                         child: Container(
                           child: Center(
                               child: Text(
-                                "New Registration",
+                                "Service Provider Registration",
                                 style: TextStyle(
-                                    fontSize: 32,
+                                    fontSize: 25,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
                               )),
                         ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 2,
-                        width: 150,
-                        color: kPrimaryLightColor,
-                      ),
+
 
                       SizedBox(
                         height: size.height * 0.03,
@@ -193,7 +186,7 @@ class _DocRegistrationState extends State<DocRegistration> {
                       Stack(children: [
                         CircleAvatar(
                           radius: 50.00,
-                          backgroundColor: kPrimaryLightColor,
+                          backgroundColor: Color(0xFF4CA6A8),
                           child: Padding(
                             padding: const EdgeInsets.all(3.0),
                             child: file == null
@@ -232,24 +225,55 @@ class _DocRegistrationState extends State<DocRegistration> {
                       //*************************************
                       Container(
                         width: container_width,
-                        child: TextFormField(
-                          keyboardType: TextInputType.name,
-                          cursorColor: kPrimaryColor,
-                          decoration: buildInputDecoration(
-                              Icons.person, "Full Name"),
-                          validator: (var value) {
-                            if (value!.isEmpty) {
-                              return "Enter Your Name";
-                            }
-                            return null;
-                          },
-                          onSaved: (name) {
-                            t_name = name.toString().trim();
-                          },
-                          onChanged: (var name) {
-                            t_name = name.trim();
-                          },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                blurRadius: 10,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: TextFormField(
+                            keyboardType: TextInputType.emailAddress,
+                            cursorColor: Color(0xFF4CA6A8),
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.person,
+                                color: Color(0xFF4CA6A8),
+                              ),
+                              filled: true,
+                              fillColor: Color(0xFFF5F5F5),
+                              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+                              hintText: "Full Name",
+                              border: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              errorBorder: InputBorder.none,
+                              focusedErrorBorder: InputBorder.none,
+                              errorStyle: TextStyle(color: Colors.white),
+                              errorMaxLines: 2,
+                            ),
+                            validator: (var value) {
+                              if (value!.isEmpty) {
+                                return "Enter Your Full Name";
+                              }
+                              return null;
+                            },
+                            onSaved: (name) {
+                              t_name = name.toString().trim();
+                            },
+                            onChanged: (var name) {
+                              t_name = name.trim();
+                            },
+                          ),
                         ),
+                      ),
+
+                      SizedBox(
+                        height: 17.0,
                       ),
                       // ************************************
                       // Address Field
@@ -277,408 +301,649 @@ class _DocRegistrationState extends State<DocRegistration> {
                       ),
                       Container(
                         width: container_width,
-                        child: TextFormField(
-                          keyboardType: TextInputType.text,
-                          cursorColor: kPrimaryColor,
-                          decoration: buildInputDecoration(Icons.add_location,
-                              "City"),
-                          onChanged: (city) {
-                            t_city = city;
-                          },
-                          validator: (var value) {
-                            if (value!.isEmpty) {
-                              return "Enter Your City";
-                            }
-                            return null;
-                          },
-                          onSaved: (var city) {
-                            t_city = city;
-                          },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                blurRadius: 10,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: TextFormField(
+                            keyboardType: TextInputType.emailAddress,
+                            cursorColor: Color(0xFF4CA6A8),
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.add_location,
+                                color: Color(0xFF4CA6A8),
+                              ),
+                              filled: true,
+                              fillColor: Color(0xFFF5F5F5),
+                              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+                              hintText: "City",
+                              border: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              errorBorder: InputBorder.none,
+                              focusedErrorBorder: InputBorder.none,
+                              errorStyle: TextStyle(color: Colors.white),
+                              errorMaxLines: 2,
+                            ),
+                            onChanged: (city) {
+                              t_city = city;
+                            },
+                            validator: (var value) {
+                              if (value!.isEmpty) {
+                                return "Enter Your City";
+                              }
+                              return null;
+                            },
+                            onSaved: (var city) {
+                              t_city = city;
+                            },
+                          ),
                         ),
-                      ),                      // ************************************
+                      ),
+                      SizedBox(
+                        height: 17.0,
+                      ),
                       // email Field
                       //*************************************
                       Container(
                         width: container_width,
-                        child: TextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          cursorColor: kPrimaryColor,
-                          decoration: buildInputDecoration(
-                              Icons.email, "Email "),
-                          onChanged: (email) {
-                            t_email = email.trim();
-                            print("Email: " + t_email + ":");
-                          },
-                          validator: (email) {
-                            if (isEmailValid(email!))
-                              return null;
-                            else {
-                              return 'Enter a valid email address';
-                            }
-                          },
-                          onSaved: (var email) {
-                            t_email = email.toString().trim();
-                          },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                blurRadius: 10,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: TextFormField(
+                            keyboardType: TextInputType.emailAddress,
+                            cursorColor: Color(0xFF4CA6A8),
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: Color(0xFF4CA6A8),
+                              ),
+                              filled: true,
+                              fillColor: Color(0xFFF5F5F5),
+                              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+                              hintText: "Your Email",
+                              border: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              errorBorder: InputBorder.none,
+                              focusedErrorBorder: InputBorder.none,
+                              errorStyle: TextStyle(color: Colors.white),
+                              errorMaxLines: 2,
+                            ),
+                            onChanged: (email) {
+                              t_email = email.trim();
+                              print("Email: " + t_email + ":");
+                            },
+                            validator: (email) {
+                              if (isEmailValid(email!))
+                                return null;
+                              else {
+                                return 'Enter a valid email address';
+                              }
+                            },
+                            onSaved: (var email) {
+                              t_email = email.toString().trim();
+                            },
+                          ),
                         ),
+                      ),
+                      SizedBox(
+                        height: 17.0,
                       ),
                       // ************************************
                       // Mobile number Field
                       //*************************************
                       Container(
-                        width: container_width,
-                        child: IntlPhoneField(
-                          cursorColor: kPrimaryColor,
-                          style: TextStyle(fontSize: 16),
-                          disableLengthCheck: false,
-                          textAlignVertical: TextAlignVertical.center,
-                          dropdownTextStyle: TextStyle(fontSize: 16),
-                          dropdownIcon:
-                          Icon(Icons.arrow_drop_down, color: kPrimaryColor),
-                          decoration: buildInputDecoration(
-                              Icons.phone, "Contact Number"),
-                          initialCountryCode: 'MA',
-                          onChanged: (phone) {
-                            print(phone.completeNumber);
-                            phoneController = phone.completeNumber.toString();
-                          },
+                        width: 380,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30.0),
+
                         ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF5F5F5),
+                            borderRadius: BorderRadius.circular(25.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20.0),
+                            child: IntlPhoneField(
+                              cursorColor: Color(0xFF4CA6A8),
+                              style: TextStyle(fontSize: 16),
+                              disableLengthCheck: false,
+                              textAlignVertical: TextAlignVertical.center,
+                              dropdownTextStyle: TextStyle(fontSize: 16),
+                              dropdownIcon: Icon(Icons.arrow_drop_down, color: Color(0xFF4CA6A8)),
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Contact Number",
+                                hintStyle: TextStyle(color: Colors.grey),
+                              ),
+                              initialCountryCode: 'MA',
+                              onChanged: (phone) {
+                                print(phone.completeNumber);
+                                phoneController = phone.completeNumber.toString();
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
                       ),
 
                       // ************************************
                       // Date of Birth Field
                       //*************************************
-                      TextFieldContainer(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                Text(
-                                  "Date Of Birth: ",
-                                  style: TextStyle(
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xFFF5F5F5),
+                          borderRadius: BorderRadius.circular(25.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: TextFieldContainer(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    "Date Of Birth ",
+                                    style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: kPrimaryColor),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Center(
-                                      child: t_date == null
-                                          ? Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 20.0),
-                                        child: Text(
-                                          "Select Date",
-                                          style: TextStyle(
-                                              color: Colors.black54),
-                                        ),
-                                      )
-                                          : Text(
-                                        t_date,
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                      ),
+                                      color: Color(0xFF4CA6A8),
                                     ),
-                                    IconButton(
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Center(
+                                        child: t_date == null
+                                            ? Padding(
+                                          padding: const EdgeInsets.only(left: 20.0),
+                                          child: Text(
+                                            "Select Date",
+                                            style: TextStyle(color: Colors.black54),
+                                          ),
+                                        )
+                                            : Text(
+                                          t_date,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      IconButton(
                                         onPressed: () async {
                                           mydate = await showDatePicker(
-                                              context: context,
-                                              initialDate: DateTime.now(),
-                                              firstDate: DateTime(1950),
-                                              lastDate: DateTime.now());
+                                            context: context,
+                                            initialDate: DateTime.now(),
+                                            firstDate: DateTime(1950),
+                                            lastDate: DateTime.now(),
+                                          );
 
                                           setState(() {
-                                            t_date = DateFormat('dd-MM-yyyy')
-                                                .format(mydate);
+                                            t_date = DateFormat('dd-MM-yyyy').format(mydate);
                                           });
                                         },
                                         icon: Icon(
                                           Icons.calendar_today,
-                                          color: kPrimaryColor,
+                                          color: Color(0xFF4CA6A8),
                                           size: 16,
-                                        ))
-                                  ],
-                                ),
-                              ],
-                            ),
-                            c_data == true
-                                ? Text("*Select Date",
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              c_data == true
+                                  ? Text(
+                                "*Select Date",
                                 style: TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.w400))
-                                : SizedBox(),
-                          ],
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              )
+                                  : SizedBox(),
+                            ],
+                          ),
                         ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
                       ),
                       // ************************************
                       // Gender Field
                       //*************************************
-                      TextFieldContainer(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Row(
-                              children: <Widget>[
-                                ButtonBar(
-                                  alignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Gender :",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: kPrimaryColor),
-                                    ),
-                                    Radio(
-                                        value: 1,
-                                        groupValue: gender,
-                                        activeColor: kPrimaryColor,
-                                        onChanged: (val) {
-                                          setSelectedgender(val as int);
-                                        }),
-                                    Text("Male"),
-                                    Radio(
-                                        value: 2,
-                                        activeColor: kPrimaryColor,
-                                        groupValue: gender,
-                                        onChanged: (val) {
-                                          setSelectedgender(val as int);
-                                        }),
-                                    Text("Female"),
-                                  ],
-                                )
-                              ],
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xFFF5F5F5),
+                          borderRadius: BorderRadius.circular(25.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
                             ),
-                            c_gender == true
-                                ? Text("*Select Gender",
-                                style: TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.w400))
-                                : SizedBox(),
                           ],
                         ),
+                        child: TextFieldContainer(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Row(
+                                children: <Widget>[
+                                  ButtonBar(
+                                    alignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Gender ",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xFF4CA6A8),
+                                        ),
+                                      ),
+                                      Radio(
+                                        value: 1,
+                                        groupValue: gender,
+                                        activeColor: Color(0xFF4CA6A8),
+                                        onChanged: (val) {
+                                          setSelectedgender(val as int);
+                                        },
+                                      ),
+                                      Text("Male"),
+                                      Radio(
+                                        value: 2,
+                                        activeColor: Color(0xFF4CA6A8),
+                                        groupValue: gender,
+                                        onChanged: (val) {
+                                          setSelectedgender(val as int);
+                                        },
+                                      ),
+                                      Text("Female"),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              c_gender == true
+                                  ? Text(
+                                "*Select Gender",
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              )
+                                  : SizedBox(),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
                       ),
                       // ************************************
                       // Status Field
                       //*************************************
-                      TextFieldContainer(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                ButtonBar(
-                                  alignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Marital\nStatus:",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: kPrimaryColor),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xFFF5F5F5),
+                          borderRadius: BorderRadius.circular(25.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: TextFieldContainer(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    "Marital Status ",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF4CA6A8),
                                     ),
-                                    Radio(
-                                      value: 1,
-                                      groupValue: m_status,
-                                      activeColor: kPrimaryColor,
-                                      onChanged: (val) {
-                                        setSelectedstatus(val as int);
-                                      },
-                                    ),
-                                    Text("Unmarried"),
-                                    Radio(
+                                  ),
+                                  ButtonBar(
+                                    alignment: MainAxisAlignment.center,
+                                    children: [
+                                      Radio(
+                                        value: 1,
+                                        groupValue: m_status,
+                                        activeColor: kPrimaryColor,
+                                        onChanged: (val) {
+                                          setSelectedstatus(val as int);
+                                        },
+                                      ),
+                                      Text("Unmarried"),
+                                      Radio(
                                         value: 2,
                                         groupValue: m_status,
                                         activeColor: kPrimaryColor,
                                         onChanged: (val) {
                                           setSelectedstatus(val as int);
-                                        }),
-                                    Text("Married"),
-                                  ],
-                                )
-                              ],
-                            ),
-                            c_status == true
-                                ? Text("*Select status",
-                                style: TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.w400))
-                                : SizedBox(),
-                          ],
-                        ),
-                      ),
-                      TextFieldContainer(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                ButtonBar(
-                                  alignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Category:",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: kPrimaryColor),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 20),
-                                      child: DropdownButton(
-                                        hint: Text('Select Your Category'),
-                                        value: dropdownvalue,
-
-                                        icon: const Icon(
-                                            Icons.keyboard_arrow_down),
-
-                                        // Array list of items
-                                        items: items.map((String items) {
-                                          return DropdownMenuItem(
-                                            value: items,
-                                            child: Text(items),
-                                          );
-                                        }).toList(),
-
-                                        onChanged: (String? newValue) {
-                                          setState(() {
-                                            dropdownvalue = newValue!;
-                                          });
                                         },
                                       ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                            c_status == true
-                                ? Text("*Select Category",
+                                      Text("Married"),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              c_status == true
+                                  ? Text(
+                                "*Select status",
                                 style: TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.w400))
-                                : SizedBox(),
-                          ],
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              )
+                                  : SizedBox(),
+                            ],
+                          ),
                         ),
                       ),
-                      TextFieldContainer(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Row(
-                              children: <Widget>[
-                                ButtonBar(
-                                  alignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "Upload A Valid Proof:",
-                                      style: TextStyle(
+                      SizedBox(height: 12.0),
+
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xFFF5F5F5),
+                          borderRadius: BorderRadius.circular(25.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: TextFieldContainer(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  ButtonBar(
+                                    alignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Category",
+                                        style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          color: kPrimaryColor),
-                                    ),
-                                    Padding(
-                                      padding:
-                                      const EdgeInsets.only(left: 40.0),
-                                      child: ElevatedButton(
+                                          color: Color(0xFF4CA6A8),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 20),
+                                        child: DropdownButton(
+                                          hint: Text('Select Your Category'),
+                                          value: dropdownvalue,
+                                          icon: const Icon(Icons.keyboard_arrow_down),
+                                          items: items.map((String item) {
+                                            return DropdownMenuItem(
+                                              value: item,
+                                              child: Text(item),
+                                            );
+                                          }).toList(),
+                                          onChanged: (String? newValue) {
+                                            setState(() {
+                                              dropdownvalue = newValue!;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              c_status == true
+                                  ? Text(
+                                "*Select Category",
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              )
+                                  : SizedBox(),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 12.0),
+
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xFFF5F5F5),
+                          borderRadius: BorderRadius.circular(25.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: TextFieldContainer(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Row(
+                                children: <Widget>[
+                                  ButtonBar(
+                                    alignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Upload A Valid Proof",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xFF4CA6A8),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 40.0),
+                                        child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                              backgroundColor: kPrimaryColor,
-                                              shape: StadiumBorder()),
+                                            backgroundColor: Color(0xFF4CA6A8),
+                                            shape: StadiumBorder(),
+                                          ),
                                           onPressed: () async {
                                             chooseImage2();
                                           },
-                                          child: Text("Choose File")),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ],
+                                          child: Text("Choose File"),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-
+                      SizedBox(height: 12.0),
                       //*************************************
                       Container(
                         width: container_width,
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          cursorColor: kPrimaryColor,
-                          decoration: buildInputDecoration(
-                              Icons.access_time_rounded, "Experience"),
-                          //onChanged: (){},
-                          validator: (var value) {
-                            if (value!.isEmpty) {
-                              return "Enter Your Experience";
-                            } else if (value.length > 2) {
-                              return "Experience must be in two digit";
-                            }
-                            return null;
-                          },
-                          onChanged: (exp) {
-                            t_exp = exp;
-                          },
-                          onSaved: (var exp) {
-                            t_exp = exp;
-                          },
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
                         ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF5F5F5),
+                            borderRadius: BorderRadius.circular(25.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: TextFormField(
+                            keyboardType: TextInputType.number,
+                            cursorColor: Color(0xFF4CA6A8),
+                            decoration: buildInputDecoration(Icons.access_time_rounded, "Experience"),
+                            validator: (value) {
+                              final inputValue = value ?? '';
+                              if (inputValue.isEmpty) {
+                                return "Enter Your Experience";
+                              } else if (inputValue.length > 2) {
+                                return "Experience must be in two digits";
+                              }
+                              return null;
+                            },
+                            onChanged: (exp) {
+                              t_exp = exp;
+                            },
+                            onSaved: (exp) {
+                              t_exp = exp;
+                            },
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(
+                        height: 10.0,
                       ),
                       // ************************************
-
                       Container(
                         width: container_width,
-                        child: TextFormField(
-                          keyboardType: TextInputType.multiline,
-                          cursorColor: kPrimaryColor,
-                          decoration: buildInputDecoration(
-                              Icons.accessibility, "Description"),
-                          //onChanged: (){},
-                          validator: (var value) {
-                            if (value!.isEmpty) {
-                              return "Enter Description";
-                            }
-                            return null;
-                          },
-                          onSaved: (desc) {
-                            t_desc = desc.toString().trim();
-                          },
-                          onChanged: (var desc) {
-                            t_desc = desc.trim();
-                          },
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF5F5F5),
+                            borderRadius: BorderRadius.circular(25.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: TextFormField(
+                            keyboardType: TextInputType.multiline,
+                            cursorColor: kPrimaryColor,
+                            decoration: buildInputDecoration(Icons.accessibility, "Description"),
+                            validator: (value) {
+                              final inputValue = value ?? '';
+                              if (inputValue.isEmpty) {
+                                return "Enter Description";
+                              }
+                              return null;
+                            },
+                            onSaved: (desc) {
+                              t_desc = desc.toString().trim();
+                            },
+                            onChanged: (desc) {
+                              t_desc = desc.trim();
+                            },
+                          ),
                         ),
                       ),
-
+                      SizedBox(
+                        height: 10.0,
+                      ),
                       //************************************
                       //Password
                       //************************************
                       Container(
                         width: container_width,
-                        child: TextFormField(
-                          obscureText: _isObscure,
-                          cursorColor: kPrimaryColor,
-                          decoration: InputDecoration(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(25.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: TextFormField(
+                            obscureText: _isObscure,
+                            cursorColor: Color(0xFF4CA6A8),
+                            decoration: InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25.0),
                                 borderSide: BorderSide(
-                                  color: kPrimaryLightColor,
+                                  color: Color(0xFFF5F5F5),
                                   width: 2,
                                 ),
                               ),
                               prefixIcon: Icon(
                                 Icons.lock,
-                                color: kPrimaryColor,
+                                color: Color(0xFF4CA6A8),
                               ),
                               suffixIcon: IconButton(
                                 icon: Icon(
-                                  _isObscure
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
-                                  color: kPrimaryColor,
+                                  _isObscure ? Icons.visibility_off : Icons.visibility,
+                                  color: Colors.grey,
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -687,65 +952,81 @@ class _DocRegistrationState extends State<DocRegistration> {
                                   });
                                 },
                               ),
-                              fillColor: kPrimaryLightColor,
+                              fillColor: Color(0xFFF5F5F5),
                               filled: true,
                               errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25.0),
-                                  borderSide:
-                                  BorderSide(color: Colors.red, width: 2)),
+                                borderRadius: BorderRadius.circular(25.0),
+                                borderSide: BorderSide(color: Colors.red, width: 2),
+                              ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25.0),
-                                borderSide:
-                                BorderSide(color: kPrimaryColor, width: 2),
+                                borderSide: BorderSide(color: Color(0xFFF5F5F5), width: 2),
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25.0),
                                 borderSide: BorderSide(
-                                  color: kPrimaryLightColor,
+                                  color: Color(0xFFF5F5F5),
                                   width: 2,
                                 ),
                               ),
-                              hintText: "Password"),
-                          validator: (value) {
-                            RegExp regex = new RegExp(r'^.{6,}$');
-                            if (value!.isEmpty) {
-                              return ("Password is required for login");
-                            }
-                            if (!regex.hasMatch(value)) {
-                              return ("Enter Valid Password(Min. 6 Character)");
-                            }
-                          },
-                          onChanged: (password) {
-                            t_password = password;
-                          },
-                          onSaved: (var password) {
-                            t_password = password;
-                          },
+                              hintText: "Password",
+                            ),
+                            validator: (value) {
+                              RegExp regex = new RegExp(r'^.{6,}$');
+                              if (value!.isEmpty) {
+                                return "Password is required for login";
+                              }
+                              if (!regex.hasMatch(value)) {
+                                return "Enter Valid Password (Min. 6 Characters)";
+                              }
+                              return null;
+                            },
+                            onChanged: (password) {
+                              t_password = password;
+                            },
+                            onSaved: (var password) {
+                              t_password = password;
+                            },
+                          ),
                         ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
                       ),
                       Container(
                         width: container_width,
                         margin: EdgeInsets.all(10),
-                        child: TextFormField(
-                          obscureText: _isObscure1,
-                          decoration: InputDecoration(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: kPrimaryLightColor,
+                            borderRadius: BorderRadius.circular(25.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: TextFormField(
+                            obscureText: _isObscure1,
+                            decoration: InputDecoration(
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25.0),
                                 borderSide: BorderSide(
-                                  color: kPrimaryLightColor,
+                                  color: Color(0xFFF5F5F5),
                                   width: 2,
                                 ),
                               ),
                               prefixIcon: Icon(
                                 Icons.lock,
-                                color: kPrimaryColor,
+                                color: Color(0xFF4CA6A8),
                               ),
                               suffixIcon: IconButton(
                                 icon: Icon(
-                                  _isObscure1
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
-                                  color: kPrimaryColor,
+                                  _isObscure1 ? Icons.visibility_off : Icons.visibility,
+                                  color: Colors.grey,
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -754,39 +1035,41 @@ class _DocRegistrationState extends State<DocRegistration> {
                                   });
                                 },
                               ),
-                              fillColor: kPrimaryLightColor,
+                              fillColor:Color(0xFFF5F5F5),
                               filled: true,
                               errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(25.0),
-                                  borderSide:
-                                  BorderSide(color: Colors.red, width: 2)),
+                                borderRadius: BorderRadius.circular(25.0),
+                                borderSide: BorderSide(color: Colors.red, width: 2),
+                              ),
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25.0),
-                                borderSide:
-                                BorderSide(color: kPrimaryColor, width: 2),
+                                borderSide: BorderSide(color: Color(0xFFF5F5F5), width: 2),
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25.0),
                                 borderSide: BorderSide(
-                                  color: kPrimaryLightColor,
+                                  color: Color(0xFFF5F5F5),
                                   width: 2,
                                 ),
                               ),
-                              hintText: "Confirm Password"),
-                          onChanged: (value) {
-                            tc_password = value;
-                          },
-                          validator: (value) {
-                            if (tc_password != t_password) {
-                              return "Password don't match";
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            tc_password.text = value!;
-                          },
+                              hintText: "Confirm Password",
+                            ),
+                            onChanged: (value) {
+                              tc_password = value;
+                            },
+                            validator: (value) {
+                              if (tc_password != t_password) {
+                                return "Password don't match";
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              tc_password.text = value!;
+                            },
+                          ),
                         ),
                       ),
+
                       SizedBox(
                         height: 15,
                       ),
@@ -799,13 +1082,13 @@ class _DocRegistrationState extends State<DocRegistration> {
                         child: Column(
                           children: [
                             Container(
-                              width: size.width * 0.8,
+                              width:200,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     shape: StadiumBorder(),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 40, vertical: 15),
-                                    backgroundColor: kPrimaryColor),
+                                    backgroundColor: Color(0xFF4CA6A8)),
                                 onPressed: () async {
                                   if (file2 == null) {
                                     Fluttertoast.showToast(
@@ -945,17 +1228,7 @@ class _DocRegistrationState extends State<DocRegistration> {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                              height: 2,
-                              width: 150,
-                              color: kPrimaryLightColor,
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
+
                           ],
                         ),
                       ),

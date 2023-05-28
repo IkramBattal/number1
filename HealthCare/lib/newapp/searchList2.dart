@@ -450,16 +450,7 @@ class alertdialog extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Positioned(
-                top: -50,
-                child: CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  radius: 50,
-                  child: Image.asset('assets/images/logo1.jpg'),
-                )),
-          ),
+
         ],
       ),
     );
@@ -555,16 +546,7 @@ class confirm extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Positioned(
-                top: -50,
-                child: CircleAvatar(
-                  backgroundColor: Colors.grey,
-                  radius: 50,
-                  child: Image.asset('assets/images/logo1.jpg'),
-                )),
-          ),
+
         ],
       ),
     );

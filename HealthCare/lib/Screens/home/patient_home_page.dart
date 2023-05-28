@@ -31,7 +31,7 @@ class HomePage extends StatefulWidget {
 }
 
 var myDoc;
-
+var today_date = Timestamp.fromDate(DateTime.now());
 class _HomePageState extends State<HomePage> {
   List<Category> _categories = <Category>[];
 
@@ -89,8 +89,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     context1 = context;
-    var today_date =
-        (new DateFormat('dd-MM-yyyy')).format(DateTime.now()).toString();
+
 
     sleep(Duration(seconds: 1));
     var _message;
@@ -322,7 +321,7 @@ class _HomePageState extends State<HomePage> {
                               .collection('pending')
                               .where('pid', isEqualTo: loggedInUser.uid)
                               .where('date', isEqualTo: today_date)
-                              .orderBy('time', descending: false)
+
                               .snapshots(),
                           builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
                             if (!snapshot.hasData) {
@@ -373,7 +372,7 @@ class _HomePageState extends State<HomePage> {
                                                         "Your appointment with "+(doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                                                             doc['doctor_name'] +
                                                             " is Pending at  " +
-                                                            doc['date'] +
+                                                            DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString() +
                                                             " and  " +
                                                             doc['time']
                                                                 .toString(),
@@ -388,7 +387,7 @@ class _HomePageState extends State<HomePage> {
                                                         " Your confirm appointment with  " +
                                                             doc['doctor_name'] +
                                                             " is Confirmed at " +
-                                                            doc['date'] +
+                                                            DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString()+
                                                             " and  " +
                                                             doc['time']
                                                                 .toString(),
@@ -503,7 +502,7 @@ class _HomePageState extends State<HomePage> {
                   " confirm appointmentpon with"+ (doc['gender'] == 'female' ? 'Ms.  ' : 'Mrs.  ') +
                   doc['age'] +
                   " on " +
-                  doc['date'] +
+                   DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString()+
                   " and  " +
                   doc['time'].toString(),
               style: TextStyle(color: Colors.white),

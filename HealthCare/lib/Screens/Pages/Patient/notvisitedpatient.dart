@@ -401,7 +401,7 @@ class alertdialog extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 48),
                     child: Text(
-                      'Are you sure this parent not visited yet?',
+                      'Are you sure this client not visited yet?',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,

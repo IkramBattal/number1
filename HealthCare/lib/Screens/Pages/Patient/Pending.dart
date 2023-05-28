@@ -12,14 +12,14 @@ class Pending extends StatefulWidget {
   @override
   State<Pending> createState() => _PendingState();
 }
-
+var today_date = Timestamp.fromDate(DateTime.now());
 class _PendingState extends State<Pending> {
   var appointment = FirebaseFirestore.instance;
   UserModel loggedInUser = UserModel();
   User? user = FirebaseAuth.instance.currentUser;
   String uid = FirebaseAuth.instance.currentUser!.uid;
   bool isLoading = true;
-  var today_date = (DateFormat('dd-MM-yyyy')).format(DateTime.now()).toString();
+
 
   @override
   void initState() {
@@ -152,8 +152,7 @@ class _PendingState extends State<Pending> {
                                                                     .only(
                                                                 left: 8.0),
                                                         child: Text(
-                                                          "Date: " +
-                                                              doc['date'],
+                                                          "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
                                                           style: TextStyle(
                                                               color: Color(0xFF151313),
                                                               fontSize: 14,

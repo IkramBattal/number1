@@ -118,7 +118,7 @@ class _SelectCardState extends State<SelectCard> {
                     height: 10,
                   ),
                   Text(
-                    patient_count.toString() + " Parent Visited",
+                    patient_count.toString() + " Client Visited",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,

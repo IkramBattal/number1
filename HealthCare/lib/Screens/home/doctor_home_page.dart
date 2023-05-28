@@ -791,7 +791,7 @@ class confirm3 extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 48),
                     child: Text(
-                      'Are you sure you this parent visited?',
+                      'Are you sure you this client visited?',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,

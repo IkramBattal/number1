@@ -67,7 +67,7 @@ class _aboutState extends State<about> {
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Text(
-                        "\t\t\t\tCareMate app is both side application i.e. Service provider side and parent side. It's user-friendly app that allow parents to book their appointment with their choice service provider.\n\n\t\t\t\t Server provider can easily see his latest appointment and confirm accordingly their busy schedule.",
+                        "\t\t\t\tCareMate app is both side application i.e. Service provider side and client side. It's user-friendly app that allow clients to book their appointment with their choice service provider.\n\n\t\t\t\t Server provider can easily see his latest appointment and confirm accordingly their busy schedule.",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.black54,
@@ -91,7 +91,7 @@ class _aboutState extends State<about> {
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Text(
-                        "» User-friendly interface for easy appointment booking\n» Service provider and Parent both can Add, Update, Delete appointment with ease\n» Service provider and Parent both can Upload the photo\n» Parent can rate the Service provider as per appointment\n» Parent can message the service provider directly",
+                        "» User-friendly interface for easy appointment booking\n» Service provider and client both can Add, Update, Delete appointment with ease\n» Service provider and client both can Upload the photo\n» client can rate the Service provider as per appointment\n» client can message the service provider directly",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.black54,

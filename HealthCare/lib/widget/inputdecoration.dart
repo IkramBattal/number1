@@ -7,9 +7,9 @@ InputDecoration buildInputDecoration(IconData icons, String hinttext) {
     counter: Offstage(),
     prefixIcon: Icon(
       icons,
-      color: kPrimaryColor,
+      color: Color(0xFF4CA6A8),
     ),
-    fillColor: kPrimaryLightColor,
+    fillColor: Color(0xFFF5F5F5),
     filled: true,
     errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(25.0),
@@ -21,14 +21,14 @@ InputDecoration buildInputDecoration(IconData icons, String hinttext) {
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(25.0),
       borderSide: BorderSide(
-        color: kPrimaryLightColor,
+        color: Color(0xFF4CA6A8),
         width: 2,
       ),
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(25.0),
       borderSide: BorderSide(
-        color: kPrimaryLightColor,
+        color: Color(0xFFF5F5F5),
         width: 2,
       ),
     ),

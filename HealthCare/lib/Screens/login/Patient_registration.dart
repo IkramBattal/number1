@@ -168,14 +168,6 @@ class _RegistrationState extends State<Registration> {
                               )),
                         ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        height: 2,
-                        width: 150,
-                        color: Color(0xFF4CA6A8),
-                      ),
 
                       SizedBox(
                         height: size.height * 0.03,
@@ -327,7 +319,59 @@ class _RegistrationState extends State<Registration> {
                       SizedBox(
                         height: 17.0,
                       ),
+                      Container(
+                        width: container_width,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.3),
+                                blurRadius: 10,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: TextFormField(
+                            keyboardType: TextInputType.text,
+                            cursorColor: Color(0xFF4CA6A8),
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.add_location,
+                                color: Color(0xFF4CA6A8),
+                              ),
+                              filled: true,
+                              fillColor: Color(0xFFF5F5F5),
+                              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+                              hintText: "Address",
+                              border: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              errorBorder: InputBorder.none,
+                              focusedErrorBorder: InputBorder.none,
+                              errorStyle: TextStyle(color: Colors.white),
+                              errorMaxLines: 2,
+                            ),
+                            onChanged: (address) {
+                              t_address = address;
+                            },
+                            validator: (value) {
+                              final inputValue = value ?? '';
+                              if (inputValue.isEmpty) {
+                                return "Enter Your Address";
+                              }
+                              return null;
+                            },
+                            onSaved: (address) {
+                              t_address = address;
+                            },
+                          ),
+                        ),
+                      ),
 
+                      SizedBox(
+                        height: 17.0,
+                      ),
                       Container(
                         width: container_width,
                         child: Container(
@@ -438,16 +482,10 @@ class _RegistrationState extends State<Registration> {
                       // Mobile number Field
                       //*************************************
                       Container(
-                        width: container_width,
+                        width: 380,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.3),
-                              blurRadius: 10,
-                              offset: Offset(0, 3),
-                            ),
-                          ],
+
                         ),
                         child: Container(
                           decoration: BoxDecoration(
@@ -470,7 +508,7 @@ class _RegistrationState extends State<Registration> {
                               disableLengthCheck: false,
                               textAlignVertical: TextAlignVertical.center,
                               dropdownTextStyle: TextStyle(fontSize: 16),
-                              dropdownIcon: Icon(Icons.arrow_drop_down, color: kPrimaryColor),
+                              dropdownIcon: Icon(Icons.arrow_drop_down, color: Color(0xFF4CA6A8)),
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Contact Number",
@@ -514,7 +552,7 @@ class _RegistrationState extends State<Registration> {
                               Row(
                                 children: <Widget>[
                                   Text(
-                                    "Date Of Birth: ",
+                                    "Date Of Birth ",
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Color(0xFF4CA6A8),
@@ -664,7 +702,7 @@ class _RegistrationState extends State<Registration> {
                                     alignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "Gender: ",
+                                        "Gender ",
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xFF4CA6A8),
@@ -732,7 +770,7 @@ class _RegistrationState extends State<Registration> {
                               Row(
                                 children: <Widget>[
                                   Text(
-                                    "Marital Status: ",
+                                    "Marital Status ",
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Color(0xFF4CA6A8),

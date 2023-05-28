@@ -149,7 +149,7 @@ class _login_pageState extends State<login_page> {
                         Container(
                           child: Center(
                               child: Text(
-                                "Parent Login",
+                                "Client Login",
                                 style: TextStyle(
                                     fontSize: 26,
                                     color: Colors.black,
@@ -352,7 +352,7 @@ class _login_pageState extends State<login_page> {
                                               break;
                                             case "user-not-found":
                                               errorMessage =
-                                              "Parent with this email doesn't exist.";
+                                              "Client with this email doesn't exist.";
                                               break;
                                             case "user-disabled":
                                               errorMessage =
@@ -380,7 +380,7 @@ class _login_pageState extends State<login_page> {
                                           Fluttertoast.showToast(
                                               msg: errorMessage);
                                           if (errorMessage ==
-                                              "Parent with this email doesn't exist.") {
+                                              "Client with this email doesn't exist.") {
                                             Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(
