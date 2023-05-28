@@ -43,7 +43,7 @@ class _Profile_pageState extends State<Profile_page> {
   var selectedStatus;
   var status;
 
- var selectedGender ;
+  var selectedGender ;
 
   setSelectedgender(int val) {
     setState(() {
@@ -136,744 +136,775 @@ class _Profile_pageState extends State<Profile_page> {
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Color(0xFFF5F5F5),
         appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Color(0xFFF5F5F5),
           leading: IconButton(
             icon: Icon(
-              Icons.arrow_back,
-              size: 30,
-              color: Colors.white,
+              Icons.arrow_back_ios,
+              size: 25,
+              color: Color(0xFF4CA6A8),
             ),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          centerTitle: true,
-          title: Text(
-            'Profile',
-
+          title: Text('Profile',
             style: TextStyle(
-              fontSize: 22, // Adjust the font size as needed
+              fontSize: 20,
+              color:  Color(0xFF4CA6A8),
+              fontWeight: FontWeight.bold,
             ),
           ),
-
-          backgroundColor: Color(0xFF4CA6A8),
         ),
         body: isLoading
             ? Loading()
             : SingleChildScrollView(
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(top: size.height * 0.01),
-                        child: Center(
-                          child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(width: 3, color: Colors.black12),
-                              ),
-                              child: Stack(
-                                children: [
-                                  loggedInUser.profileImage == false
-                                      ? CircleAvatar(
-                                          backgroundImage: AssetImage(
-                                              'assets/images/account.png'),
-                                          radius: 50,
-                                        )
-                                      : Container(
-                                          child: InkWell(
-                                            onTap: () {
-                                              chooseImage();
-                                            },
-                                            child: file == null
-                                                ? CircleAvatar(
-                                                    backgroundImage:
-                                                        NetworkImage(
-                                                            loggedInUser
-                                                                .profileImage),
-                                                    backgroundColor:
-                                                        Colors.grey,
-                                                    radius: 50,
-                                                  )
-                                                : CircleAvatar(
-                                                    radius: 50.00,
-                                                    backgroundImage:
-                                                        FileImage(file),
-                                                  ),
-                                          ),
-                                        ),
-                                  Positioned(
-                                      right: 0,
-                                      bottom: 5,
-                                      child: Container(
-                                          width: 30,
-                                          height: 30,
-                                          child: Image.asset(
-                                            "assets/images/camera.png",
-                                          )))
-                                ],
-                              )),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(top: size.height * 0.01),
+                  child: Center(
+                    child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border:
+                          Border.all(width: 3, color: Colors.black12),
                         ),
+                        child: Stack(
+                          children: [
+                            loggedInUser.profileImage == false
+                                ? CircleAvatar(
+                              backgroundImage: AssetImage(
+                                  'assets/images/account.png'),
+                              radius: 50,
+                            )
+                                : Container(
+                              child: InkWell(
+                                onTap: () {
+                                  chooseImage();
+                                },
+                                child: file == null
+                                    ? CircleAvatar(
+                                  backgroundImage:
+                                  NetworkImage(
+                                      loggedInUser
+                                          .profileImage),
+                                  backgroundColor:
+                                  Colors.grey,
+                                  radius: 50,
+                                )
+                                    : CircleAvatar(
+                                  radius: 50.00,
+                                  backgroundImage:
+                                  FileImage(file),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                                right: 0,
+                                bottom: 5,
+                                child: Container(
+                                    width: 30,
+                                    height: 30,
+                                    child: Image.asset(
+                                      "assets/images/camera.png",
+                                    )))
+                          ],
+                        )),
+                  ),
+                ),
+                // ************************************
+                // Name Field
+                //*************************************
+                Container(
+                  margin: EdgeInsets.only(
+                      left: size.width * 0.06, top: margin_top),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "First Name",
+                        style: TextStyle(
+                            color: Color(0xFF151313),
+                            fontWeight: FontWeight.bold),
                       ),
-                      // ************************************
-                      // Name Field
-                      //*************************************
                       Container(
                         margin: EdgeInsets.only(
-                            left: size.width * 0.06, top: margin_top),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "First Name",
-                              style: TextStyle(
-                                  color: Color(0xFF3A8183),
-                                  fontWeight: FontWeight.w600),
+                            left: margin_left, right: margin_right),
+                        width: boder,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 3),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(
-                                  left: margin_left, right: margin_right),
-                              width: boder,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(15.0)
-                                  //                 <--- border radius here
-                                ),
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child: TextFormField(
-                                keyboardType: TextInputType.text,
-                                cursorColor: Color(0xFF3A8183),
-                                initialValue: loggedInUser.name,
-                                onChanged: (name) {
-                                  t_name = name;
-                                },
-                                validator: (var value) {
-                                  if (value!.isEmpty) {
-                                    return "Enter Your First Name";
-                                  }
-                                  return null;
-                                },
-                                onSaved: (var name) {
-                                  t_name = name;
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none, // Set the border to none
-                                ),
-                              ),
-                            )
                           ],
+
                         ),
+                        padding: EdgeInsets.all(12),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          cursorColor:  Color(0xFF4CA6A8),
+                          initialValue: loggedInUser.name,
+                          onChanged: (name) {
+                            t_name = name;
+                          },
+                          validator: (var value) {
+                            if (value!.isEmpty) {
+                              return "Enter Your First Name";
+                            }
+                            return null;
+                          },
+                          onSaved: (var name) {
+                            t_name = name;
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  margin:
+                  EdgeInsets.only(left: margin_left, top: margin_top),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Last Name",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
                       ),
                       Container(
-                        margin:
-                        EdgeInsets.only(left: margin_left, top: margin_top),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Last Name",
-                              style: TextStyle(
-                                  color: Color(0xFF3A8183),
-                                  fontWeight: FontWeight.w600),
+                        margin: EdgeInsets.only(
+                            left: margin_left, right: margin_right),
+                        width: boder,
+                        decoration: BoxDecoration(
+
+                          color: Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 3),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(
-                                  left: margin_left, right: margin_right),
-                              width: boder,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(15.0)
-                                  //                 <--- border radius here
-                                ),
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child: TextFormField(
-                                keyboardType: TextInputType.text,
-                                cursorColor: Color(0xFF3A8183),
-                                initialValue: loggedInUser.last_name,
-                                onChanged: (last_name) {
-                                  t_last_name = last_name;
-                                },
-                                validator: (var value) {
-                                  if (value!.isEmpty) {
-                                    return "Enter Your last name";
-                                  }
-                                  return null;
-                                },
-                                onSaved: (var last_name) {
-                                  t_last_name = last_name;
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none, // Set the border to none
-                                ),
-                              ),
-                            )
                           ],
                         ),
-                      ),
-                      // ************************************
-                      // Email Field
-                      //*************************************
+                        padding: EdgeInsets.all(12),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          cursorColor: Color(0xFF4CA6A8),
+                          initialValue: loggedInUser.last_name,
+                          onChanged: (last_name) {
+                            t_last_name = last_name;
+                          },
+                          validator: (var value) {
+                            if (value!.isEmpty) {
+                              return "Enter Your last name";
+                            }
+                            return null;
+                          },
+                          onSaved: (var last_name) {
+                            t_last_name = last_name;
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                // ************************************
+                // Email Field
+                //*************************************
 
+                Container(
+                  margin:
+                  EdgeInsets.only(left: margin_left, top: margin_top),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Email",
+                        style: TextStyle(
+                            color:  Colors.black,
+                            fontWeight: FontWeight.w700),
+                      ),
                       Container(
-                        margin:
-                        EdgeInsets.only(left: margin_left, top: margin_top),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Email",
-                              style: TextStyle(
-                                  color: Color(0xFF3A8183),
-                                  fontWeight: FontWeight.w600),
+                        margin: EdgeInsets.only(
+                            left: margin_left, right: margin_right),
+                        width: boder,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 3),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(
-                                  left: margin_left, right: margin_right),
-                              width: boder,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(15.0)
-                                  //                 <--- border radius here
-                                ),
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child: TextFormField(
-                                keyboardType: TextInputType.text,
-                                cursorColor: Color(0xFF3A8183),
-                                initialValue: loggedInUser.email,
-                                onChanged: (email) {
-                                  email = email;
-                                },
-                                validator: (var value) {
-                                  if (value!.isEmpty) {
-                                    return "Enter Your email";
-                                  }
-                                  return null;
-                                },
-                                onSaved: (var email) {
-                                  email = email;
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none, // Set the border to none
-                                ),
-                              ),
-                            )
                           ],
                         ),
+                        padding: EdgeInsets.all(12),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          cursorColor: Color(0xFF4CA6A8),
+                          initialValue: loggedInUser.email,
+                          onChanged: (email) {
+                            email = email;
+                          },
+                          validator: (var value) {
+                            if (value!.isEmpty) {
+                              return "Enter Your email";
+                            }
+                            return null;
+                          },
+                          onSaved: (var email) {
+                            email = email;
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+
+                //*************************************
+                //address
+                //*************************************
+
+                Container(
+                  margin:
+                  EdgeInsets.only(left: margin_left, top: margin_top),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Address",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
                       ),
-
-                      //*************************************
-                      //address
-                      //*************************************
-
                       Container(
-                        margin:
-                        EdgeInsets.only(left: margin_left, top: margin_top),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "address",
-                              style: TextStyle(
-                                  color: Color(0xFF3A8183),
-                                  fontWeight: FontWeight.w600),
+                        margin: EdgeInsets.only(
+                            left: margin_left, right: margin_right),
+                        width: boder,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 3),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(
-                                  left: margin_left, right: margin_right),
-                              width: boder,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(15.0)
-                                  //                 <--- border radius here
-                                ),
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child: TextFormField(
-                                keyboardType: TextInputType.text,
-                                cursorColor: Color(0xFF3A8183),
-                                initialValue: loggedInUser.address,
-                                onChanged: (address) {
-                                  t_address = address;
-                                },
-                                validator: (var value) {
-                                  if (value!.isEmpty) {
-                                    return "Enter Your Address";
-                                  }
-                                  return null;
-                                },
-                                onSaved: (var address) {
-                                  t_address =address;
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none, // Set the border to none
-                                ),
-                              ),
-                            )
                           ],
                         ),
+                        padding: EdgeInsets.all(12),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          cursorColor: Color(0xFF4CA6A8),
+                          initialValue: loggedInUser.address,
+                          onChanged: (address) {
+                            t_address = address;
+                          },
+                          validator: (var value) {
+                            if (value!.isEmpty) {
+                              return "Enter Your Address";
+                            }
+                            return null;
+                          },
+                          onSaved: (var address) {
+                            t_address =address;
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  margin:
+                  EdgeInsets.only(left: margin_left, top: margin_top),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "City",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
                       ),
                       Container(
-                        margin:
-                        EdgeInsets.only(left: margin_left, top: margin_top),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "city",
-                              style: TextStyle(
-                                  color: Color(0xFF3A8183),
-                                  fontWeight: FontWeight.w600),
+                        margin: EdgeInsets.only(
+                            left: margin_left, right: margin_right),
+                        width: boder,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 3),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(
-                                  left: margin_left, right: margin_right),
-                              width: boder,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(15.0)
-                                  //                 <--- border radius here
-                                ),
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child: TextFormField(
-                                keyboardType: TextInputType.text,
-                                cursorColor: Color(0xFF3A8183),
-                                initialValue: loggedInUser.city,
-                                onChanged: (city) {
-                                  t_city = city;
-                                },
-                                validator: (var value) {
-                                  if (value!.isEmpty) {
-                                    return "Enter Your City";
-                                  }
-                                  return null;
-                                },
-                                onSaved: (var city) {
-                                  t_city = city;
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none, // Set the border to none
-                                ),
-
-                              ),
-                            )
                           ],
                         ),
+                        padding: EdgeInsets.all(12),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          cursorColor: Color(0xFF4CA6A8),
+                          initialValue: loggedInUser.city,
+                          onChanged: (city) {
+                            t_city = city;
+                          },
+                          validator: (var value) {
+                            if (value!.isEmpty) {
+                              return "Enter Your City";
+                            }
+                            return null;
+                          },
+                          onSaved: (var city) {
+                            t_city = city;
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                // ************************************
+                // Date of Birth Field
+                //*************************************
+                Container(
+                  margin:
+                  EdgeInsets.only(left: margin_left, top: margin_top),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Date Of Birth",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
                       ),
-                      // ************************************
-                      // Date of Birth Field
-                      //*************************************
                       Container(
-                        margin: EdgeInsets.only(left: margin_left, top: margin_top),
+                        margin: EdgeInsets.only(right: margin_right),
+                        width: boder,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.all(12),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
+                          //  crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              "Date Of Birth",
-                              style: TextStyle(
-                                color: Color(0xFF3A8183),
-                                fontWeight: FontWeight.w600,
+                            Center(
+                              child: t_date == null
+                                  ? Text(
+                                loggedInUser.dob.toString(),
+                                style: TextStyle(
+                                    color: Colors.black54),
+                              )
+                                  : Text(
+                                t_date,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(right: margin_right),
-                              width: boder,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Center(
-                                    child: t_date == null
-                                        ? Text(
-                                      loggedInUser.dob.toString(),
-                                      style: TextStyle(color: Colors.black),
-                                          )
-                                        : Text(
-                                            t_date,
-                                            style: TextStyle(
-                                                color: Colors.black,),
-                                          ),
-                                  ),
-                                  IconButton(
-                                      onPressed: () async {
-                                        mydate = await showDatePicker(
-                                            context: context,
-                                            initialDate: DateTime.now(),
-                                            firstDate: DateTime(1950),
-                                            lastDate: DateTime.now());
+                            IconButton(
+                                onPressed: () async {
+                                  mydate = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(1950),
+                                      lastDate: DateTime.now());
 
+                                  setState(() {
+                                    t_date = DateFormat('dd-MM-yyyy')
+                                        .format(mydate);
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.calendar_today,
+                                  color: Color(0xFF4CA6A8),
+
+                                  size: 16,
+                                ))
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                // ************************************
+                // Age Field
+                //*************************************
+                Container(
+                  margin:
+                  EdgeInsets.only(left: margin_left, top: margin_top),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Age",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                            left: margin_left, right: margin_right),
+                        width: boder,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.all(12),
+                        child: TextFormField(
+                          keyboardType: TextInputType.number,
+                          cursorColor: Color(0xFF4CA6A8),
+                          initialValue: loggedInUser.age,
+                          onChanged: (age) {
+                            t_age = age;
+                          },
+                          validator: (var value) {
+                            if (value!.isEmpty) {
+                              return "Enter Your Age";
+                            }
+                            return null;
+                          },
+                          onSaved: (var age) {
+                            t_age = age;
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                // ************************************
+                // Gender Field
+                //*************************************
+
+                Container(
+                  margin:
+                  EdgeInsets.only(left: margin_left, top: margin_top),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Gender",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: margin_left, right: margin_right),
+                        width: boder,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.all(8),
+                        child: Row(
+                          children: <Widget>[
+                            ButtonBar(
+                              alignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Radio(
+                                      value: "male",
+                                      groupValue: loggedInUser.gender,
+                                      activeColor: Color(0xFF4CA6A8),
+                                      onChanged: (val) {
                                         setState(() {
-                                          t_date = DateFormat('dd-MM-yyyy')
-                                              .format(mydate);
+                                          loggedInUser.gender = val as String;
+                                          selectedGender = val as String;
+                                          // Update the user's gender in loggedInUser
                                         });
                                       },
-                                      icon: Icon(
-                                        Icons.calendar_today,
-                                        color: Color(0xFF4CA6A8),
-
-                                        size: 16,
-                                      ))
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      // ************************************
-                      // Age Field
-                      //*************************************
-                      Container(
-                        margin:
-                        EdgeInsets.only(left: margin_left, top: margin_top),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Age",
-                              style: TextStyle(
-                                  color: Color(0xFF3A8183),
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(
-                                  left: margin_left, right: margin_right),
-                              width: boder,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child: TextFormField(
-                                keyboardType: TextInputType.number,
-                                cursorColor: Color(0xFF3A8183),
-                                initialValue: loggedInUser.age,
-                                onChanged: (age) {
-                                  t_age = age;
-                                },
-                                validator: (var value) {
-                                  if (value!.isEmpty) {
-                                    return "Enter Your Age";
-                                  }
-                                  return null;
-                                },
-                                onSaved: (var age) {
-                                  t_age = age;
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none, // Set the border to none
+                                    ),
+                                    Text("Male"),
+                                  ],
                                 ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      // ************************************
-                      // Gender Field
-                      //*************************************
+                                Row(
+                                  children: [
+                                    Radio(
+                                      value: "female",
+                                      activeColor: Color(0xFF4CA6A8),
+                                      groupValue: loggedInUser.gender,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          loggedInUser.gender = val as String;
+                                          selectedGender = val as String;// Update the user's gender in loggedInUser
+                                        });
 
-                      Container(
-                        margin:
-                        EdgeInsets.only(left: margin_left, top: margin_top),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Gender",
-                              style: TextStyle(
-                                  color: Color(0xFF3A8183),
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: margin_left, right: margin_right),
-                              width: boder,
-                              decoration: BoxDecoration(
-                                border: Border.all(width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                              ),
-        padding: EdgeInsets.all(8),
-        child: Row(
-          children: <Widget>[
-            ButtonBar(
-              alignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  children: [
-                    Radio(
-                      value: "male",
-                      groupValue: loggedInUser.gender,
-                      activeColor: Color(0xFF4CA6A8),
-                      onChanged: (val) {
-                        setState(() {
-                          loggedInUser.gender = val as String;
-                          selectedGender = val as String;
-                          // Update the user's gender in loggedInUser
-                        });
-                      },
-                    ),
-                    Text("Male"),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Radio(
-                      value: "female",
-                      activeColor: Color(0xFF4CA6A8),
-                      groupValue: loggedInUser.gender,
-                      onChanged: (val) {
-                        setState(() {
-                          loggedInUser.gender = val as String;
-                          selectedGender = val as String;// Update the user's gender in loggedInUser
-                        });
-
-                      },
-                    ),
-                    Text("Female"),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-          ],),),
-
-
-
-
-      // ************************************
-                      // Countact Number
-                      //*************************************
-
-                      Container(
-                        margin:
-                        EdgeInsets.only(left: margin_left, top: margin_top),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Contact No",
-                              style: TextStyle(
-                                  color: Color(0xFF3A8183),
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(right: margin_right),
-                              width: boder,
-
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    width: 1.0, color: Colors.black12),
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(15.0),
-                                  //  <--- border radius here
+                                      },
+                                    ),
+                                    Text("Female"),
+                                  ],
                                 ),
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child: IntlPhoneField(
-                                cursorColor: kPrimaryColor,
-                                style: TextStyle(fontSize: 16),
-                                disableLengthCheck: false,
-                                initialValue: loggedInUser.phone?.substring(4),
-                                textAlignVertical: TextAlignVertical.center,
-                                dropdownTextStyle: TextStyle(fontSize: 16),
-                                dropdownIcon: Icon(Icons.arrow_drop_down,
-                                    color: kPrimaryColor),
-                                initialCountryCode: 'MA',
-                                onChanged: (phone) {
-                                  print(phone.completeNumber);
-                                  phoneController =
-                                      phone.completeNumber.toString();
-                                },
-                              ),
-                              //  child: Text("${loggedInUser.phone}"),
-                            )
+                              ],
+                            ),
                           ],
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(left: margin_left, top: margin_top),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              "Status",
-                              style: TextStyle(
-                                color: Color(0xFF3A8183),
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(left: margin_left, right: margin_right),
-                              width: boder,
-                              decoration: BoxDecoration(
-                                border: Border.all(width: 1.0, color: Colors.black12),
-                                borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                              ),
-                  padding: EdgeInsets.all(8),
+                    ],),),
+
+
+
+
+                // ************************************
+                // Countact Number
+                //*************************************
+
+                Container(
+                  margin:
+                  EdgeInsets.only(left: margin_left, top: margin_top),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      ButtonBar(
-                        alignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              Radio(
-                                value: "unmarried",
-                                groupValue: loggedInUser.status,
-                                activeColor:  Color(0xFF4CA6A8),
-                                onChanged: (val) {
-                                  setState(() {
-                                    loggedInUser.status = val as String;
-                                    selectedStatus = val as String;
-                                  });
-                                },
-                              ),
-                              Text("Unmarried",
-                                style: TextStyle(
-                                  fontSize: 13, // Adjust the font size as needed
-                                ),),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Radio(
-                                value: "married",
-                                groupValue: loggedInUser.status,
-                                activeColor: Color(0xFF4CA6A8),
-                                onChanged: (val) {
-                                  setState(() {
-                                    loggedInUser.status = val as String;
-                                    selectedStatus = val as String;
-                                  });
-                                },
-                              ),
-                              Text("Married",
-                                style: TextStyle(
-                                  fontSize: 13, // Adjust the font size as needed
+                      Text(
+                        "Contact No",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(right: margin_right),
+                        width: boder,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.all(12),
+                        child: IntlPhoneField(
+                          cursorColor:Color(0xFF4CA6A8),
+                          style: TextStyle(fontSize: 16),
+                          disableLengthCheck: false,
+                          initialValue: loggedInUser.phone?.substring(4),
+                          textAlignVertical: TextAlignVertical.center,
+                          dropdownTextStyle: TextStyle(fontSize: 16),
+                          dropdownIcon: Icon(Icons.arrow_drop_down,
+                              color: Color(0xFF4CA6A8)),
+                          initialCountryCode: 'MA',
+                          onChanged: (phone) {
+                            print(phone.completeNumber);
+                            phoneController =
+                                phone.completeNumber.toString();
+                          },
+                        ),
+                        //  child: Text("${loggedInUser.phone}"),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: margin_left, top: margin_top),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "Status",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: margin_left, right: margin_right),
+                        width: boder,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFFFFFF),
+                          borderRadius: BorderRadius.circular(30),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              blurRadius: 10,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.all(8),
+                        child: Row(
+                          children: <Widget>[
+                            ButtonBar(
+                              alignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  children: [
+                                    Radio(
+                                      value: "unmarried",
+                                      groupValue: loggedInUser.status,
+                                      activeColor:  Color(0xFF4CA6A8),
+                                      onChanged: (val) {
+                                        setState(() {
+                                          loggedInUser.status = val as String;
+                                          selectedStatus = val as String;
+                                        });
+                                      },
+                                    ),
+                                    Text("Unmarried",
+                                      style: TextStyle(
+                                        fontSize: 13, // Adjust the font size as needed
+                                      ),),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                                Row(
+                                  children: [
+                                    Radio(
+                                      value: "married",
+                                      groupValue: loggedInUser.status,
+                                      activeColor: Color(0xFF4CA6A8),
+                                      onChanged: (val) {
+                                        setState(() {
+                                          loggedInUser.status = val as String;
+                                          selectedStatus = val as String;
+                                        });
+                                      },
+                                    ),
+                                    Text("Married",
+                                      style: TextStyle(
+                                        fontSize: 13, // Adjust the font size as needed
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
+                  ),
+                ),
+
+
+                Container(
+                  width: size.width * 0.8,
+                  margin: EdgeInsets.all(10),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: StadiumBorder(),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 15),
+                      backgroundColor: Color(0xFF4CA6A8),
+                    ),
+                    onPressed: () async {
+                      var url;
+                      if (status == false) {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) =>
+                                AdvanceCustomAlert());
+                      } else {
+                        showLoadingDialog(context: context);
+                        if (file != null) {
+                          url = await uploadImage();
+                          print("URL ===== " + url.toString());
+                        }
+                        if (_formKey.currentState!.validate()) {
+                          print("Done");
+                          FirebaseFirestore firebaseFirestore =
+                              FirebaseFirestore.instance;
+                          firebaseFirestore
+                              .collection('parent')
+                              .doc(loggedInUser.uid)
+                              .update({
+                            'name': t_name == null
+                                ? loggedInUser.name
+                                : t_name,
+                            'last name': t_last_name == null
+                                ? loggedInUser.last_name
+                                : t_last_name,
+                            'address': t_address == null
+                                ? loggedInUser.address
+                                : t_address,
+
+                            'gender': selectedGender == null
+                                ? loggedInUser.gender
+                                : selectedGender,
+                            'city': t_city == null
+                                ? loggedInUser.city
+                                : t_city,
+                            'age': t_age == null
+                                ? loggedInUser.age
+                                : t_age,
+                            'dob': t_date == null
+                                ? loggedInUser.dob
+                                : t_date,
+                            'status': selectedStatus == null
+                                ? loggedInUser.status
+                                : selectedStatus,
+                            'phone': phoneController == null
+                                ? loggedInUser.phone
+                                : phoneController,
+                            'profileImage': url == null
+                                ? loggedInUser.profileImage
+                                : url,
+                          })
+                              .then((value) => Loading())
+                              .then((value) =>
+                              Navigator.pushAndRemoveUntil<dynamic>(
+                                  context,
+                                  MaterialPageRoute<dynamic>(
+                                      builder:
+                                          (BuildContext context) =>
+                                          HomePage()),
+                                      (route) => false));
+                        }
+                      }
+                    },
+                    child: Text(
+                      'Update Profile',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-
-
-          Container(
-                        width: size.width * 0.8,
-                        margin: EdgeInsets.all(10),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: StadiumBorder(),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 40, vertical: 15),
-                            backgroundColor: Color(0xFF4CA6A8),
-                          ),
-                          onPressed: () async {
-                            var url;
-                            if (status == false) {
-                              showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (BuildContext context) =>
-                                      AdvanceCustomAlert());
-                            } else {
-                              showLoadingDialog(context: context);
-                              if (file != null) {
-                                url = await uploadImage();
-                                print("URL ===== " + url.toString());
-                              }
-                              if (_formKey.currentState!.validate()) {
-                                print("Done");
-                                FirebaseFirestore firebaseFirestore =
-                                    FirebaseFirestore.instance;
-                                firebaseFirestore
-                                    .collection('parent')
-                                    .doc(loggedInUser.uid)
-                                    .update({
-                                      'name': t_name == null
-                                          ? loggedInUser.name
-                                          : t_name,
-                                      'last name': t_last_name == null
-                                          ? loggedInUser.last_name
-                                          : t_last_name,
-                                      'address': t_address == null
-                                          ? loggedInUser.address
-                                          : t_address,
-
-                                  'gender': selectedGender == null
-                                      ? loggedInUser.gender
-                                      : selectedGender,
-                                  'city': t_city == null
-                                      ? loggedInUser.city
-                                      : t_city,
-                                      'age': t_age == null
-                                          ? loggedInUser.age
-                                          : t_age,
-                                      'dob': t_date == null
-                                          ? loggedInUser.dob
-                                          : t_date,
-                                  'status': selectedStatus == null
-                                      ? loggedInUser.status
-                                      : selectedStatus,
-                                      'phone': phoneController == null
-                                          ? loggedInUser.phone
-                                          : phoneController,
-                                      'profileImage': url == null
-                                          ? loggedInUser.profileImage
-                                          : url,
-                                    })
-                                    .then((value) => Loading())
-                                    .then((value) =>
-                                        Navigator.pushAndRemoveUntil<dynamic>(
-                                            context,
-                                            MaterialPageRoute<dynamic>(
-                                                builder:
-                                                    (BuildContext context) =>
-                                                        HomePage()),
-                                            (route) => false));
-                              }
-                            }
-                          },
-                          child: Text(
-                            'Update Profile',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+        ),
       ),
     );
   }
@@ -900,7 +931,7 @@ class _Profile_pageState extends State<Profile_page> {
         .ref()
         .child("profile")
         .child(
-            FirebaseAuth.instance.currentUser!.uid + "_" + basename(file.path))
+        FirebaseAuth.instance.currentUser!.uid + "_" + basename(file.path))
         .putFile(file);
 
     return taskSnapshot.ref.getDownloadURL();

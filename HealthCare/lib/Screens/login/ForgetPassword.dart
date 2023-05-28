@@ -101,29 +101,18 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      "assets/images/forget.png",
-                      width: 270,
-                      height: 270,
-                    ),
+
                     Container(
                       child: Center(
                           child: Text(
                         "Reset Password",
                         style: TextStyle(
                             fontSize: 22,
-                            color: kPrimaryColor,
+                            color: Color(0xFF4CA6A8),
                             fontWeight: FontWeight.bold),
                       )),
                     ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    Container(
-                      height: 2,
-                      width: 150,
-                      color: kPrimaryLightColor,
-                    ),
+
                     SizedBox(
                       height: size.height * 0.03,
                     ),
@@ -149,14 +138,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       ),
                     ),
                     Container(
-                      width: size.width * 0.8,
+                      width: 250,
                       margin: EdgeInsets.all(10),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             shape: StadiumBorder(),
                             padding: EdgeInsets.symmetric(
                                 horizontal: 40, vertical: 15),
-                            backgroundColor: kPrimaryColor),
+                            backgroundColor: Color(0xFF4CA6A8)),
                         onPressed: () async {
                           if (status == false) {
                             showDialog(
@@ -171,7 +160,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                                     .sendPasswordResetEmail(email: t_email)
                                     .then((value) {
                                   Fluttertoast.showToast(
-                                      backgroundColor: kPrimaryColor,
+                                      backgroundColor: Color(0xFF4CA6A8),
                                       msg: "Send E-Mail To Your Account",
                                       toastLength: Toast.LENGTH_LONG,
                                       gravity: ToastGravity.BOTTOM,
