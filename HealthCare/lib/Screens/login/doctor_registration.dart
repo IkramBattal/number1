@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,6 +19,7 @@ import '../../componets/loadingindicator.dart';
 import '../../constants.dart';
 import '../../widget/Alert_Dialog.dart';
 import 'doctorlogin.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class DocRegistration extends StatefulWidget {
   const DocRegistration({Key? key}) : super(key: key);
@@ -86,7 +88,10 @@ class _DocRegistrationState extends State<DocRegistration> {
   var result;
   var subscription;
   bool status = false;
+  File? file1;
 
+// Declare a variable to store the download URL
+  String? url1;
   getConnectivity() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile) {
@@ -101,7 +106,45 @@ class _DocRegistrationState extends State<DocRegistration> {
       print("No Internet !");
     }
   }
+  void chooseFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
 
+    if (result != null) {
+      file1 = File(result.files.single.path!);
+      print('File selected: ${file1!.path}');
+
+      // Automatically upload the file and get the URL
+      await uploadFileAndGetURL();
+    } else {
+      // User canceled the file selection
+      print('No file selected');
+    }
+  }
+
+// Function to upload the file to Firebase Storage and get the download URL
+  Future<void> uploadFileAndGetURL() async {
+    if (file1 != null) {
+      try {
+        // Upload the file to Firebase Storage
+        String fileName = 'proof.pdf'; // Assign a filename for the file
+        firebase_storage.Reference ref =
+        firebase_storage.FirebaseStorage.instance.ref().child('files/$fileName');
+        await ref.putFile(file1!);
+
+        // Get the download URL
+        url1 = await ref.getDownloadURL();
+
+        print('File uploaded. URL: $url1');
+      } catch (e) {
+        print('Error uploading the file: $e');
+      }
+    } else {
+      print('No file selected');
+    }
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -792,7 +835,7 @@ class _DocRegistrationState extends State<DocRegistration> {
                                             shape: StadiumBorder(),
                                           ),
                                           onPressed: () async {
-                                            chooseImage2();
+                                            chooseFile();
                                           },
                                           child: Text("Choose File"),
                                         ),
@@ -1178,7 +1221,7 @@ class _DocRegistrationState extends State<DocRegistration> {
                                         'profileImage':
                                         url == null ? false : url,
                                         'proof':
-                                        url2 == null ? false : url2,
+                                        url1 == null ? false : url1,
                                         'valid': false
                                       })
                                           .then((value) =>
