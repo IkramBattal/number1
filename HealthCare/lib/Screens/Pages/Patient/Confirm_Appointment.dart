@@ -6,6 +6,7 @@ import '../../../componets/loadingindicator.dart';
 import '../../../models/patient_data.dart';
 import 'Pending.dart';
 
+
 class Confirm_Appointment extends StatefulWidget {
   const Confirm_Appointment({Key? key}) : super(key: key);
 
@@ -151,8 +152,7 @@ class _Confirm_AppointmentState extends State<Confirm_Appointment> {
                                                                     .only(
                                                                 left: 8.0),
                                                         child: Text(
-                                                          "Date: " +
-                                                              doc['date'],
+                                                            "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
                                                           style: TextStyle(
                                                               color:
                                                               Color(0xFF151313),

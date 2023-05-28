@@ -132,7 +132,7 @@ class _Patient_RecentListState extends State<Patient_RecentList> {
                                         margin: EdgeInsets.only(top: 3),
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
+                                            "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
                                           style: TextStyle(
                                             color: Color(0xFF151313),
                                             fontSize: 14,
