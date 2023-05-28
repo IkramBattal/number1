@@ -63,73 +63,6 @@ class _Patient_RecentListState extends State<Patient_RecentList> {
         child: Column(
           children: [
             Container(
-              width: size.width * 1,
-              margin: EdgeInsets.only(left: 10),
-              child: DropdownButton2(
-                isExpanded: true,
-                value: dropdownValue,
-                icon: Icon(Icons.arrow_drop_down),
-                iconSize: 24,
-                iconEnabledColor: Color(0xFF4CA6A8),
-                buttonHeight: 50,
-                buttonPadding: const EdgeInsets.only(left: 14, right: 14),
-                buttonElevation: 2,
-                itemHeight: 40,
-                itemPadding: const EdgeInsets.only(left: 14, right: 14),
-                dropdownMaxHeight: 200,
-                dropdownDecoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                scrollbarRadius: const Radius.circular(40),
-                scrollbarThickness: 6,
-                scrollbarAlwaysShow: true,
-                style: TextStyle(color: Colors.black, fontSize: 18),
-                onChanged: (data) async {
-                  setState(() {
-                    dropdownValue = data.toString();
-                  });
-
-                  if (data == 'All') {
-                    setState(() {
-                      t_date = null;
-                    });
-                  } else {
-                    mydate = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime(9999),
-                    );
-
-                    setState(() {
-                      t_date = mydate != null ? Timestamp.fromDate(mydate!) : null;
-                    });
-                  }
-                },
-                items: [
-                  DropdownMenuItem(
-                    value: 'All',
-                    child: Text('All'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'Custom Date',
-                    child: Text('Custom Date'),
-                  ),
-                ],
-              ),
-            ),
-            t_date != null
-                ? Container(
-              width: size.width * 1,
-              margin: EdgeInsets.only(left: 38),
-              child: Text(
-                  DateFormat('dd-MM-yyyy').format(t_date!.toDate()),
-
-                  style: TextStyle(fontSize: 18),
-              ),
-            )
-                : SizedBox(),
-            Container(
               child: SingleChildScrollView(
                 child: StreamBuilder<QuerySnapshot>(
                   stream: firebase,
@@ -199,7 +132,7 @@ class _Patient_RecentListState extends State<Patient_RecentList> {
                                         margin: EdgeInsets.only(top: 3),
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          "Date: " + doc['date'],
+                                          "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
                                           style: TextStyle(
                                             color: Color(0xFF151313),
                                             fontSize: 14,
@@ -258,7 +191,7 @@ class _Patient_RecentListState extends State<Patient_RecentList> {
                                         margin: EdgeInsets.only(top: 3),
                                         decoration: BoxDecoration(),
                                         child: Text(
-                                          "Date: " + doc['date'],
+                                          "Date    : "+ DateFormat('dd-MM-yyyy').format(doc['date'].toDate()).toString(),
                                           style: TextStyle(
                                             color: Color(0xFF151313),
                                             fontSize: 14,

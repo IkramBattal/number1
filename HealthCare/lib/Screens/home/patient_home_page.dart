@@ -139,12 +139,13 @@ class _HomePageState extends State<HomePage> {
             decoration: BoxDecoration(
               color: Color(0xFF4CA6A8),
               shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(80),
+              borderRadius: BorderRadius.circular(22),
             ),
             child: IconTheme(
               data: IconThemeData(color: Colors.white),
               child: Icon(
                 Icons.menu,
+                size:30
               ),
             ),
           ),
