@@ -1133,7 +1133,7 @@ class _DocRegistrationState extends State<DocRegistration> {
                                         horizontal: 40, vertical: 15),
                                     backgroundColor: Color(0xFF4CA6A8)),
                                 onPressed: () async {
-                                  if (file2 == null) {
+                                  if (url1 == null) {
                                     Fluttertoast.showToast(
                                         msg: "No File Chosen",
                                         textColor: Colors.white,

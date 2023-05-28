@@ -42,7 +42,6 @@ class _Profile_pageState extends State<DProfile_page> {
   var t_city;
   var mydate;
   var t_date;
-  var t_age;
   var name;
   var last_name;
   var file;
@@ -558,52 +557,7 @@ class _Profile_pageState extends State<DProfile_page> {
                 // ************************************
                 // Age Field
                 //*************************************
-                Container(
-                  margin:
-                  EdgeInsets.only(left: margin_left, top: margin_top),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        "Age",
-                        style: TextStyle(
-                            color: Color(0xFF3A8183),
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(
-                            left: margin_left, right: margin_right),
-                        width: boder,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 1.0, color: Colors.black12),
-                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                        ),
-                        padding: EdgeInsets.all(8),
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          cursorColor: Color(0xFF3A8183),
-                          initialValue: loggedInUser.age,
-                          onChanged: (age) {
-                            t_age = age;
-                          },
-                          validator: (var value) {
-                            if (value!.isEmpty) {
-                              return "Enter Your Age";
-                            }
-                            return null;
-                          },
-                          onSaved: (var age) {
-                            t_age = age;
-                          },
-                          decoration: InputDecoration(
-                            border: InputBorder.none, // Set the border to none
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+
                 // ************************************
                 // Gender Field
                 //*************************************
@@ -893,9 +847,7 @@ class _Profile_pageState extends State<DProfile_page> {
                             'city': t_city == null
                                 ? loggedInUser.city
                                 : t_city,
-                            'age': t_age == null
-                                ? loggedInUser.age
-                                : t_age,
+
                             'proof':url1==null
                                 ?loggedInUser.proof
                                 :url1,
