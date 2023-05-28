@@ -136,28 +136,27 @@ class _Profile_pageState extends State<Profile_page> {
 
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xFFF5F5F5),
         appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Color(0xFFF5F5F5),
           leading: IconButton(
             icon: Icon(
-              Icons.arrow_back_ios,
-              size: 25,
-              color: Color(0xFF4CA6A8),
+              Icons.arrow_back,
+              size: 30,
+              color: Colors.white,
             ),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          title: Text('Profile',
+          centerTitle: true,
+          title: Text(
+            'Profile',
+
             style: TextStyle(
-              fontSize: 20,
-              color:  Color(0xFF4CA6A8),
-              fontWeight: FontWeight.bold,
+              fontSize: 22, // Adjust the font size as needed
             ),
           ),
+
+          backgroundColor: Color(0xFF4CA6A8),
         ),
         body: isLoading
             ? Loading()
@@ -230,29 +229,25 @@ class _Profile_pageState extends State<Profile_page> {
                             Text(
                               "First Name",
                               style: TextStyle(
-                                  color: Color(0xFF151313),
-                                  fontWeight: FontWeight.bold),
+                                  color: Color(0xFF3A8183),
+                                  fontWeight: FontWeight.w600),
                             ),
                             Container(
                               margin: EdgeInsets.only(
                                   left: margin_left, right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                color: Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(30),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-                                    blurRadius: 10,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
-
+                                border: Border.all(
+                                    width: 1.0, color: Colors.black12),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(15.0)
+                                  //                 <--- border radius here
+                                ),
                               ),
-                              padding: EdgeInsets.all(12),
+                              padding: EdgeInsets.all(8),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                cursorColor:  Color(0xFF4CA6A8),
+                                cursorColor: Color(0xFF3A8183),
                                 initialValue: loggedInUser.name,
                                 onChanged: (name) {
                                   t_name = name;
@@ -266,6 +261,9 @@ class _Profile_pageState extends State<Profile_page> {
                                 onSaved: (var name) {
                                   t_name = name;
                                 },
+                                decoration: InputDecoration(
+                                  border: InputBorder.none, // Set the border to none
+                                ),
                               ),
                             )
                           ],
@@ -273,36 +271,32 @@ class _Profile_pageState extends State<Profile_page> {
                       ),
                       Container(
                         margin:
-                            EdgeInsets.only(left: margin_left, top: margin_top),
+                        EdgeInsets.only(left: margin_left, top: margin_top),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
                               "Last Name",
                               style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                                  color: Color(0xFF3A8183),
+                                  fontWeight: FontWeight.w600),
                             ),
                             Container(
                               margin: EdgeInsets.only(
                                   left: margin_left, right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-
-                                color: Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(30),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-                                    blurRadius: 10,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
+                                border: Border.all(
+                                    width: 1.0, color: Colors.black12),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(15.0)
+                                  //                 <--- border radius here
+                                ),
                               ),
-                              padding: EdgeInsets.all(12),
+                              padding: EdgeInsets.all(8),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                cursorColor: Color(0xFF4CA6A8),
+                                cursorColor: Color(0xFF3A8183),
                                 initialValue: loggedInUser.last_name,
                                 onChanged: (last_name) {
                                   t_last_name = last_name;
@@ -316,6 +310,9 @@ class _Profile_pageState extends State<Profile_page> {
                                 onSaved: (var last_name) {
                                   t_last_name = last_name;
                                 },
+                                decoration: InputDecoration(
+                                  border: InputBorder.none, // Set the border to none
+                                ),
                               ),
                             )
                           ],
@@ -327,35 +324,32 @@ class _Profile_pageState extends State<Profile_page> {
 
                       Container(
                         margin:
-                            EdgeInsets.only(left: margin_left, top: margin_top),
+                        EdgeInsets.only(left: margin_left, top: margin_top),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
                               "Email",
                               style: TextStyle(
-                                  color:  Colors.black,
-                                  fontWeight: FontWeight.w700),
+                                  color: Color(0xFF3A8183),
+                                  fontWeight: FontWeight.w600),
                             ),
                             Container(
                               margin: EdgeInsets.only(
                                   left: margin_left, right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                color: Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(30),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-                                    blurRadius: 10,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
+                                border: Border.all(
+                                    width: 1.0, color: Colors.black12),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(15.0)
+                                  //                 <--- border radius here
+                                ),
                               ),
-                              padding: EdgeInsets.all(12),
+                              padding: EdgeInsets.all(8),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                cursorColor: Color(0xFF4CA6A8),
+                                cursorColor: Color(0xFF3A8183),
                                 initialValue: loggedInUser.email,
                                 onChanged: (email) {
                                   email = email;
@@ -369,6 +363,9 @@ class _Profile_pageState extends State<Profile_page> {
                                 onSaved: (var email) {
                                   email = email;
                                 },
+                                decoration: InputDecoration(
+                                  border: InputBorder.none, // Set the border to none
+                                ),
                               ),
                             )
                           ],
@@ -381,35 +378,32 @@ class _Profile_pageState extends State<Profile_page> {
 
                       Container(
                         margin:
-                            EdgeInsets.only(left: margin_left, top: margin_top),
+                        EdgeInsets.only(left: margin_left, top: margin_top),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "Address",
+                              "address",
                               style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                                  color: Color(0xFF3A8183),
+                                  fontWeight: FontWeight.w600),
                             ),
                             Container(
                               margin: EdgeInsets.only(
                                   left: margin_left, right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                color: Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(30),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-                                    blurRadius: 10,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
+                                border: Border.all(
+                                    width: 1.0, color: Colors.black12),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(15.0)
+                                  //                 <--- border radius here
+                                ),
                               ),
-                              padding: EdgeInsets.all(12),
+                              padding: EdgeInsets.all(8),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                cursorColor: Color(0xFF4CA6A8),
+                                cursorColor: Color(0xFF3A8183),
                                 initialValue: loggedInUser.address,
                                 onChanged: (address) {
                                   t_address = address;
@@ -423,6 +417,9 @@ class _Profile_pageState extends State<Profile_page> {
                                 onSaved: (var address) {
                                   t_address =address;
                                 },
+                                decoration: InputDecoration(
+                                  border: InputBorder.none, // Set the border to none
+                                ),
                               ),
                             )
                           ],
@@ -435,30 +432,27 @@ class _Profile_pageState extends State<Profile_page> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "City",
+                              "city",
                               style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                                  color: Color(0xFF3A8183),
+                                  fontWeight: FontWeight.w600),
                             ),
                             Container(
                               margin: EdgeInsets.only(
                                   left: margin_left, right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                color: Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(30),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-                                    blurRadius: 10,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
+                                border: Border.all(
+                                    width: 1.0, color: Colors.black12),
+                                borderRadius: BorderRadius.all(
+                                    Radius.circular(15.0)
+                                  //                 <--- border radius here
+                                ),
                               ),
-                              padding: EdgeInsets.all(12),
+                              padding: EdgeInsets.all(8),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                cursorColor: Color(0xFF4CA6A8),
+                                cursorColor: Color(0xFF3A8183),
                                 initialValue: loggedInUser.city,
                                 onChanged: (city) {
                                   t_city = city;
@@ -472,6 +466,10 @@ class _Profile_pageState extends State<Profile_page> {
                                 onSaved: (var city) {
                                   t_city = city;
                                 },
+                                decoration: InputDecoration(
+                                  border: InputBorder.none, // Set the border to none
+                                ),
+
                               ),
                             )
                           ],
@@ -481,49 +479,39 @@ class _Profile_pageState extends State<Profile_page> {
                       // Date of Birth Field
                       //*************************************
                       Container(
-                        margin:
-                            EdgeInsets.only(left: margin_left, top: margin_top),
+                        margin: EdgeInsets.only(left: margin_left, top: margin_top),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
                               "Date Of Birth",
                               style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                                color: Color(0xFF3A8183),
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                             Container(
                               margin: EdgeInsets.only(right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                color: Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(30),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-                                    blurRadius: 10,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
+                                border: Border.all(
+                                    width: 1.0, color: Colors.black12),
+                                borderRadius: BorderRadius.all(Radius.circular(15.0)),
                               ),
-                              padding: EdgeInsets.all(12),
+                              padding: EdgeInsets.all(8),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                //  crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Center(
                                     child: t_date == null
                                         ? Text(
-                                            loggedInUser.dob.toString(),
-                                            style: TextStyle(
-                                                color: Colors.black54),
+                                      loggedInUser.dob.toString(),
+                                      style: TextStyle(color: Colors.black),
                                           )
                                         : Text(
                                             t_date,
                                             style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold),
+                                                color: Colors.black,),
                                           ),
                                   ),
                                   IconButton(
@@ -556,35 +544,29 @@ class _Profile_pageState extends State<Profile_page> {
                       //*************************************
                       Container(
                         margin:
-                            EdgeInsets.only(left: margin_left, top: margin_top),
+                        EdgeInsets.only(left: margin_left, top: margin_top),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
                               "Age",
                               style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                                  color: Color(0xFF3A8183),
+                                  fontWeight: FontWeight.w600),
                             ),
                             Container(
                               margin: EdgeInsets.only(
                                   left: margin_left, right: margin_right),
                               width: boder,
                               decoration: BoxDecoration(
-                                color: Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(30),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-                                    blurRadius: 10,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
+                                border: Border.all(
+                                    width: 1.0, color: Colors.black12),
+                                borderRadius: BorderRadius.all(Radius.circular(15.0)),
                               ),
-                              padding: EdgeInsets.all(12),
+                              padding: EdgeInsets.all(8),
                               child: TextFormField(
                                 keyboardType: TextInputType.number,
-                                cursorColor: Color(0xFF4CA6A8),
+                                cursorColor: Color(0xFF3A8183),
                                 initialValue: loggedInUser.age,
                                 onChanged: (age) {
                                   t_age = age;
@@ -598,6 +580,9 @@ class _Profile_pageState extends State<Profile_page> {
                                 onSaved: (var age) {
                                   t_age = age;
                                 },
+                                decoration: InputDecoration(
+                                  border: InputBorder.none, // Set the border to none
+                                ),
                               ),
                             )
                           ],
@@ -607,32 +592,25 @@ class _Profile_pageState extends State<Profile_page> {
                       // Gender Field
                       //*************************************
 
-          Container(
-            margin:
-            EdgeInsets.only(left: margin_left, top: margin_top),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  "Gender",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ),
-        Container(
-        margin: EdgeInsets.only(left: margin_left, right: margin_right),
-        width: boder,
-        decoration: BoxDecoration(
-          color: Color(0xFFFFFFFF),
-          borderRadius: BorderRadius.circular(30),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.3),
-              blurRadius: 10,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
+                      Container(
+                        margin:
+                        EdgeInsets.only(left: margin_left, top: margin_top),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              "Gender",
+                              style: TextStyle(
+                                  color: Color(0xFF3A8183),
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: margin_left, right: margin_right),
+                              width: boder,
+                              decoration: BoxDecoration(
+                                border: Border.all(width: 1.0, color: Colors.black12),
+                                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                              ),
         padding: EdgeInsets.all(8),
         child: Row(
           children: <Widget>[
@@ -689,40 +667,38 @@ class _Profile_pageState extends State<Profile_page> {
 
                       Container(
                         margin:
-                            EdgeInsets.only(left: margin_left, top: margin_top),
+                        EdgeInsets.only(left: margin_left, top: margin_top),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
                               "Contact No",
                               style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
+                                  color: Color(0xFF3A8183),
+                                  fontWeight: FontWeight.w600),
                             ),
                             Container(
                               margin: EdgeInsets.only(right: margin_right),
                               width: boder,
+
                               decoration: BoxDecoration(
-                                color: Color(0xFFFFFFFF),
-                                borderRadius: BorderRadius.circular(30),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-                                    blurRadius: 10,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
+                                border: Border.all(
+                                    width: 1.0, color: Colors.black12),
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(15.0),
+                                  //  <--- border radius here
+                                ),
                               ),
-                              padding: EdgeInsets.all(12),
+                              padding: EdgeInsets.all(8),
                               child: IntlPhoneField(
-                                cursorColor:Color(0xFF4CA6A8),
+                                cursorColor: kPrimaryColor,
                                 style: TextStyle(fontSize: 16),
                                 disableLengthCheck: false,
                                 initialValue: loggedInUser.phone?.substring(4),
                                 textAlignVertical: TextAlignVertical.center,
                                 dropdownTextStyle: TextStyle(fontSize: 16),
                                 dropdownIcon: Icon(Icons.arrow_drop_down,
-                                    color: Color(0xFF4CA6A8)),
+                                    color: kPrimaryColor),
                                 initialCountryCode: 'MA',
                                 onChanged: (phone) {
                                   print(phone.completeNumber);
@@ -735,32 +711,25 @@ class _Profile_pageState extends State<Profile_page> {
                           ],
                         ),
                       ),
-          Container(
-            margin: EdgeInsets.only(left: margin_left, top: margin_top),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  "Status",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: margin_left, right: margin_right),
-                  width: boder,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFFFFFFF),
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
-                        blurRadius: 10,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
-                  ),
+                      Container(
+                        margin: EdgeInsets.only(left: margin_left, top: margin_top),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              "Status",
+                              style: TextStyle(
+                                color: Color(0xFF3A8183),
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: margin_left, right: margin_right),
+                              width: boder,
+                              decoration: BoxDecoration(
+                                border: Border.all(width: 1.0, color: Colors.black12),
+                                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                              ),
                   padding: EdgeInsets.all(8),
                   child: Row(
                     children: <Widget>[

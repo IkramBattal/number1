@@ -52,6 +52,8 @@ class _Profile_pageState extends State<DProfile_page> {
   var email;
   var selectedStatus;
   var selectedGender ;
+
+  var t_name ;
   setSelectedgender(int val) {
     setState(() {
       gender = val;
@@ -310,7 +312,7 @@ class _Profile_pageState extends State<DProfile_page> {
                           cursorColor: Color(0xFF3A8183),
                           initialValue: loggedInUser.name,
                           onChanged: (name) {
-                            name = name;
+                             t_name = name;
                           },
                           validator: (var value) {
                             if (value!.isEmpty) {
@@ -319,7 +321,7 @@ class _Profile_pageState extends State<DProfile_page> {
                             return null;
                           },
                           onSaved: (var name) {
-                            name = name;
+                            t_name = name;
                           },
                           decoration: InputDecoration(
                             border: InputBorder.none, // Set the border to none
@@ -885,9 +887,9 @@ class _Profile_pageState extends State<DProfile_page> {
                               .collection('Sitter')
                               .doc(loggedInUser.uid)
                               .update({
-                            'name': name == null
+                            'name': t_name == null
                                 ? loggedInUser.name
-                                : name,
+                                : t_name,
                             'city': t_city == null
                                 ? loggedInUser.city
                                 : t_city,
@@ -897,7 +899,9 @@ class _Profile_pageState extends State<DProfile_page> {
                             'proof':url1==null
                                 ?loggedInUser.proof
                                 :url1,
-
+                            'address': t_address == null
+                                ? loggedInUser.address
+                                : t_address,
                             'dob': t_date == null
                                 ? loggedInUser.dob
                                 : t_date,
