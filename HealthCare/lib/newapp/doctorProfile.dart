@@ -168,15 +168,15 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       ],
                     ),
                   ),
-                  accountName: Text(loggedInUser.name.toString()),
-                  accountEmail: Text(loggedInUser.email.toString()),
+                  accountName: Text(loggedInUser.name?.toString() ?? 'Default Name'),
+                  accountEmail: Text(loggedInUser.email?.toString() ?? 'Default Email'),
                   currentAccountPicture: Container(
                     child: CircleAvatar(
                       radius: 50,
                       backgroundColor: Colors.white,
                       backgroundImage: (loggedInUser.profileImage == false)
                           ? AssetImage('assets/images/person.jpg')
-                          : NetworkImage(loggedInUser.profileImage) as ImageProvider<Object>?,
+                          : NetworkImage(loggedInUser.profileImage ?? '') as ImageProvider<Object>?,
                     ),
                   ),
                 ),
