@@ -173,11 +173,14 @@ class _DoctorProfileState extends State<DoctorProfile> {
                   currentAccountPicture: Container(
                     child: CircleAvatar(
                       radius: 50,
-                      backgroundColor: Colors.white, // ),
-                      backgroundImage: AssetImage('assets/images/person.jpg'),
+                      backgroundColor: Colors.white,
+                      backgroundImage: (loggedInUser.profileImage == false)
+                          ? AssetImage('assets/images/person.jpg')
+                          : NetworkImage(loggedInUser.profileImage) as ImageProvider<Object>?,
                     ),
                   ),
                 ),
+
               ],
             ),
             Container(
